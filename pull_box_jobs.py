@@ -1,7 +1,7 @@
 from jilprocess import readjobsdata, writejil
 
 def pullboxjobs(boxessourcefilename,mainsourcefilename,destinationfilename,logfilename):
-    #get all boxes
+    #get all boxnames
     jobsdataforboxes = readjobsdata(boxessourcefilename)
     mainsourcejobsdata = readjobsdata(mainsourcefilename)
     lstboxes = []
