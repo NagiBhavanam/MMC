@@ -1,0 +1,113 @@
+/* ----------------- mmemsg_w_ev_emea_box ----------------- */ 
+
+insert_job: mmemsg_w_ev_emea_box  job_type: BOX 
+owner: root
+permission: mx,me
+date_conditions: 1
+days_of_week: fr
+start_times: "17:45"
+condition: (s(mmemsg_d_ev_emea_box) & s(mmemsg_w_sun_ev_emea_box))
+max_run_alarm: 690
+timezone: London
+group: MGTI_EUR_MESSAGING
+application: MMEMSG
+
+/* ----------------- mmemsg_w_ev_emea_start ----------------- */ 
+
+insert_job: mmemsg_w_ev_emea_start  job_type: CMD
+box_name: mmemsg_w_ev_emea_box
+owner: root
+permission: mx,me
+date_conditions: 0
+condition: s(mmbkp_w_ev_emea_backup_box)
+max_run_alarm: 30
+timezone: London
+group: MGTI_EUR_MESSAGING
+application: MMEMSG
+
+
+/* ----------------- mmemsg_w_ev_emea_start_box ----------------- */ 
+
+insert_job: mmemsg_w_ev_emea_start_box  job_type: BOX 
+box_name: mmemsg_w_ev_emea_box
+owner: root
+permission: mx,me
+date_conditions: 0
+condition: s(mmbkp_w_ev_emea_backup_box)
+max_run_alarm: 30
+timezone: London
+group: MGTI_EUR_MESSAGING
+application: MMEMSG
+
+/* ----------------- mmemsg_w_ev_emea_bed_start_index4a ----------------- */ 
+
+ insert_job: mmemsg_w_ev_emea_bed_start_index4a  job_type: CMD 
+ box_name: mmemsg_w_ev_emea_start_box
+ command: c\:\WINDOWS\SysWOW64\windowspowershell\v1.0\powershell.exe -psconsolefile "c:\Program Files (x86)\Enterprise Vault\evshell.psc1" clear-IndexLocationBackupMode -EVServerName gbbed11xv08
+ machine: gbbed11xv08.mercer.com
+ owner: svc-ev@mercer
+ permission: mx,me
+ date_conditions: 0
+ description: "Put BED EV Index 1 out of RO state"
+ n_retrys: 2
+ alarm_if_fail: 1
+ job_load: 1
+ priority: 1
+ timezone: London
+ group: MGTI_EUR_MESSAGING
+ application: MMEMSG
+ 
+ /* ----------------- mmemsg_w_ev_emea_bed_start_index4a_box ----------------- */ 
+
+ insert_job: mmemsg_w_ev_emea_bed_start_index4a_box  job_type: BOX
+ box_name: mmemsg_w_ev_emea_start_box
+ command: c\:\WINDOWS\SysWOW64\windowspowershell\v1.0\powershell.exe -psconsolefile "c:\Program Files (x86)\Enterprise Vault\evshell.psc1" clear-IndexLocationBackupMode -EVServerName gbbed11xv08
+ machine: gbbed11xv08.mercer.com
+ owner: svc-ev@mercer
+ permission: mx,me
+ date_conditions: 0
+ description: "Put BED EV Index 1 out of RO state"
+ n_retrys: 2
+ alarm_if_fail: 1
+ job_load: 1
+ priority: 1
+ timezone: London
+ group: MGTI_EUR_MESSAGING
+ application: MMEMSG
+ 
+ /* ----------------- mmemsg_w_ev_emea_bed_start_index4b ----------------- */ 
+
+ insert_job: mmemsg_w_ev_emea_bed_start_index4b  job_type: CMD 
+ box_name: mmemsg_w_ev_emea_bed_start_index4a_box
+ command: c\:\WINDOWS\SysWOW64\windowspowershell\v1.0\powershell.exe -psconsolefile "c:\Program Files (x86)\Enterprise Vault\evshell.psc1" clear-VaultStoreBackupMode -Name 'GBBED11XV01 VS01' -EVServerName gbbed11xv08 -EVObjectType 'vaultstore'
+ machine: gbbed11xv08.mercer.com
+ owner: svc-ev@mercer
+ permission: mx,me
+ date_conditions: 0
+ description: "Put BED EV Vault Store Group 1 out of RO state"
+ n_retrys: 2
+ alarm_if_fail: 1
+ job_load: 1
+ priority: 1
+ timezone: London
+ group: MGTI_EUR_MESSAGING
+ application: MMEMSG
+ 
+ /* ----------------- mmemsg_w_ev_emea_bed_start_index4b_box ----------------- */ 
+
+ insert_job: mmemsg_w_ev_emea_bed_start_index4b  job_type: BOX
+ box_name: mmemsg_w_ev_emea_bed_start_index4a_box
+ command: c\:\WINDOWS\SysWOW64\windowspowershell\v1.0\powershell.exe -psconsolefile "c:\Program Files (x86)\Enterprise Vault\evshell.psc1" clear-VaultStoreBackupMode -Name 'GBBED11XV01 VS01' -EVServerName gbbed11xv08 -EVObjectType 'vaultstore'
+ machine: gbbed11xv08.mercer.com
+ owner: svc-ev@mercer
+ permission: mx,me
+ date_conditions: 0
+ description: "Put BED EV Vault Store Group 1 out of RO state"
+ n_retrys: 2
+ alarm_if_fail: 1
+ job_load: 1
+ priority: 1
+ timezone: London
+ group: MGTI_EUR_MESSAGING
+ application: MMEMSG
+

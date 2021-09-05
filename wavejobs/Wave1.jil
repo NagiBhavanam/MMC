@@ -1,0 +1,2819 @@
+
+/* ----------------- pmdba_marsh_stats_daily_oltp21 ----------------- */ 
+
+insert_job: pmdba_marsh_stats_daily_oltp21  job_type: CMD 
+command: /var/opt/oltp21/ora1/dba/common/bin/sp_daily_dbms_stats_1.ksh
+machine: oltp21
+owner: oracle@oltp21
+permission: wx,mx,me
+date_conditions: 1
+days_of_week: su,mo,tu,we,th,fr,sa
+start_times: "00:10"
+description: "Gather daily statistics for oltp21"
+std_out_file: "$CYCLOG/pmdba_marsh_stats_daily_oltp21_`date +%m%d`.log"
+std_err_file: "$CYCLOG/pmdba_marsh_stats_daily_oltp21_`date +%m%d`.err"
+alarm_if_fail: 1
+profile: "/opt/oracle/product/auto.profile"
+alarm_if_terminated: 1
+
+/* ----------------- pacc_r_autosys_maccs_ONICE ----------------- */ 
+
+insert_job: pacc_r_autosys_maccs_ONICE  job_type: CMD 
+command: $SCRIPT_DIR/autosys_event.pl $SCRIPT_DIR/status_env.csh JOB_ON_ICE $INPUT/maccs_jobs_08062010.txt
+machine: usfkl21as210v
+owner: prodacc@usfkl21as210v
+permission: wx,mx,me
+date_conditions: 0
+description: "Sets pacc maccs jobs ON_ICE"
+std_out_file: "$LOGDIR/pacc_r_autosys_set_ONICE_`date +%m%d`.log"
+std_err_file: "$LOGDIR/pacc_r_autosys_set_ONICE_`date +%m%d`.err"
+alarm_if_fail: 0
+profile: "/home/prodacc/auto.profile.forcast"
+alarm_if_terminated: 0
+
+/* ----------------- pacc_r_autosys_maccs_OFF_ICE ----------------- */ 
+
+insert_job: pacc_r_autosys_maccs_OFF_ICE  job_type: CMD 
+command: $SCRIPT_DIR/autosys_event.pl $SCRIPT_DIR/status_env.csh JOB_OFF_ICE $INPUT/maccs_jobs_08062010.txt
+machine: usfkl21as210v
+owner: prodacc@usfk21as210v
+permission: wx,mx,me
+date_conditions: 0
+description: "Sets pacc maccs jobs OFF_ICE"
+std_out_file: "$LOGDIR/pacc_r_autosys_set_ONICE_`date +%m%d`.log"
+std_err_file: "$LOGDIR/pacc_r_autosys_set_ONICE_`date +%m%d`.err"
+alarm_if_fail: 0
+profile: "/home/prodacc/auto.profile.forcast"
+alarm_if_terminated: 0
+
+/* ----------------- pacc_d_elk_testing ----------------- */ 
+
+insert_job: pacc_d_elk_testing  job_type: CMD 
+command: /home/lkimball/scripts/xxx_mmbkp_history.csh
+machine: usfkl21as210v
+owner: lkimball@usfkl21as210v
+permission: mx,me
+date_conditions: 0
+description: "Daily count of job FAILUREs - send email to lance if fail."
+std_out_file: "/home/lkimball/logs/pacc_d_elk_testing_`date +%m%d`.log"
+std_err_file: "/home/lkimball/logs/pacc_d_elk_testing_`date +%m%d`.err"
+alarm_if_fail: 1
+alarm_if_terminated: 1
+
+/* ----------------- mecms_d_prod_local_box ----------------- */ 
+
+insert_job: mecms_d_prod_local_box  job_type: BOX 
+owner: svc-autosys@mercer
+permission: mx,me
+date_conditions: 1
+days_of_week: mo,tu,we,th
+start_times: "18:00"
+max_run_alarm: 14400
+alarm_if_fail: 0
+alarm_if_terminated: 0
+
+/* ----------------- mecms_d_prod_local_backup ----------------- */ 
+
+ insert_job: mecms_d_prod_local_backup  job_type: CMD 
+ box_name: mecms_d_prod_local_box
+ command: /usr/openv/netbackup/bin/bpbackup -i -p USDFW_PROD_USDFW11AS192_WIN_CDEH_INTERNAL -s Daily_Incremental -h usdfw11as192bu -t 13 -w 0
+ machine: usdfw21bs100
+ owner: root
+ permission: mx,me
+ date_conditions: 0
+ description: "Daily incremental backup of DFW CMS PROD Local"
+ std_out_file: "/usr/openv/netbackup/local_scripts_logs/ev_dlyam.out"
+ std_err_file: "/usr/openv/netbackup/local_scripts_logs/ev_dlyam.err"
+ alarm_if_fail: 1
+ max_exit_success: 1
+ job_load: 1
+ priority: 1
+ alarm_if_terminated: 1
+
+/* ----------------- mecms_w_prod_local_box ----------------- */ 
+
+insert_job: mecms_w_prod_local_box  job_type: BOX 
+owner: svc-autosys@mercer
+permission: mx,me
+date_conditions: 1
+days_of_week: fr
+exclude_calendar: 1stfriofmonth
+start_times: "17:30"
+max_run_alarm: 129600
+alarm_if_fail: 0
+alarm_if_terminated: 0
+
+/* ----------------- mecms_w_prod_local_backup ----------------- */ 
+
+ insert_job: mecms_w_prod_local_backup  job_type: CMD 
+ box_name: mecms_w_prod_local_box
+ command: /usr/openv/netbackup/bin/bpbackup -i -p USDFW_PROD_USDFW11AS192_WIN_CDEH_INTERNAL -s WeeklyFull -h usdfw11as192bu -t 13 -w 0
+ machine: usdfw21bs100
+ owner: root
+ permission: mx,me
+ date_conditions: 0
+ description: "Weekly Full backup of DFW CMS PROD Local"
+ std_out_file: "/usr/openv/netbackup/local_scripts_logs/ev_dlyam.out"
+ std_err_file: "/usr/openv/netbackup/local_scripts_logs/ev_dlyam.err"
+ alarm_if_fail: 1
+ max_exit_success: 1
+ job_load: 1
+ priority: 1
+ alarm_if_terminated: 1
+
+/* ----------------- mecms_m_prod_local_box ----------------- */ 
+
+insert_job: mecms_m_prod_local_box  job_type: BOX 
+owner: svc-autosys@mercer
+permission: mx,me
+date_conditions: 1
+run_calendar: 1stfriofmonth
+start_times: "17:30"
+max_run_alarm: 129600
+alarm_if_fail: 0
+alarm_if_terminated: 0
+
+/* ----------------- mecms_m_prod_local_backup ----------------- */ 
+
+ insert_job: mecms_m_prod_local_backup  job_type: CMD 
+ box_name: mecms_m_prod_local_box
+ command: /usr/openv/netbackup/bin/bpbackup -i -p USDFW_PROD_USDFW11AS192_WIN_CDEH_INTERNAL -s MonthlyFull -h usdfw11as192bu -t 13 -w 0
+ machine: usdfw21bs100
+ owner: root
+ permission: mx,me
+ date_conditions: 0
+ description: "Monthly Full backup of DFW CMS PROD Local"
+ std_out_file: "/usr/openv/netbackup/local_scripts_logs/ev_dlyam.out"
+ std_err_file: "/usr/openv/netbackup/local_scripts_logs/ev_dlyam.err"
+ alarm_if_fail: 1
+ max_exit_success: 1
+ job_load: 1
+ priority: 1
+ alarm_if_terminated: 1
+
+/* ----------------- pacc_r_autosys_elkset_INACTIVE ----------------- */ 
+
+insert_job: pacc_r_autosys_elkset_INACTIVE  job_type: CMD 
+command: $SCRIPT_DIR/change_status.csh $SCRIPT_DIR/status_env.csh INACTIVE $INPUT/mecmi_as192_new_jobs.txt
+machine: usfkl21as210v
+owner: prodacc@usfkl21as210v
+permission: wx,mx,me
+date_conditions: 0
+description: "Sets jobs to INACTIVE"
+std_out_file: ">$LOGDIR/pacc_r_autosys_set_INACTIVE_`date +%m%d`.log"
+std_err_file: ">$LOGDIR/pacc_r_autosys_set_INACTIVE_`date +%m%d`.err"
+alarm_if_fail: 0
+profile: "/home/prodacc/auto.profile.forcast"
+alarm_if_terminated: 0
+
+/* ----------------- pacc_elk_r_mecmi_as192_ONICE ----------------- */ 
+
+insert_job: pacc_elk_r_mecmi_as192_ONICE  job_type: CMD 
+command: $SCRIPT_DIR/autosys_event.pl $SCRIPT_DIR/status_env.csh JOB_ON_ICE $INPUT/mecmi_as192_new_jobs.txt
+machine: usfkl21as210v
+owner: prodacc@usfkl21as210v
+permission: wx,mx,me
+date_conditions: 0
+description: "Putting jobs ON_ICE for outages"
+std_out_file: "$LOGDIR/pacc_r_autosys_set_ONICE_`date +%m%d`.log"
+std_err_file: "$LOGDIR/pacc_r_autosys_set_ONICE_`date +%m%d`.err"
+alarm_if_fail: 0
+profile: "/home/prodacc/auto.profile.forcast"
+alarm_if_terminated: 0
+
+/* ----------------- pacc_elk_r_mecmi_as192_OFF_ICE ----------------- */ 
+
+insert_job: pacc_elk_r_mecmi_as192_OFF_ICE  job_type: CMD 
+command: $SCRIPT_DIR/autosys_event.pl $SCRIPT_DIR/status_env.csh JOB_OFF_ICE $INPUT/mecmi_as192_new_jobs.txt
+machine: usfkl21as210v
+owner: prodacc@usfk21as210v
+permission: wx,mx,me
+date_conditions: 0
+description: "Taking jobs OFF_ICE from outages."
+std_out_file: "$LOGDIR/pacc_r_autosys_set_ONICE_`date +%m%d`.log"
+std_err_file: "$LOGDIR/pacc_r_autosys_set_ONICE_`date +%m%d`.err"
+alarm_if_fail: 0
+profile: "/home/prodacc/auto.profile.forcast"
+alarm_if_terminated: 0
+
+/* ----------------- pacc_elk_r_mecmi_old_OFF_ICE ----------------- */ 
+
+insert_job: pacc_elk_r_mecmi_old_OFF_ICE  job_type: CMD 
+command: $SCRIPT_DIR/autosys_event.pl $SCRIPT_DIR/status_env.csh JOB_OFF_ICE $INPUT/mecmi_gd1wpcmsap12_old_jobs.txt
+machine: usfkl21as210v
+owner: prodacc@usfk21as210v
+permission: wx,mx,me
+date_conditions: 0
+description: "Taking jobs OFF_ICE from outages."
+std_out_file: "$LOGDIR/pacc_r_autosys_set_ONICE_`date +%m%d`.log"
+std_err_file: "$LOGDIR/pacc_r_autosys_set_ONICE_`date +%m%d`.err"
+alarm_if_fail: 0
+profile: "/home/prodacc/auto.profile.forcast"
+alarm_if_terminated: 0
+
+/* ----------------- pacc_elk_r_mecmi_old_ONICE ----------------- */ 
+
+insert_job: pacc_elk_r_mecmi_old_ONICE  job_type: CMD 
+command: $SCRIPT_DIR/autosys_event.pl $SCRIPT_DIR/status_env.csh JOB_ON_ICE $INPUT/mecmi_gd1wpcmsap12_old_jobs.txt
+machine: usfkl21as210v
+owner: prodacc@usfkl21as210v
+permission: wx,mx,me
+date_conditions: 0
+description: "Putting jobs ON_ICE for outages"
+std_out_file: "$LOGDIR/pacc_r_autosys_set_ONICE_`date +%m%d`.log"
+std_err_file: "$LOGDIR/pacc_r_autosys_set_ONICE_`date +%m%d`.err"
+alarm_if_fail: 0
+profile: "/home/prodacc/auto.profile.forcast"
+alarm_if_terminated: 0
+
+/* ----------------- pacc_elk_EV_bkup_status_email ----------------- */ 
+
+insert_job: pacc_elk_EV_bkup_status_email  job_type: CMD 
+command: /home/prodacc/shell_files/EmailJobReportForBox.pl -b mmmsg_d_ev_nasa_box -e EV_backup_status_email.lst
+machine: usfkl21as210v
+owner: prodacc@usfkl21as210v
+permission: wx,mx,me
+date_conditions: 0
+description: "EV_bkup_status_email"
+std_out_file: "$LOGDIR/pacc_elk_EV_bkup_status_email_`date +%m%d`.log"
+std_err_file: "$LOGDIR/pacc_elk_EV_bkup_status_email_`date +%m%d`.err"
+alarm_if_fail: 1
+profile: "/home/prodacc/auto.profile"
+alarm_if_terminated: 1
+
+/* ----------------- pacc_elk_EV_bkup_status_email2 ----------------- */ 
+
+insert_job: pacc_elk_EV_bkup_status_email2  job_type: CMD 
+command: /home/prodacc/shell_files/elktest_email_ev_nasa.csh mmmsg_d_ev_nasa_box
+machine: usfkl21as210v
+owner: prodacc@usfkl21as210v
+permission: wx,mx,me
+date_conditions: 0
+description: "elktest_email_ev_nasa.csh parm"
+std_out_file: "$LOGDIR/pacc_elk_EV_bkup_status_email_`date +%m%d`.log"
+std_err_file: "$LOGDIR/pacc_elk_EV_bkup_status_email_`date +%m%d`.err"
+alarm_if_fail: 0
+profile: "/home/prodacc/auto.profile.forcast"
+alarm_if_terminated: 0
+
+/* ----------------- mavel_d_vel_31as15v_FedEx_Impact_Training_Elig ----------------- */ 
+
+insert_job: mavel_d_vel_31as15v_FedEx_Impact_Training_Elig  job_type: CMD 
+command: /u/marsh/UNX/scripts/FDX_ISTP_ELIG/script/fdx_istp_elig_auto.sh
+machine: usurb31as15v
+owner: dias@usurb31as15v
+permission: mx,me
+date_conditions: 1
+days_of_week: mo
+start_times: "08:00"
+description: "FedEx Impact Training Eligibility"
+std_out_file: "/u/marsh/UNX/scripts/FDX_ISTP_ELIG/log/archive/FDX_ISTP_ELIG_job_`date +%m%d`.out"
+std_err_file: "/u/marsh/UNX/scripts/FDX_ISTP_ELIG/log/archive/FDX_ISTP_ELIG_job_`date +%m%d`.err"
+max_run_alarm: 5000
+alarm_if_fail: 1
+alarm_if_terminated: 1
+timezone: CentralTime
+
+/* ----------------- mavel_d_vel_31as15v_FedEx_Homeland_Elig ----------------- */ 
+
+insert_job: mavel_d_vel_31as15v_FedEx_Homeland_Elig  job_type: CMD 
+command: /u/marsh/UNX/scripts/FDX_HH_ELIG/script/fdx_hh_elig_auto.sh
+machine: usurb31as15v
+owner: dias@usurb31as15v
+permission: mx,me
+date_conditions: 0
+condition: s(mavel_d_vel_31as15v_FedEx_Impact_Training_Elig)
+description: "FedEx Homeland Elig"
+std_out_file: "/u/marsh/UNX/scripts/FDX_HH_ELIG/log/archive/FedEx_Homeland_Elig_job_`date +%m%d`.out"
+std_err_file: "/u/marsh/UNX/scripts/FDX_HH_ELIG/log/archive/FedEx_Homeland_Elig_job_`date +%m%d`.err"
+max_run_alarm: 5000
+alarm_if_fail: 1
+alarm_if_terminated: 1
+timezone: CentralTime
+
+/* ----------------- mmemsg_d_jrnev_emea_box ----------------- */ 
+
+insert_job: mmemsg_d_jrnev_emea_box  job_type: BOX 
+owner: svc-ev@mercer
+permission: mx,me
+date_conditions: 1
+days_of_week: mo,tu,we,th,fr
+start_times: "06:05"
+condition: (s(mmemsg_w_jrnev_emea_box) & s(mmemsg_w_sun_jrnev_emea_box))
+max_run_alarm: 180
+alarm_if_fail: 0
+alarm_if_terminated: 0
+timezone: London
+
+/* ----------------- mmemsg_d_jrnev_emea_ro_box ----------------- */ 
+
+insert_job: mmemsg_d_jrnev_emea_ro_box  job_type: BOX 
+box_name: mmemsg_d_jrnev_emea_box
+owner: svc-ev@mercer
+permission: mx,me
+date_conditions: 0
+max_run_alarm: 10
+alarm_if_fail: 1
+alarm_if_terminated: 1
+timezone: London
+
+/* ----------------- mmemsg_d_ev_emea_bed_stop_index1ja ----------------- */ 
+
+ insert_job: mmemsg_d_ev_emea_bed_stop_index1ja  job_type: CMD 
+ box_name: mmemsg_d_jrnev_emea_ro_box
+ command: c\:\WINDOWS\SysWOW64\windowspowershell\v1.0\powershell.exe -psconsolefile "c:\Program Files (x86)\Enterprise Vault\evshell.psc1" set-IndexLocationBackupMode -EVServerName gbbed11xj02v
+ machine: gbbed11xj02v
+ owner: svc-ev@mercer
+ permission: mx,me
+ date_conditions: 0
+ description: "Put BED EV journaling Index 1 into RO state"
+ n_retrys: 2
+ std_out_file: "c:\Temp\ev_dlyam.out"
+ std_err_file: "c:\Temp\ev_dlyam.err"
+ max_run_alarm: 10
+ alarm_if_fail: 1
+ job_load: 1
+ priority: 1
+ alarm_if_terminated: 1
+ timezone: London
+
+/* ----------------- mmemsg_d_ev_emea_bed_stop_index1ka ----------------- */ 
+
+ insert_job: mmemsg_d_ev_emea_bed_stop_index1ka  job_type: CMD 
+ box_name: mmemsg_d_jrnev_emea_ro_box
+ command: c\:\WINDOWS\SysWOW64\windowspowershell\v1.0\powershell.exe -psconsolefile "c:\Program Files (x86)\Enterprise Vault\evshell.psc1" set-IndexLocationBackupMode -EVServerName gbbed11xj03v
+ machine: gbbed11xj03v
+ owner: svc-ev@mercer
+ permission: mx,me
+ date_conditions: 0
+ description: "Put BED EV Index 2 into RO state"
+ n_retrys: 2
+ std_out_file: "c:\Temp\ev_dlyam.out"
+ std_err_file: "c:\Temp\ev_dlyam.err"
+ alarm_if_fail: 1
+ job_load: 1
+ priority: 1
+ alarm_if_terminated: 1
+ timezone: London
+
+/* ----------------- mmemsg_d_ev_emea_bed_stop_index1kb ----------------- */ 
+
+ insert_job: mmemsg_d_ev_emea_bed_stop_index1kb  job_type: CMD 
+ box_name: mmemsg_d_jrnev_emea_ro_box
+ command: c\:\WINDOWS\SysWOW64\windowspowershell\v1.0\powershell.exe -psconsolefile "c:\Program Files (x86)\Enterprise Vault\evshell.psc1" set-VaultStoreBackupMode -Name 'GBBED11XJ03V VS02' -EVServerName gbbed11xj03v -EVObjectType 'vaultstore'
+ machine: gbbed11xj03v
+ owner: svc-ev@mercer
+ permission: mx,me
+ date_conditions: 0
+ description: "Put BED EV Vault Store journaling Group 2 into RO state"
+ n_retrys: 2
+ std_out_file: "c:\Temp\ev_dlyam.out"
+ std_err_file: "c:\Temp\ev_dlyam.err"
+ alarm_if_fail: 1
+ job_load: 1
+ priority: 1
+ alarm_if_terminated: 1
+ timezone: London
+
+/* ----------------- mmemsg_d_ev_emea_bed_stop_index1la ----------------- */ 
+
+ insert_job: mmemsg_d_ev_emea_bed_stop_index1la  job_type: CMD 
+ box_name: mmemsg_d_jrnev_emea_ro_box
+ command: c\:\WINDOWS\SysWOW64\windowspowershell\v1.0\powershell.exe -psconsolefile "c:\Program Files (x86)\Enterprise Vault\evshell.psc1" set-IndexLocationBackupMode -EVServerName gbbed11xj04v
+ machine: gbbed11xj04v
+ owner: svc-ev@mercer
+ permission: mx,me
+ date_conditions: 0
+ description: "Put BED EV journling Index 3 into RO state"
+ n_retrys: 2
+ std_out_file: "c:\Temp\ev_dlyam.out"
+ std_err_file: "c:\Temp\ev_dlyam.err"
+ alarm_if_fail: 1
+ job_load: 1
+ priority: 1
+ alarm_if_terminated: 1
+ timezone: London
+
+/* ----------------- mmemsg_d_ev_emea_bed_stop_index1lb ----------------- */ 
+
+ insert_job: mmemsg_d_ev_emea_bed_stop_index1lb  job_type: CMD 
+ box_name: mmemsg_d_jrnev_emea_ro_box
+ command: c\:\WINDOWS\SysWOW64\windowspowershell\v1.0\powershell.exe -psconsolefile "c:\Program Files (x86)\Enterprise Vault\evshell.psc1" set-VaultStoreBackupMode -Name 'GBBED11XJ04V VS03' -EVServerName gbbed11xj04v -EVObjectType 'vaultstore'
+ machine: gbbed11xj04v
+ owner: svc-ev@mercer
+ permission: mx,me
+ date_conditions: 0
+ description: "Put BED EV Vault Store journaling Group 3 into RO state"
+ n_retrys: 2
+ std_out_file: "c:\Temp\ev_dlyam.out"
+ std_err_file: "c:\Temp\ev_dlyam.err"
+ alarm_if_fail: 1
+ job_load: 1
+ priority: 1
+ alarm_if_terminated: 1
+ timezone: London
+
+/* ----------------- mmemsg_d_ev_emea_bed_stop_index1jb ----------------- */ 
+
+ insert_job: mmemsg_d_ev_emea_bed_stop_index1jb  job_type: CMD 
+ box_name: mmemsg_d_jrnev_emea_ro_box
+ command: c\:\WINDOWS\SysWOW64\windowspowershell\v1.0\powershell.exe -psconsolefile "c:\Program Files (x86)\Enterprise Vault\evshell.psc1" set-VaultStoreBackupMode -Name 'GBBED11XJ02V VS01' -EVServerName gbbed11xj02v -EVObjectType 'vaultstore'
+ machine: gbbed11xj02v
+ owner: svc-ev@mercer
+ permission: mx,me
+ date_conditions: 0
+ description: "Put BED EV Vault Store journaling Group 1 into RO state"
+ n_retrys: 2
+ std_out_file: "c:\Temp\ev_dlyam.out"
+ std_err_file: "c:\Temp\ev_dlyam.err"
+ alarm_if_fail: 1
+ job_load: 1
+ priority: 1
+ alarm_if_terminated: 1
+ timezone: London
+
+/* ----------------- mmebkp_d_jrnev_emea_backup_box ----------------- */ 
+
+insert_job: mmebkp_d_jrnev_emea_backup_box  job_type: BOX 
+box_name: mmemsg_d_jrnev_emea_box
+owner: svc-ev@mercer
+permission: mx,me
+date_conditions: 0
+condition: s(mmemsg_d_jrnev_emea_ro_box)
+alarm_if_fail: 1
+alarm_if_terminated: 1
+timezone: London
+
+/* ----------------- mmbkp_d_ev_emea_bed_fingerprint2 ----------------- */ 
+
+ insert_job: mmbkp_d_ev_emea_bed_fingerprint2  job_type: CMD 
+ box_name: mmebkp_d_jrnev_emea_backup_box
+ command: /usr/openv/netbackup/bin/bpbackup -i -w 0 -c GBBED_INT_MAR_PROD_SQL_1M-NA-NA_EV-FPR-DBLOGS-JRL -s DailyIncr -h gbbe11db03vci1bu.MRSHMC.COM
+ machine: gbbed21bs100
+ owner: root
+ permission: mx,me
+ date_conditions: 0
+ description: "Daily Incremental backup of BED EV Journaling Fingerprint SQL DB"
+ std_out_file: "/usr/openv/netbackup/local_scripts_logs/ev_dlyam.out"
+ std_err_file: "/usr/openv/netbackup/local_scripts_logs/ev_dlyam.err"
+ alarm_if_fail: 1
+ job_load: 1
+ priority: 1
+ alarm_if_terminated: 1
+
+/* ----------------- mmbkp_d_ev_emea_bed_vault2 ----------------- */ 
+
+ insert_job: mmbkp_d_ev_emea_bed_vault2  job_type: CMD 
+ box_name: mmebkp_d_jrnev_emea_backup_box
+ command: /usr/openv/netbackup/bin/bpbackup -i -w 0 -c GBBED_INT_MAR_PROD_SQL_1M-NA-NA_EV-VLT-DBLOGS-JRL -s DailyIncr -h gbbe11db03vci1bu.MRSHMC.COM
+ machine: gbbed21bs100
+ owner: root
+ permission: mx,me
+ date_conditions: 0
+ description: "Daily Incremental backup of BED EV journaling Vault Store data bases"
+ std_out_file: "/usr/openv/netbackup/local_scripts_logs/ev_dlyam.out"
+ std_err_file: "/usr/openv/netbackup/local_scripts_logs/ev_dlyam.err"
+ alarm_if_fail: 1
+ job_load: 1
+ priority: 1
+ alarm_if_terminated: 1
+
+/* ----------------- mmbkp_d_ev_emea_bed_index2j ----------------- */ 
+
+ insert_job: mmbkp_d_ev_emea_bed_index2j  job_type: CMD 
+ box_name: mmebkp_d_jrnev_emea_backup_box
+ command: /usr/openv/netbackup/bin/bpbackup -i -w 0 -c GBBED_INT_MAR_PROD_WIN_1M-1M-NA_EV-INDEX2J -s DailyIncr -h gbbed11xj02vbu.mrshmc.com
+ machine: gbbed21bs100
+ owner: root
+ permission: mx,me
+ date_conditions: 0
+ description: "Daily Incremental backup of BED EV Index Server 1"
+ std_out_file: "/usr/openv/netbackup/local_scripts_logs/ev_dlyam.out"
+ std_err_file: "/usr/openv/netbackup/local_scripts_logs/ev_dlyam.err"
+ alarm_if_fail: 1
+ job_load: 1
+ priority: 1
+ alarm_if_terminated: 1
+ timezone: London
+
+/* ----------------- mmbkp_d_ev_emea_bed_index3j ----------------- */ 
+
+ insert_job: mmbkp_d_ev_emea_bed_index3j  job_type: CMD 
+ box_name: mmebkp_d_jrnev_emea_backup_box
+ command: /usr/openv/netbackup/bin/bpbackup -i -w 0 -c GBBED_INT_MAR_PROD_WIN_1M-1M-NA_EV-INDEX3J -s DailyIncr -h gbbed11xj03vbu.mrshmc.com
+ machine: gbbed21bs100
+ owner: root
+ permission: mx,me
+ date_conditions: 0
+ description: "Daily Incremental backup of BED EV Index Server 2"
+ std_out_file: "/usr/openv/netbackup/local_scripts_logs/ev_dlyam.out"
+ std_err_file: "/usr/openv/netbackup/local_scripts_logs/ev_dlyam.err"
+ alarm_if_fail: 1
+ job_load: 1
+ priority: 1
+ alarm_if_terminated: 1
+ timezone: London
+
+/* ----------------- mmbkp_d_ev_emea_bed_index4j ----------------- */ 
+
+ insert_job: mmbkp_d_ev_emea_bed_index4j  job_type: CMD 
+ box_name: mmebkp_d_jrnev_emea_backup_box
+ command: /usr/openv/netbackup/bin/bpbackup -i -w 0 -c GBBED_INT_MAR_PROD_WIN_1M-1M-NA_EV-INDEX4J -s DailyIncr -h gbbed11xj04vbu.mrshmc.com
+ machine: gbbed21bs100
+ owner: root
+ permission: mx,me
+ date_conditions: 0
+ description: "Daily Incremental backup of BED EV Index Server 3"
+ std_out_file: "/usr/openv/netbackup/local_scripts_logs/ev_dlyam.out"
+ std_err_file: "/usr/openv/netbackup/local_scripts_logs/ev_dlyam.err"
+ alarm_if_fail: 1
+ job_load: 1
+ priority: 1
+ alarm_if_terminated: 1
+ timezone: London
+
+/* ----------------- mmemsg_d_jrnev_emea_start_box ----------------- */ 
+
+insert_job: mmemsg_d_jrnev_emea_start_box  job_type: BOX 
+box_name: mmemsg_d_jrnev_emea_box
+owner: svc-ev@mercer
+permission: mx,me
+date_conditions: 0
+condition: s(mmebkp_d_jrnev_emea_backup_box)
+max_run_alarm: 10
+alarm_if_fail: 1
+alarm_if_terminated: 1
+timezone: London
+
+/* ----------------- mmmsg_d_ev_emea_bed_start_index1ja ----------------- */ 
+
+ insert_job: mmmsg_d_ev_emea_bed_start_index1ja  job_type: CMD 
+ box_name: mmemsg_d_jrnev_emea_start_box
+ command: c\:\WINDOWS\SysWOW64\windowspowershell\v1.0\powershell.exe -psconsolefile "c:\Program Files (x86)\Enterprise Vault\evshell.psc1" clear-IndexLocationBackupMode -EVServerName gbbed11xj02v
+ machine: gbbed11xj02v
+ owner: svc-ev@mercer
+ permission: mx,me
+ date_conditions: 0
+ description: "Put BED EV journaling Index 1 out of RO state"
+ n_retrys: 2
+ std_out_file: "c:\Temp\ev_dlyam.out"
+ std_err_file: "c:\Temp\ev_dlyam.err"
+ alarm_if_fail: 1
+ job_load: 1
+ priority: 1
+ alarm_if_terminated: 1
+ timezone: London
+
+/* ----------------- mmmsg_d_ev_emea_bed_start_index1jb ----------------- */ 
+
+ insert_job: mmmsg_d_ev_emea_bed_start_index1jb  job_type: CMD 
+ box_name: mmemsg_d_jrnev_emea_start_box
+ command: c\:\WINDOWS\SysWOW64\windowspowershell\v1.0\powershell.exe -psconsolefile "c:\Program Files (x86)\Enterprise Vault\evshell.psc1" clear-VaultStoreBackupMode -Name 'GBBED11XJ02V VS01' -EVServerName gbbed11xj02v -EVObjectType 'vaultstore'
+ machine: gbbed11xj02v
+ owner: svc-ev@mercer
+ permission: mx,me
+ date_conditions: 0
+ description: "Put BED EV journaling Vault Store Group 1 out of RO state"
+ n_retrys: 2
+ std_out_file: "c:\Temp\ev_dlyam.out"
+ std_err_file: "c:\Temp\ev_dlyam.err"
+ alarm_if_fail: 1
+ job_load: 1
+ priority: 1
+ alarm_if_terminated: 1
+ timezone: London
+
+/* ----------------- mmmsg_d_ev_emea_bed_start_index1ka ----------------- */ 
+
+ insert_job: mmmsg_d_ev_emea_bed_start_index1ka  job_type: CMD 
+ box_name: mmemsg_d_jrnev_emea_start_box
+ command: c\:\WINDOWS\SysWOW64\windowspowershell\v1.0\powershell.exe -psconsolefile "c:\Program Files (x86)\Enterprise Vault\evshell.psc1" clear-IndexLocationBackupMode -EVServerName gbbed11xj03v
+ machine: gbbed11xj03v
+ owner: svc-ev@mercer
+ permission: mx,me
+ date_conditions: 0
+ description: "Put BED EV journaling Index 2 out of RO state"
+ n_retrys: 2
+ std_out_file: "c:\Temp\ev_dlyam.out"
+ std_err_file: "c:\Temp\ev_dlyam.err"
+ alarm_if_fail: 1
+ job_load: 1
+ priority: 1
+ alarm_if_terminated: 1
+ timezone: London
+
+/* ----------------- mmmsg_d_ev_ema_bed_start_index1kb ----------------- */ 
+
+ insert_job: mmmsg_d_ev_ema_bed_start_index1kb  job_type: CMD 
+ box_name: mmemsg_d_jrnev_emea_start_box
+ command: c\:\WINDOWS\SysWOW64\windowspowershell\v1.0\powershell.exe -psconsolefile "c:\Program Files (x86)\Enterprise Vault\evshell.psc1" clear-VaultStoreBackupMode -Name 'GBBED11XJ03V VS02' -EVServerName gbbed11xj03v -EVObjectType 'vaultstore'
+ machine: gbbed11xj03v
+ owner: svc-ev@mercer
+ permission: mx,me
+ date_conditions: 0
+ description: "Put BED EV Vault Store Group 2 out of RO state"
+ n_retrys: 2
+ std_out_file: "c:\Temp\ev_dlyam.out"
+ std_err_file: "c:\Temp\ev_dlyam.err"
+ alarm_if_fail: 1
+ job_load: 1
+ priority: 1
+ alarm_if_terminated: 1
+ timezone: London
+
+/* ----------------- mmmsg_d_ev_emea_bed_start_index1la ----------------- */ 
+
+ insert_job: mmmsg_d_ev_emea_bed_start_index1la  job_type: CMD 
+ box_name: mmemsg_d_jrnev_emea_start_box
+ command: c\:\WINDOWS\SysWOW64\windowspowershell\v1.0\powershell.exe -psconsolefile "c:\Program Files (x86)\Enterprise Vault\evshell.psc1" clear-IndexLocationBackupMode -EVServerName gbbed11xj04v
+ machine: gbbed11xj04v
+ owner: svc-ev@mercer
+ permission: mx,me
+ date_conditions: 0
+ description: "Put BED EV journaling Index 3 out of RO state"
+ n_retrys: 2
+ std_out_file: "c:\Temp\ev_dlyam.out"
+ std_err_file: "c:\Temp\ev_dlyam.err"
+ alarm_if_fail: 1
+ job_load: 1
+ priority: 1
+ alarm_if_terminated: 1
+ timezone: London
+
+/* ----------------- mmmsg_d_ev_emea_bed_start_index1lb ----------------- */ 
+
+ insert_job: mmmsg_d_ev_emea_bed_start_index1lb  job_type: CMD 
+ box_name: mmemsg_d_jrnev_emea_start_box
+ command: c\:\WINDOWS\SysWOW64\windowspowershell\v1.0\powershell.exe -psconsolefile "c:\Program Files (x86)\Enterprise Vault\evshell.psc1" clear-VaultStoreBackupMode -Name 'GBBED11XJ04V VS03' -EVServerName gbbed11xj04v -EVObjectType 'vaultstore'
+ machine: gbbed11xj04v
+ owner: svc-ev@mercer
+ permission: mx,me
+ date_conditions: 0
+ description: "Put BED EV Vault Store journaling Group 3 out of RO state"
+ n_retrys: 2
+ std_out_file: "c:\Temp\ev_dlyam.out"
+ std_err_file: "c:\Temp\ev_dlyam.err"
+ alarm_if_fail: 1
+ job_load: 1
+ priority: 1
+ alarm_if_terminated: 1
+ timezone: London
+
+/* ----------------- mmemsg_w_jrnev_emea_box ----------------- */ 
+
+insert_job: mmemsg_w_jrnev_emea_box  job_type: BOX 
+owner: svc-ev@mercer
+permission: mx,me
+date_conditions: 1
+days_of_week: fr
+start_times: "18:00"
+condition: (s(mmemsg_d_jrnev_emea_box) & s(mmemsg_w_sun_jrnev_emea_box))
+max_run_alarm: 180
+alarm_if_fail: 0
+alarm_if_terminated: 0
+timezone: London
+
+/* ----------------- mmemsg_w_jrnev_emea_ro_box ----------------- */ 
+
+insert_job: mmemsg_w_jrnev_emea_ro_box  job_type: BOX 
+box_name: mmemsg_w_jrnev_emea_box
+owner: svc-ev@mercer
+permission: mx,me
+date_conditions: 0
+max_run_alarm: 10
+alarm_if_fail: 1
+alarm_if_terminated: 1
+timezone: London
+
+/* ----------------- mmemsg_w_ev_emea_bed_stop_index1ja ----------------- */ 
+
+ insert_job: mmemsg_w_ev_emea_bed_stop_index1ja  job_type: CMD 
+ box_name: mmemsg_w_jrnev_emea_ro_box
+ command: c\:\WINDOWS\SysWOW64\windowspowershell\v1.0\powershell.exe -psconsolefile "c:\Program Files (x86)\Enterprise Vault\evshell.psc1" set-IndexLocationBackupMode -EVServerName gbbed11xj02v
+ machine: gbbed11xj02v
+ owner: svc-ev@mercer
+ permission: mx,me
+ date_conditions: 0
+ description: "Put BED EV journaling Index 1 into RO state"
+ n_retrys: 2
+ std_out_file: "c:\Temp\ev_dlyam.out"
+ std_err_file: "c:\Temp\ev_dlyam.err"
+ max_run_alarm: 10
+ alarm_if_fail: 1
+ job_load: 1
+ priority: 1
+ alarm_if_terminated: 1
+ timezone: London
+
+/* ----------------- mmemsg_w_ev_emea_bed_stop_index1ka ----------------- */ 
+
+ insert_job: mmemsg_w_ev_emea_bed_stop_index1ka  job_type: CMD 
+ box_name: mmemsg_w_jrnev_emea_ro_box
+ command: c\:\WINDOWS\SysWOW64\windowspowershell\v1.0\powershell.exe -psconsolefile "c:\Program Files (x86)\Enterprise Vault\evshell.psc1" set-IndexLocationBackupMode -EVServerName gbbed11xj03v
+ machine: gbbed11xj03v
+ owner: svc-ev@mercer
+ permission: mx,me
+ date_conditions: 0
+ description: "Put BED EV Index 2 into RO state"
+ n_retrys: 2
+ std_out_file: "c:\Temp\ev_dlyam.out"
+ std_err_file: "c:\Temp\ev_dlyam.err"
+ alarm_if_fail: 1
+ job_load: 1
+ priority: 1
+ alarm_if_terminated: 1
+ timezone: London
+
+/* ----------------- mmemsg_w_ev_emea_bed_stop_index1kb ----------------- */ 
+
+ insert_job: mmemsg_w_ev_emea_bed_stop_index1kb  job_type: CMD 
+ box_name: mmemsg_w_jrnev_emea_ro_box
+ command: c\:\WINDOWS\SysWOW64\windowspowershell\v1.0\powershell.exe -psconsolefile "c:\Program Files (x86)\Enterprise Vault\evshell.psc1" set-VaultStoreBackupMode -Name 'GBBED11XJ03V VS02' -EVServerName gbbed11xj03v -EVObjectType 'vaultstore'
+ machine: gbbed11xj03v
+ owner: svc-ev@mercer
+ permission: mx,me
+ date_conditions: 0
+ description: "Put BED EV Vault Store journaling Group 2 into RO state"
+ n_retrys: 2
+ std_out_file: "c:\Temp\ev_dlyam.out"
+ std_err_file: "c:\Temp\ev_dlyam.err"
+ alarm_if_fail: 1
+ job_load: 1
+ priority: 1
+ alarm_if_terminated: 1
+ timezone: London
+
+/* ----------------- mmemsg_w_ev_emea_bed_stop_index1la ----------------- */ 
+
+ insert_job: mmemsg_w_ev_emea_bed_stop_index1la  job_type: CMD 
+ box_name: mmemsg_w_jrnev_emea_ro_box
+ command: c\:\WINDOWS\SysWOW64\windowspowershell\v1.0\powershell.exe -psconsolefile "c:\Program Files (x86)\Enterprise Vault\evshell.psc1" set-IndexLocationBackupMode -EVServerName gbbed11xj04v
+ machine: gbbed11xj04v
+ owner: svc-ev@mercer
+ permission: mx,me
+ date_conditions: 0
+ description: "Put BED EV journling Index 3 into RO state"
+ n_retrys: 2
+ std_out_file: "c:\Temp\ev_dlyam.out"
+ std_err_file: "c:\Temp\ev_dlyam.err"
+ alarm_if_fail: 1
+ job_load: 1
+ priority: 1
+ alarm_if_terminated: 1
+ timezone: London
+
+/* ----------------- mmemsg_w_ev_emea_bed_stop_index1lb ----------------- */ 
+
+ insert_job: mmemsg_w_ev_emea_bed_stop_index1lb  job_type: CMD 
+ box_name: mmemsg_w_jrnev_emea_ro_box
+ command: c\:\WINDOWS\SysWOW64\windowspowershell\v1.0\powershell.exe -psconsolefile "c:\Program Files (x86)\Enterprise Vault\evshell.psc1" set-VaultStoreBackupMode -Name 'GBBED11XJ04V VS03' -EVServerName gbbed11xj04v -EVObjectType 'vaultstore'
+ machine: gbbed11xj04v
+ owner: svc-ev@mercer
+ permission: mx,me
+ date_conditions: 0
+ description: "Put BED EV Vault Store journaling Group 3 into RO state"
+ n_retrys: 2
+ std_out_file: "c:\Temp\ev_dlyam.out"
+ std_err_file: "c:\Temp\ev_dlyam.err"
+ alarm_if_fail: 1
+ job_load: 1
+ priority: 1
+ alarm_if_terminated: 1
+ timezone: London
+
+/* ----------------- mmemsg_w_ev_emea_bed_stop_index1jb ----------------- */ 
+
+ insert_job: mmemsg_w_ev_emea_bed_stop_index1jb  job_type: CMD 
+ box_name: mmemsg_w_jrnev_emea_ro_box
+ command: c\:\WINDOWS\SysWOW64\windowspowershell\v1.0\powershell.exe -psconsolefile "c:\Program Files (x86)\Enterprise Vault\evshell.psc1" set-VaultStoreBackupMode -Name 'GBBED11XJ02V VS01' -EVServerName gbbed11xj02v -EVObjectType 'vaultstore'
+ machine: gbbed11xj02v
+ owner: svc-ev@mercer
+ permission: mx,me
+ date_conditions: 0
+ description: "Put BED EV Vault Store journaling Group 1 into RO state"
+ n_retrys: 2
+ std_out_file: "c:\Temp\ev_dlyam.out"
+ std_err_file: "c:\Temp\ev_dlyam.err"
+ alarm_if_fail: 1
+ job_load: 1
+ priority: 1
+ alarm_if_terminated: 1
+ timezone: London
+
+/* ----------------- mmebkp_w_jrnev_emea_backup_box ----------------- */ 
+
+insert_job: mmebkp_w_jrnev_emea_backup_box  job_type: BOX 
+box_name: mmemsg_w_jrnev_emea_box
+owner: svc-ev@mercer
+permission: mx,me
+date_conditions: 0
+condition: s(mmemsg_w_jrnev_emea_ro_box)
+alarm_if_fail: 1
+alarm_if_terminated: 1
+timezone: London
+
+/* ----------------- mmbkp_w_ev_emea_bed_fingerprint2 ----------------- */ 
+
+ insert_job: mmbkp_w_ev_emea_bed_fingerprint2  job_type: CMD 
+ box_name: mmebkp_w_jrnev_emea_backup_box
+ command: /usr/openv/netbackup/bin/bpbackup -i -w 0 -c GBBED_INT_MAR_PROD_SQL_NA-1M-NA_EV-FPR-DBFULL-JRL -s WeeklyFull -h gbbe11db03vci1bu.MRSHMC.COM
+ machine: gbbed21bs100
+ owner: root
+ permission: mx,me
+ date_conditions: 0
+ description: "Daily Incremental backup of BED EV Journaling Fingerprint SQL DB"
+ std_out_file: "/usr/openv/netbackup/local_scripts_logs/ev_dlyam.out"
+ std_err_file: "/usr/openv/netbackup/local_scripts_logs/ev_dlyam.err"
+ alarm_if_fail: 1
+ job_load: 1
+ priority: 1
+ alarm_if_terminated: 1
+
+/* ----------------- mmbkp_w_ev_emea_bed_vault2 ----------------- */ 
+
+ insert_job: mmbkp_w_ev_emea_bed_vault2  job_type: CMD 
+ box_name: mmebkp_w_jrnev_emea_backup_box
+ command: /usr/openv/netbackup/bin/bpbackup -i -w 0 -c GBBED_INT_MAR_PROD_SQL_NA-1M-NA_EV-VLT-DBFULL-JRL -s WeeklyFull -h gbbe11db03vci1bu.MRSHMC.COM
+ machine: gbbed21bs100
+ owner: root
+ permission: mx,me
+ date_conditions: 0
+ description: "Daily Incremental backup of BED EV journaling Vault Store data bases"
+ std_out_file: "/usr/openv/netbackup/local_scripts_logs/ev_dlyam.out"
+ std_err_file: "/usr/openv/netbackup/local_scripts_logs/ev_dlyam.err"
+ alarm_if_fail: 1
+ job_load: 1
+ priority: 1
+ alarm_if_terminated: 1
+
+/* ----------------- mmbkp_w_ev_emea_bed_index2j ----------------- */ 
+
+ insert_job: mmbkp_w_ev_emea_bed_index2j  job_type: CMD 
+ box_name: mmebkp_w_jrnev_emea_backup_box
+ command: /usr/openv/netbackup/bin/bpbackup -i -w 0 -c GBBED_INT_MAR_PROD_WIN_1M-1M-NA_EV-INDEX2J -s WeeklyFull -h gbbed11xj02vbu.mrshmc.com
+ machine: gbbed21bs100
+ owner: root
+ permission: mx,me
+ date_conditions: 0
+ description: "Daily Incremental backup of BED EV Index Server 1"
+ std_out_file: "/usr/openv/netbackup/local_scripts_logs/ev_dlyam.out"
+ std_err_file: "/usr/openv/netbackup/local_scripts_logs/ev_dlyam.err"
+ alarm_if_fail: 1
+ job_load: 1
+ priority: 1
+ alarm_if_terminated: 1
+ timezone: London
+
+/* ----------------- mmbkp_w_ev_emea_bed_index3j ----------------- */ 
+
+ insert_job: mmbkp_w_ev_emea_bed_index3j  job_type: CMD 
+ box_name: mmebkp_w_jrnev_emea_backup_box
+ command: /usr/openv/netbackup/bin/bpbackup -i -w 0 -c GBBED_INT_MAR_PROD_WIN_1M-1M-NA_EV-INDEX3J -s WeeklyFull -h gbbed11xj03vbu.mrshmc.com
+ machine: gbbed21bs100
+ owner: root
+ permission: mx,me
+ date_conditions: 0
+ description: "Daily Incremental backup of BED EV Index Server 2"
+ std_out_file: "/usr/openv/netbackup/local_scripts_logs/ev_dlyam.out"
+ std_err_file: "/usr/openv/netbackup/local_scripts_logs/ev_dlyam.err"
+ alarm_if_fail: 1
+ job_load: 1
+ priority: 1
+ alarm_if_terminated: 1
+ timezone: London
+
+/* ----------------- mmbkp_w_ev_emea_bed_index4j ----------------- */ 
+
+ insert_job: mmbkp_w_ev_emea_bed_index4j  job_type: CMD 
+ box_name: mmebkp_w_jrnev_emea_backup_box
+ command: /usr/openv/netbackup/bin/bpbackup -i -w 0 -c GBBED_INT_MAR_PROD_WIN_1M-1M-NA_EV-INDEX4J -s WeeklyFull -h gbbed11xj04vbu.mrshmc.com
+ machine: gbbed21bs100
+ owner: root
+ permission: mx,me
+ date_conditions: 0
+ description: "Daily Incremental backup of BED EV Index Server 3"
+ std_out_file: "/usr/openv/netbackup/local_scripts_logs/ev_dlyam.out"
+ std_err_file: "/usr/openv/netbackup/local_scripts_logs/ev_dlyam.err"
+ alarm_if_fail: 1
+ job_load: 1
+ priority: 1
+ alarm_if_terminated: 1
+ timezone: London
+
+/* ----------------- mmemsg_w_jrnev_emea_start_box ----------------- */ 
+
+insert_job: mmemsg_w_jrnev_emea_start_box  job_type: BOX 
+box_name: mmemsg_w_jrnev_emea_box
+owner: svc-ev@mercer
+permission: mx,me
+date_conditions: 0
+condition: s(mmebkp_w_jrnev_emea_backup_box)
+max_run_alarm: 10
+alarm_if_fail: 1
+alarm_if_terminated: 1
+timezone: London
+
+/* ----------------- mmmsg_w_ev_emea_bed_start_index1ja ----------------- */ 
+
+ insert_job: mmmsg_w_ev_emea_bed_start_index1ja  job_type: CMD 
+ box_name: mmemsg_w_jrnev_emea_start_box
+ command: c\:\WINDOWS\SysWOW64\windowspowershell\v1.0\powershell.exe -psconsolefile "c:\Program Files (x86)\Enterprise Vault\evshell.psc1" clear-IndexLocationBackupMode -EVServerName gbbed11xj02v
+ machine: gbbed11xj02v
+ owner: svc-ev@mercer
+ permission: mx,me
+ date_conditions: 0
+ description: "Put BED EV journaling Index 1 out of RO state"
+ n_retrys: 2
+ std_out_file: "c:\Temp\ev_dlyam.out"
+ std_err_file: "c:\Temp\ev_dlyam.err"
+ alarm_if_fail: 1
+ job_load: 1
+ priority: 1
+ alarm_if_terminated: 1
+ timezone: London
+
+/* ----------------- mmmsg_w_ev_emea_bed_start_index1jb ----------------- */ 
+
+ insert_job: mmmsg_w_ev_emea_bed_start_index1jb  job_type: CMD 
+ box_name: mmemsg_w_jrnev_emea_start_box
+ command: c\:\WINDOWS\SysWOW64\windowspowershell\v1.0\powershell.exe -psconsolefile "c:\Program Files (x86)\Enterprise Vault\evshell.psc1" clear-VaultStoreBackupMode -Name 'GBBED11XJ02V VS01' -EVServerName gbbed11xj02v -EVObjectType 'vaultstore'
+ machine: gbbed11xj02v
+ owner: svc-ev@mercer
+ permission: mx,me
+ date_conditions: 0
+ description: "Put BED EV journaling Vault Store Group 1 out of RO state"
+ n_retrys: 2
+ std_out_file: "c:\Temp\ev_dlyam.out"
+ std_err_file: "c:\Temp\ev_dlyam.err"
+ alarm_if_fail: 1
+ job_load: 1
+ priority: 1
+ alarm_if_terminated: 1
+ timezone: London
+
+/* ----------------- mmmsg_w_ev_emea_bed_start_index1ka ----------------- */ 
+
+ insert_job: mmmsg_w_ev_emea_bed_start_index1ka  job_type: CMD 
+ box_name: mmemsg_w_jrnev_emea_start_box
+ command: c\:\WINDOWS\SysWOW64\windowspowershell\v1.0\powershell.exe -psconsolefile "c:\Program Files (x86)\Enterprise Vault\evshell.psc1" clear-IndexLocationBackupMode -EVServerName gbbed11xj03v
+ machine: gbbed11xj03v
+ owner: svc-ev@mercer
+ permission: mx,me
+ date_conditions: 0
+ description: "Put BED EV journaling Index 2 out of RO state"
+ n_retrys: 2
+ std_out_file: "c:\Temp\ev_dlyam.out"
+ std_err_file: "c:\Temp\ev_dlyam.err"
+ alarm_if_fail: 1
+ job_load: 1
+ priority: 1
+ alarm_if_terminated: 1
+ timezone: London
+
+/* ----------------- mmmsg_w_ev_ema_bed_start_index1kb ----------------- */ 
+
+ insert_job: mmmsg_w_ev_ema_bed_start_index1kb  job_type: CMD 
+ box_name: mmemsg_w_jrnev_emea_start_box
+ command: c\:\WINDOWS\SysWOW64\windowspowershell\v1.0\powershell.exe -psconsolefile "c:\Program Files (x86)\Enterprise Vault\evshell.psc1" clear-VaultStoreBackupMode -Name 'GBBED11XJ03V VS02' -EVServerName gbbed11xj03v -EVObjectType 'vaultstore'
+ machine: gbbed11xj03v
+ owner: svc-ev@mercer
+ permission: mx,me
+ date_conditions: 0
+ description: "Put BED EV Vault Store Group 2 out of RO state"
+ n_retrys: 2
+ std_out_file: "c:\Temp\ev_dlyam.out"
+ std_err_file: "c:\Temp\ev_dlyam.err"
+ alarm_if_fail: 1
+ job_load: 1
+ priority: 1
+ alarm_if_terminated: 1
+ timezone: London
+
+/* ----------------- mmmsg_w_ev_emea_bed_start_index1la ----------------- */ 
+
+ insert_job: mmmsg_w_ev_emea_bed_start_index1la  job_type: CMD 
+ box_name: mmemsg_w_jrnev_emea_start_box
+ command: c\:\WINDOWS\SysWOW64\windowspowershell\v1.0\powershell.exe -psconsolefile "c:\Program Files (x86)\Enterprise Vault\evshell.psc1" clear-IndexLocationBackupMode -EVServerName gbbed11xj04v
+ machine: gbbed11xj04v
+ owner: svc-ev@mercer
+ permission: mx,me
+ date_conditions: 0
+ description: "Put BED EV journaling Index 3 out of RO state"
+ n_retrys: 2
+ std_out_file: "c:\Temp\ev_dlyam.out"
+ std_err_file: "c:\Temp\ev_dlyam.err"
+ alarm_if_fail: 1
+ job_load: 1
+ priority: 1
+ alarm_if_terminated: 1
+ timezone: London
+
+/* ----------------- mmmsg_w_ev_emea_bed_start_index1lb ----------------- */ 
+
+ insert_job: mmmsg_w_ev_emea_bed_start_index1lb  job_type: CMD 
+ box_name: mmemsg_w_jrnev_emea_start_box
+ command: c\:\WINDOWS\SysWOW64\windowspowershell\v1.0\powershell.exe -psconsolefile "c:\Program Files (x86)\Enterprise Vault\evshell.psc1" clear-VaultStoreBackupMode -Name 'GBBED11XJ04V VS03' -EVServerName gbbed11xj04v -EVObjectType 'vaultstore'
+ machine: gbbed11xj04v
+ owner: svc-ev@mercer
+ permission: mx,me
+ date_conditions: 0
+ description: "Put BED EV Vault Store journaling Group 3 out of RO state"
+ n_retrys: 2
+ std_out_file: "c:\Temp\ev_dlyam.out"
+ std_err_file: "c:\Temp\ev_dlyam.err"
+ alarm_if_fail: 1
+ job_load: 1
+ priority: 1
+ alarm_if_terminated: 1
+ timezone: London
+
+/* ----------------- mmemsg_w_sun_jrnev_emea_box ----------------- */ 
+
+insert_job: mmemsg_w_sun_jrnev_emea_box  job_type: BOX 
+owner: svc-ev@mercer
+permission: mx,me
+date_conditions: 1
+days_of_week: su
+start_times: "20:15"
+condition: (s(mmemsg_w_jrnev_emea_box) & s(mmemsg_d_jrnev_emea_box))
+max_run_alarm: 180
+alarm_if_fail: 0
+alarm_if_terminated: 0
+timezone: London
+
+/* ----------------- mmemsg_w_sun_jrnev_emea_ro_box ----------------- */ 
+
+insert_job: mmemsg_w_sun_jrnev_emea_ro_box  job_type: BOX 
+box_name: mmemsg_w_sun_jrnev_emea_box
+owner: svc-ev@mercer
+permission: mx,me
+date_conditions: 0
+max_run_alarm: 10
+alarm_if_fail: 1
+alarm_if_terminated: 1
+timezone: London
+
+/* ----------------- mmemsg_w_sun_ev_emea_bed_stop_index1ja ----------------- */ 
+
+ insert_job: mmemsg_w_sun_ev_emea_bed_stop_index1ja  job_type: CMD 
+ box_name: mmemsg_w_sun_jrnev_emea_ro_box
+ command: c\:\WINDOWS\SysWOW64\windowspowershell\v1.0\powershell.exe -psconsolefile "c:\Program Files (x86)\Enterprise Vault\evshell.psc1" set-IndexLocationBackupMode -EVServerName gbbed11xj02v
+ machine: gbbed11xj02v
+ owner: svc-ev@mercer
+ permission: mx,me
+ date_conditions: 0
+ description: "Put BED EV journaling Index 1 into RO state"
+ n_retrys: 2
+ std_out_file: "c:\Temp\ev_dlyam.out"
+ std_err_file: "c:\Temp\ev_dlyam.err"
+ max_run_alarm: 10
+ alarm_if_fail: 1
+ job_load: 1
+ priority: 1
+ alarm_if_terminated: 1
+ timezone: London
+
+/* ----------------- mmemsg_w_sun_ev_emea_bed_stop_index1jb ----------------- */ 
+
+ insert_job: mmemsg_w_sun_ev_emea_bed_stop_index1jb  job_type: CMD 
+ box_name: mmemsg_w_sun_jrnev_emea_ro_box
+ command: c\:\WINDOWS\SysWOW64\windowspowershell\v1.0\powershell.exe -psconsolefile "c:\Program Files (x86)\Enterprise Vault\evshell.psc1" set-VaultStoreBackupMode -Name 'GBBED11XJ02V VS01' -EVServerName gbbed11xj02v -EVObjectType 'vaultstore'
+ machine: gbbed11xj02v
+ owner: svc-ev@mercer
+ permission: mx,me
+ date_conditions: 0
+ description: "Put BED EV Vault Store journaling Group 1 into RO state"
+ n_retrys: 2
+ std_out_file: "c:\Temp\ev_dlyam.out"
+ std_err_file: "c:\Temp\ev_dlyam.err"
+ alarm_if_fail: 1
+ job_load: 1
+ priority: 1
+ alarm_if_terminated: 1
+ timezone: London
+
+/* ----------------- mmemsg_w_sun_ev_emea_bed_stop_index1ka ----------------- */ 
+
+ insert_job: mmemsg_w_sun_ev_emea_bed_stop_index1ka  job_type: CMD 
+ box_name: mmemsg_w_sun_jrnev_emea_ro_box
+ command: c\:\WINDOWS\SysWOW64\windowspowershell\v1.0\powershell.exe -psconsolefile "c:\Program Files (x86)\Enterprise Vault\evshell.psc1" set-IndexLocationBackupMode -EVServerName gbbed11xj03v
+ machine: gbbed11xj03v
+ owner: svc-ev@mercer
+ permission: mx,me
+ date_conditions: 0
+ description: "Put BED EV Index 2 into RO state"
+ n_retrys: 2
+ std_out_file: "c:\Temp\ev_dlyam.out"
+ std_err_file: "c:\Temp\ev_dlyam.err"
+ alarm_if_fail: 1
+ job_load: 1
+ priority: 1
+ alarm_if_terminated: 1
+ timezone: London
+
+/* ----------------- mmemsg_w_sun_ev_emea_bed_stop_index1kb ----------------- */ 
+
+ insert_job: mmemsg_w_sun_ev_emea_bed_stop_index1kb  job_type: CMD 
+ box_name: mmemsg_w_sun_jrnev_emea_ro_box
+ command: c\:\WINDOWS\SysWOW64\windowspowershell\v1.0\powershell.exe -psconsolefile "c:\Program Files (x86)\Enterprise Vault\evshell.psc1" set-VaultStoreBackupMode -Name 'GBBED11XJ03V VS02' -EVServerName gbbed11xj03v -EVObjectType 'vaultstore'
+ machine: gbbed11xj03v
+ owner: svc-ev@mercer
+ permission: mx,me
+ date_conditions: 0
+ description: "Put BED EV Vault Store journaling Group 2 into RO state"
+ n_retrys: 2
+ std_out_file: "c:\Temp\ev_dlyam.out"
+ std_err_file: "c:\Temp\ev_dlyam.err"
+ alarm_if_fail: 1
+ job_load: 1
+ priority: 1
+ alarm_if_terminated: 1
+ timezone: London
+
+/* ----------------- mmemsg_w_sun_ev_emea_bed_stop_index1la ----------------- */ 
+
+ insert_job: mmemsg_w_sun_ev_emea_bed_stop_index1la  job_type: CMD 
+ box_name: mmemsg_w_sun_jrnev_emea_ro_box
+ command: c\:\WINDOWS\SysWOW64\windowspowershell\v1.0\powershell.exe -psconsolefile "c:\Program Files (x86)\Enterprise Vault\evshell.psc1" set-IndexLocationBackupMode -EVServerName gbbed11xj04v
+ machine: gbbed11xj04v
+ owner: svc-ev@mercer
+ permission: mx,me
+ date_conditions: 0
+ description: "Put BED EV journling Index 3 into RO state"
+ n_retrys: 2
+ std_out_file: "c:\Temp\ev_dlyam.out"
+ std_err_file: "c:\Temp\ev_dlyam.err"
+ alarm_if_fail: 1
+ job_load: 1
+ priority: 1
+ alarm_if_terminated: 1
+ timezone: London
+
+/* ----------------- mmemsg_w_sun_ev_emea_bed_stop_index1lb ----------------- */ 
+
+ insert_job: mmemsg_w_sun_ev_emea_bed_stop_index1lb  job_type: CMD 
+ box_name: mmemsg_w_sun_jrnev_emea_ro_box
+ command: c\:\WINDOWS\SysWOW64\windowspowershell\v1.0\powershell.exe -psconsolefile "c:\Program Files (x86)\Enterprise Vault\evshell.psc1" set-VaultStoreBackupMode -Name 'GBBED11XJ04V VS03' -EVServerName gbbed11xj04v -EVObjectType 'vaultstore'
+ machine: gbbed11xj04v
+ owner: svc-ev@mercer
+ permission: mx,me
+ date_conditions: 0
+ description: "Put BED EV Vault Store journaling Group 3 into RO state"
+ n_retrys: 2
+ std_out_file: "c:\Temp\ev_dlyam.out"
+ std_err_file: "c:\Temp\ev_dlyam.err"
+ alarm_if_fail: 1
+ job_load: 1
+ priority: 1
+ alarm_if_terminated: 1
+ timezone: London
+
+/* ----------------- mmebkp_w_sun_jrnev_emea_backup_box ----------------- */ 
+
+insert_job: mmebkp_w_sun_jrnev_emea_backup_box  job_type: BOX 
+box_name: mmemsg_w_sun_jrnev_emea_box
+owner: svc-ev@mercer
+permission: mx,me
+date_conditions: 0
+condition: s(mmemsg_w_sun_jrnev_emea_ro_box)
+alarm_if_fail: 1
+alarm_if_terminated: 1
+timezone: London
+
+/* ----------------- mmbkp_w_sun_ev_emea_bed_fingerprint2 ----------------- */ 
+
+ insert_job: mmbkp_w_sun_ev_emea_bed_fingerprint2  job_type: CMD 
+ box_name: mmebkp_w_sun_jrnev_emea_backup_box
+ command: /usr/openv/netbackup/bin/bpbackup -i -w 0 -c GBBED_INT_MAR_PROD_SQL_NA-1M-NA_EV-FPR-DBFULL-JRL -s WeeklyFull -h gbbe11db03vci1bu.MRSHMC.COM
+ machine: gbbed21bs100
+ owner: root
+ permission: mx,me
+ date_conditions: 0
+ description: "Daily Incremental backup of BED EV Journaling Fingerprint SQL DB"
+ std_out_file: "/usr/openv/netbackup/local_scripts_logs/ev_dlyam.out"
+ std_err_file: "/usr/openv/netbackup/local_scripts_logs/ev_dlyam.err"
+ alarm_if_fail: 1
+ job_load: 1
+ priority: 1
+ alarm_if_terminated: 1
+
+/* ----------------- mmbkp_w_sun_ev_emea_bed_vault2 ----------------- */ 
+
+ insert_job: mmbkp_w_sun_ev_emea_bed_vault2  job_type: CMD 
+ box_name: mmebkp_w_sun_jrnev_emea_backup_box
+ command: /usr/openv/netbackup/bin/bpbackup -i -w 0 -c GBBED_INT_MAR_PROD_SQL_NA-1M-NA_EV-VLT-DBFULL-JRL -s WeeklyFull -h gbbe11db03vci1bu.MRSHMC.COM
+ machine: gbbed21bs100
+ owner: root
+ permission: mx,me
+ date_conditions: 0
+ description: "Daily Incremental backup of BED EV journaling Vault Store data bases"
+ std_out_file: "/usr/openv/netbackup/local_scripts_logs/ev_dlyam.out"
+ std_err_file: "/usr/openv/netbackup/local_scripts_logs/ev_dlyam.err"
+ alarm_if_fail: 1
+ job_load: 1
+ priority: 1
+ alarm_if_terminated: 1
+
+/* ----------------- mmbkp_w_sun_ev_emea_bed_index2j ----------------- */ 
+
+ insert_job: mmbkp_w_sun_ev_emea_bed_index2j  job_type: CMD 
+ box_name: mmebkp_w_sun_jrnev_emea_backup_box
+ command: /usr/openv/netbackup/bin/bpbackup -i -w 0 -c GBBED_INT_MAR_PROD_WIN_1M-1M-NA_EV-INDEX2J -s WeeklyFull -h gbbed11xj02vbu.mrshmc.com
+ machine: gbbed21bs100
+ owner: root
+ permission: mx,me
+ date_conditions: 0
+ description: "Daily Incremental backup of BED EV Index Server 1"
+ std_out_file: "/usr/openv/netbackup/local_scripts_logs/ev_dlyam.out"
+ std_err_file: "/usr/openv/netbackup/local_scripts_logs/ev_dlyam.err"
+ alarm_if_fail: 1
+ job_load: 1
+ priority: 1
+ alarm_if_terminated: 1
+ timezone: London
+
+/* ----------------- mmbkp_w_sun_ev_emea_bed_index3j ----------------- */ 
+
+ insert_job: mmbkp_w_sun_ev_emea_bed_index3j  job_type: CMD 
+ box_name: mmebkp_w_sun_jrnev_emea_backup_box
+ command: /usr/openv/netbackup/bin/bpbackup -i -w 0 -c GBBED_INT_MAR_PROD_WIN_1M-1M-NA_EV-INDEX3J -s WeeklyFull -h gbbed11xj03vbu.mrshmc.com
+ machine: gbbed21bs100
+ owner: root
+ permission: mx,me
+ date_conditions: 0
+ description: "Daily Incremental backup of BED EV Index Server 2"
+ std_out_file: "/usr/openv/netbackup/local_scripts_logs/ev_dlyam.out"
+ std_err_file: "/usr/openv/netbackup/local_scripts_logs/ev_dlyam.err"
+ alarm_if_fail: 1
+ job_load: 1
+ priority: 1
+ alarm_if_terminated: 1
+ timezone: London
+
+/* ----------------- mmbkp_w_sun_ev_emea_bed_index4j ----------------- */ 
+
+ insert_job: mmbkp_w_sun_ev_emea_bed_index4j  job_type: CMD 
+ box_name: mmebkp_w_sun_jrnev_emea_backup_box
+ command: /usr/openv/netbackup/bin/bpbackup -i -w 0 -c GBBED_INT_MAR_PROD_WIN_1M-1M-NA_EV-INDEX4J -s WeeklyFull -h gbbed11xj04vbu.mrshmc.com
+ machine: gbbed21bs100
+ owner: root
+ permission: mx,me
+ date_conditions: 0
+ description: "Daily Incremental backup of BED EV Index Server 3"
+ std_out_file: "/usr/openv/netbackup/local_scripts_logs/ev_dlyam.out"
+ std_err_file: "/usr/openv/netbackup/local_scripts_logs/ev_dlyam.err"
+ alarm_if_fail: 1
+ job_load: 1
+ priority: 1
+ alarm_if_terminated: 1
+ timezone: London
+
+/* ----------------- mmemsg_w_sun_jrnev_emea_start_box ----------------- */ 
+
+insert_job: mmemsg_w_sun_jrnev_emea_start_box  job_type: BOX 
+box_name: mmemsg_w_sun_jrnev_emea_box
+owner: svc-ev@mercer
+permission: mx,me
+date_conditions: 0
+condition: s(mmebkp_w_sun_jrnev_emea_backup_box)
+max_run_alarm: 10
+alarm_if_fail: 1
+alarm_if_terminated: 1
+timezone: London
+
+/* ----------------- mmmsg_w_sun_ev_emea_bed_start_index1ja ----------------- */ 
+
+ insert_job: mmmsg_w_sun_ev_emea_bed_start_index1ja  job_type: CMD 
+ box_name: mmemsg_w_sun_jrnev_emea_start_box
+ command: c\:\WINDOWS\SysWOW64\windowspowershell\v1.0\powershell.exe -psconsolefile "c:\Program Files (x86)\Enterprise Vault\evshell.psc1" clear-IndexLocationBackupMode -EVServerName gbbed11xj02v
+ machine: gbbed11xj02v
+ owner: svc-ev@mercer
+ permission: mx,me
+ date_conditions: 0
+ description: "Put BED EV journaling Index 1 out of RO state"
+ n_retrys: 2
+ std_out_file: "c:\Temp\ev_dlyam.out"
+ std_err_file: "c:\Temp\ev_dlyam.err"
+ alarm_if_fail: 1
+ job_load: 1
+ priority: 1
+ alarm_if_terminated: 1
+ timezone: London
+
+/* ----------------- mmmsg_w_sun_ev_emea_bed_start_index1jb ----------------- */ 
+
+ insert_job: mmmsg_w_sun_ev_emea_bed_start_index1jb  job_type: CMD 
+ box_name: mmemsg_w_sun_jrnev_emea_start_box
+ command: c\:\WINDOWS\SysWOW64\windowspowershell\v1.0\powershell.exe -psconsolefile "c:\Program Files (x86)\Enterprise Vault\evshell.psc1" clear-VaultStoreBackupMode -Name 'GBBED11XJ02V VS01' -EVServerName gbbed11xj02v -EVObjectType 'vaultstore'
+ machine: gbbed11xj02v
+ owner: svc-ev@mercer
+ permission: mx,me
+ date_conditions: 0
+ description: "Put BED EV journaling Vault Store Group 1 out of RO state"
+ n_retrys: 2
+ std_out_file: "c:\Temp\ev_dlyam.out"
+ std_err_file: "c:\Temp\ev_dlyam.err"
+ alarm_if_fail: 1
+ job_load: 1
+ priority: 1
+ alarm_if_terminated: 1
+ timezone: London
+
+/* ----------------- mmmsg_w_sun_ev_emea_bed_start_index1ka ----------------- */ 
+
+ insert_job: mmmsg_w_sun_ev_emea_bed_start_index1ka  job_type: CMD 
+ box_name: mmemsg_w_sun_jrnev_emea_start_box
+ command: c\:\WINDOWS\SysWOW64\windowspowershell\v1.0\powershell.exe -psconsolefile "c:\Program Files (x86)\Enterprise Vault\evshell.psc1" clear-IndexLocationBackupMode -EVServerName gbbed11xj03v
+ machine: gbbed11xj03v
+ owner: svc-ev@mercer
+ permission: mx,me
+ date_conditions: 0
+ description: "Put BED EV journaling Index 2 out of RO state"
+ n_retrys: 2
+ std_out_file: "c:\Temp\ev_dlyam.out"
+ std_err_file: "c:\Temp\ev_dlyam.err"
+ alarm_if_fail: 1
+ job_load: 1
+ priority: 1
+ alarm_if_terminated: 1
+ timezone: London
+
+/* ----------------- mmmsg_w_sun_ev_ema_bed_start_index1kb ----------------- */ 
+
+ insert_job: mmmsg_w_sun_ev_ema_bed_start_index1kb  job_type: CMD 
+ box_name: mmemsg_w_sun_jrnev_emea_start_box
+ command: c\:\WINDOWS\SysWOW64\windowspowershell\v1.0\powershell.exe -psconsolefile "c:\Program Files (x86)\Enterprise Vault\evshell.psc1" clear-VaultStoreBackupMode -Name 'GBBED11XJ03V VS02' -EVServerName gbbed11xj03v -EVObjectType 'vaultstore'
+ machine: gbbed11xj03v
+ owner: svc-ev@mercer
+ permission: mx,me
+ date_conditions: 0
+ description: "Put BED EV Vault Store Group 2 out of RO state"
+ n_retrys: 2
+ std_out_file: "c:\Temp\ev_dlyam.out"
+ std_err_file: "c:\Temp\ev_dlyam.err"
+ alarm_if_fail: 1
+ job_load: 1
+ priority: 1
+ alarm_if_terminated: 1
+ timezone: London
+
+/* ----------------- mmmsg_w_sun_ev_emea_bed_start_index1la ----------------- */ 
+
+ insert_job: mmmsg_w_sun_ev_emea_bed_start_index1la  job_type: CMD 
+ box_name: mmemsg_w_sun_jrnev_emea_start_box
+ command: c\:\WINDOWS\SysWOW64\windowspowershell\v1.0\powershell.exe -psconsolefile "c:\Program Files (x86)\Enterprise Vault\evshell.psc1" clear-IndexLocationBackupMode -EVServerName gbbed11xj04v
+ machine: gbbed11xj04v
+ owner: svc-ev@mercer
+ permission: mx,me
+ date_conditions: 0
+ description: "Put BED EV journaling Index 3 out of RO state"
+ n_retrys: 2
+ std_out_file: "c:\Temp\ev_dlyam.out"
+ std_err_file: "c:\Temp\ev_dlyam.err"
+ alarm_if_fail: 1
+ job_load: 1
+ priority: 1
+ alarm_if_terminated: 1
+ timezone: London
+
+/* ----------------- mmmsg_w_sun_ev_emea_bed_start_index1lb ----------------- */ 
+
+ insert_job: mmmsg_w_sun_ev_emea_bed_start_index1lb  job_type: CMD 
+ box_name: mmemsg_w_sun_jrnev_emea_start_box
+ command: c\:\WINDOWS\SysWOW64\windowspowershell\v1.0\powershell.exe -psconsolefile "c:\Program Files (x86)\Enterprise Vault\evshell.psc1" clear-VaultStoreBackupMode -Name 'GBBED11XJ04V VS03' -EVServerName gbbed11xj04v -EVObjectType 'vaultstore'
+ machine: gbbed11xj04v
+ owner: svc-ev@mercer
+ permission: mx,me
+ date_conditions: 0
+ description: "Put BED EV Vault Store journaling Group 3 out of RO state"
+ n_retrys: 2
+ std_out_file: "c:\Temp\ev_dlyam.out"
+ std_err_file: "c:\Temp\ev_dlyam.err"
+ alarm_if_fail: 1
+ job_load: 1
+ priority: 1
+ alarm_if_terminated: 1
+ timezone: London
+
+/* ----------------- medm_mmx_wpp_load_box ----------------- */ 
+
+insert_job: medm_mmx_wpp_load_box  job_type: BOX 
+owner: infprd10@usfkl21as554v
+permission: gx,wx
+date_conditions: 1
+days_of_week: mo,th
+start_times: "19:00"
+alarm_if_fail: 1
+alarm_if_terminated: 1
+
+/* ----------------- medm_mmx_wpp_filewatcher ----------------- */ 
+
+ insert_job: medm_mmx_wpp_filewatcher  job_type: FW 
+ box_name: medm_mmx_wpp_load_box
+ machine: usfkl21as554v
+ owner: infprd10@usfkl21as554v
+ permission: gx,wx,mx
+ date_conditions: 0
+ description: "Checks if any new MMX WPP file exists"
+ max_run_alarm: 2880
+ alarm_if_fail: 1
+ profile: "/home/infprd10/auto.profile"
+ alarm_if_terminated: 1
+ watch_file: "/PRD_RECEIVED/ftp.mmx.com/inbound/WPPInbound*.csv"
+ watch_interval: 100
+
+/* ----------------- medm_mmx_wpp_to_benefitfocus ----------------- */ 
+
+ insert_job: medm_mmx_wpp_to_benefitfocus  job_type: CMD 
+ box_name: medm_mmx_wpp_load_box
+ command: $CYCSHELL/run_pmcmd $CTLDIR/CORE/wf_WPP_to_BenefitFocus.ctl
+ machine: usfkl21as554v
+ owner: infprd10@usfkl21as554v
+ permission: gx,wx,mx
+ date_conditions: 0
+ condition: s(medm_mmx_wpp_filewatcher)
+ description: "Processes WPP file & send outbound to benefitfocus"
+ std_out_file: "$CYCLOG/CORE/medm_mmx_wpp_to_benefitfocus_stdout.log"
+ std_err_file: "$CYCLOG/CORE/medm_mmx_wpp_to_benefitfocus_stderr.log"
+ max_run_alarm: 960
+ alarm_if_fail: 1
+ profile: "/home/infprd10/auto.profile"
+ alarm_if_terminated: 1
+
+/* ----------------- medm_mmx_slb_load_box_mm365_1 ----------------- */ 
+
+insert_job: medm_mmx_slb_load_box_mm365_1  job_type: BOX 
+owner: infprd10@usfkl21as554v
+permission: gx,wx
+date_conditions: 1
+days_of_week: mo,tu,we,th,fr,sa,su
+start_times: "05:35"
+alarm_if_fail: 1
+alarm_if_terminated: 1
+
+/* ----------------- medm_mmx_slb_filewatcher_1 ----------------- */ 
+
+ insert_job: medm_mmx_slb_filewatcher_1  job_type: FW 
+ box_name: medm_mmx_slb_load_box_mm365_1
+ machine: usfkl21as554v
+ owner: infprd10@usfkl21as554v
+ permission: gx,wx,mx
+ date_conditions: 0
+ description: "Checks if any new MMX Schlumberger file exists"
+ max_run_alarm: 3600
+ alarm_if_fail: 1
+ profile: "/home/infprd10/auto.profile"
+ alarm_if_terminated: 1
+ watch_file: "/PRD_RECEIVED/ftp.mmx.com/inbound/SLBInbound*.txt"
+ watch_interval: 100
+
+/* ----------------- medm_mmx_slb_to_benefitfocus_mm365 ----------------- */ 
+
+ insert_job: medm_mmx_slb_to_benefitfocus_mm365  job_type: CMD 
+ box_name: medm_mmx_slb_load_box_mm365_1
+ command: $CYCSHELL/run_pmcmd $CTLDIR/CORE/wf_SLMB_File_To_BenefitFocus_2019.ctl
+ machine: usfkl21as554v
+ owner: infprd10@usfkl21as554v
+ permission: gx,wx,mx
+ date_conditions: 0
+ condition: s(medm_mmx_slb_filewatcher_1)
+ description: "Processes Schlumberger 209 file & send outbound to benefitfocus"
+ std_out_file: "$CYCLOG/CORE/medm_mmx_2019_slb_stdout.log"
+ std_err_file: "$CYCLOG/CORE/medm_mmx_2019_slb_stderr.log"
+ max_run_alarm: 960
+ alarm_if_fail: 1
+ profile: "/home/infprd10/auto.profile"
+ alarm_if_terminated: 1
+
+/* ----------------- medm_mmx_cam_load_box_mm365_1 ----------------- */ 
+
+insert_job: medm_mmx_cam_load_box_mm365_1  job_type: BOX 
+owner: infprd10@usfkl21as554v
+permission: gx,wx
+date_conditions: 1
+days_of_week: su,mo,tu,we,th,fr,sa
+start_times: "05:30"
+alarm_if_fail: 1
+alarm_if_terminated: 1
+
+/* ----------------- medm_mmx_cam_filewatcher_1 ----------------- */ 
+
+ insert_job: medm_mmx_cam_filewatcher_1  job_type: FW 
+ box_name: medm_mmx_cam_load_box_mm365_1
+ machine: usfkl21as554v
+ owner: infprd10@usfkl21as554v
+ permission: gx,wx,mx
+ date_conditions: 0
+ description: "Checks if any new MMX Cameron file exists"
+ max_run_alarm: 3600
+ alarm_if_fail: 1
+ profile: "/home/infprd10/auto.profile"
+ alarm_if_terminated: 1
+ watch_file: "/PRD_RECEIVED/ftp.mmx.com/inbound/CAMInbound*.txt"
+ watch_interval: 100
+
+/* ----------------- medm_mmx_cam_to_benefitfocus_mm365 ----------------- */ 
+
+ insert_job: medm_mmx_cam_to_benefitfocus_mm365  job_type: CMD 
+ box_name: medm_mmx_cam_load_box_mm365_1
+ command: $CYCSHELL/run_pmcmd $CTLDIR/CORE/wf_CAM_File_To_BenefitFocus_2019.ctl
+ machine: usfkl21as554v
+ owner: infprd10@usfkl21as554v
+ permission: gx,wx,mx
+ date_conditions: 0
+ condition: s(medm_mmx_cam_filewatcher_1)
+ description: "Processes Cameron file & send outbound to benefitfocus"
+ std_out_file: "$CYCLOG/CORE/medm_mmx_2019_cam_stdout.log"
+ std_err_file: "$CYCLOG/CORE/medm_mmx_2019_cam_stderr.log"
+ max_run_alarm: 960
+ alarm_if_fail: 1
+ profile: "/home/infprd10/auto.profile"
+ alarm_if_terminated: 1
+
+/* ----------------- mechat_w_chatsarchive ----------------- */ 
+
+insert_job: mechat_w_chatsarchive  job_type: CMD 
+command: "D:\Autosys\batch\ChatsArchive.bat"
+machine: usfkl11as364v.mrshmc.com
+owner: svc-moxiechat@dmzprod01
+permission: gx,ge,mx,me
+date_conditions: 1
+days_of_week: su
+start_times: "23:04"
+description: "run the job to archive Chats records to the ChatsArchive table. Delete records from the ChatTouchPoint and Chats tables after successfully inserting records into the ChatsArchive table. If there is an issue with the archive step, an email is sent to an internal distribution list."
+std_out_file: "D:\Autosys\logs\ChatsArchive.%autorun%.out.txt"
+std_err_file: "D:\Autosys\logs\ChatsArchive.%autorun%.err.txt"
+alarm_if_fail: 0
+alarm_if_terminated: 0
+
+/* ----------------- mavel_d_vel_CFA_FF_Report_GL ----------------- */ 
+
+insert_job: mavel_d_vel_CFA_FF_Report_GL  job_type: CMD 
+command: /u/marsh/UNX/scripts/CFA_FF_Report/scripts/CFA_FF_RPT.sh CFAGL
+machine: usurb31as15v
+owner: dias@usurb31as15v
+permission: mx,me
+date_conditions: 1
+days_of_week: mo,tu,we,th,fr
+start_times: "06:30"
+description: "CFA Fulfillment Report - GL"
+std_out_file: "/u/marsh/UNX/scripts/CFA_FF_Report/logs/CFA_FF_Report_GL_job_`date +%m%d`.out"
+std_err_file: "/u/marsh/UNX/scripts/CFA_FF_Report/logs/CFA_FF_Report_GL_job_`date +%m%d`.err"
+max_run_alarm: 5000
+alarm_if_fail: 1
+alarm_if_terminated: 1
+timezone: CentralTime
+
+/* ----------------- mavel_d_vel_CFA_FF_Report_WC ----------------- */ 
+
+insert_job: mavel_d_vel_CFA_FF_Report_WC  job_type: CMD 
+command: /u/marsh/UNX/scripts/CFA_FF_Report/scripts/CFA_FF_RPT.sh CFAWC
+machine: usurb31as15v
+owner: dias@usurb31as15v
+permission: mx,me
+date_conditions: 0
+condition: s(mavel_d_vel_CFA_FF_Report_GL)
+description: "CFA Fulfillment Report - WorkComp"
+std_out_file: "/u/marsh/UNX/scripts/CFA_FF_Report/logs/CFA_FF_Report_WC_job_`date +%m%d`.out"
+std_err_file: "/u/marsh/UNX/scripts/CFA_FF_Report/logs/CFA_FF_Report_WC_job_`date +%m%d`.err"
+max_run_alarm: 5000
+alarm_if_fail: 1
+alarm_if_terminated: 1
+timezone: CentralTime
+
+/* ----------------- medm_mmx_cam_Healthy_Futures_box ----------------- */ 
+
+insert_job: medm_mmx_cam_Healthy_Futures_box  job_type: BOX 
+owner: infprd10@usfkl21as554v
+permission: gx,wx
+date_conditions: 1
+days_of_week: su,mo,tu,we,th,fr,sa
+start_times: "05:40"
+condition: s(medm_mmx_cam_load_box_mm365_1) & s(medm_mmx_Healthy_Futures_prd_mm365_xfer)
+alarm_if_fail: 1
+alarm_if_terminated: 1
+
+/* ----------------- medm_mmx_cam_Healthy_Futures_filewatcher ----------------- */ 
+
+ insert_job: medm_mmx_cam_Healthy_Futures_filewatcher  job_type: FW 
+ box_name: medm_mmx_cam_Healthy_Futures_box
+ machine: usfkl21as554v
+ owner: infprd10@usfkl21as554v
+ permission: gx,wx,mx
+ date_conditions: 0
+ description: "Checks if any new MM365 2019 layout Cameron test file exists"
+ alarm_if_fail: 1
+ profile: "/home/infprd10/auto.profile"
+ alarm_if_terminated: 1
+ watch_file: "/data/pcenter8/TgtFiles/MMX/Cameron/MM365_Cameron_Source/CameronInbound*.txt"
+ watch_interval: 100
+
+/* ----------------- medm_mmx_cam_Healthy_Futures_MM365 ----------------- */ 
+
+ insert_job: medm_mmx_cam_Healthy_Futures_MM365  job_type: CMD 
+ box_name: medm_mmx_cam_Healthy_Futures_box
+ command: $CYCSHELL/run_pmcmd $CTLDIR/CORE/wf_CAM_Healthy_Futures.ctl
+ machine: usfkl21as554v
+ owner: infprd10@usfkl21as554v
+ permission: gx,wx,mx
+ date_conditions: 0
+ condition: s(medm_mmx_cam_Healthy_Futures_filewatcher)
+ description: "Processes Cameron 2019 test file & send outboud to MM365"
+ std_out_file: "$CYCLOG/CORE/medm_mm365_Healthy_Futures_cam_stdout.log"
+ std_err_file: "$CYCLOG/CORE/medm_mm365_Healthy_Futures_cam_stderr.log"
+ max_run_alarm: 960
+ alarm_if_fail: 1
+ profile: "/home/infprd10/auto.profile"
+ alarm_if_terminated: 1
+
+/* ----------------- medm_mmx_slb_Healthy_Futures_box ----------------- */ 
+
+insert_job: medm_mmx_slb_Healthy_Futures_box  job_type: BOX 
+owner: infprd10@usfkl21as554v
+permission: gx,wx
+date_conditions: 1
+days_of_week: su,mo,tu,we,th,fr,sa
+start_times: "05:45"
+condition: s(medm_mmx_slb_load_box_mm365_1) & s(medm_mmx_Healthy_Futures_prd_mm365_xfer)
+alarm_if_fail: 1
+alarm_if_terminated: 1
+
+/* ----------------- medm_mmx_slb_Healthy_Futures_filewatcher ----------------- */ 
+
+ insert_job: medm_mmx_slb_Healthy_Futures_filewatcher  job_type: FW 
+ box_name: medm_mmx_slb_Healthy_Futures_box
+ machine: usfkl21as554v
+ owner: infprd10@usfkl21as554v
+ permission: gx,wx,mx
+ date_conditions: 0
+ description: "Checks if any new MM365 2019 layout Schlumberger test file exists"
+ alarm_if_fail: 1
+ profile: "/home/infprd10/auto.profile"
+ alarm_if_terminated: 1
+ watch_file: "/data/pcenter8/TgtFiles/MMX/Schlumberger/MM365_Schlumberger_Source/SchlumbergerInbound*.txt"
+ watch_interval: 100
+
+/* ----------------- medm_mmx_slb_Healthy_Futures_MM365 ----------------- */ 
+
+ insert_job: medm_mmx_slb_Healthy_Futures_MM365  job_type: CMD 
+ box_name: medm_mmx_slb_Healthy_Futures_box
+ command: $CYCSHELL/run_pmcmd $CTLDIR/CORE/wf_SLB_Healthy_Futures.ctl
+ machine: usfkl21as554v
+ owner: infprd10@usfkl21as554v
+ permission: gx,wx,mx
+ date_conditions: 0
+ condition: s(medm_mmx_slb_Healthy_Futures_filewatcher)
+ description: "Processes Cameron 2019 test file & send outboud to MM365"
+ std_out_file: "$CYCLOG/CORE/medm_mm365_Healthy_futures_slb_stdout.log"
+ std_err_file: "$CYCLOG/CORE/medm_mm365_Healthy_futures_slb_stderr.log"
+ max_run_alarm: 960
+ alarm_if_fail: 1
+ profile: "/home/infprd10/auto.profile"
+ alarm_if_terminated: 1
+
+/* ----------------- medm_mmx_Healthy_Futures_prd_mm365_xfer ----------------- */ 
+
+insert_job: medm_mmx_Healthy_Futures_prd_mm365_xfer  job_type: CMD 
+command: D\:\Autosys\batch\mm365_slb_cam_robocopy.bat
+machine: usfkl11as271v
+owner: svc-ascheduler@mercer
+permission: gx,ge,mx,me
+date_conditions: 1
+days_of_week: su,mo,tu,we,th,fr,sa
+start_mins: 05,15,25,35,45,55
+condition: s(medm_mmx_slb_cam_combine_MM365_box)
+description: "MM365+ Report | move files from the DataMan workspace to the \"Q\" drive folder"
+std_out_file: "D:\Autosys\logs\medm_mmx_Healthy_Futures_prd_mm365_xfer_robocopy.%autorun%.out.txt"
+std_err_file: "D:\Autosys\logs\medm_mmx_Healthy_Futures_prd_mm365_xfer_robocopy.%autorun%.err.txt"
+alarm_if_fail: 1
+alarm_if_terminated: 0
+
+/* ----------------- medm_mmx_slb_cam_combine_MM365_box ----------------- */ 
+
+insert_job: medm_mmx_slb_cam_combine_MM365_box  job_type: BOX 
+owner: infprd10@usfkl21as554v
+permission: gx,wx
+date_conditions: 1
+days_of_week: su,mo,tu,we,th,fr,sa
+start_times: "05:50"
+condition: s(medm_mmx_cam_load_box_mm365_1) & s(medm_mmx_slb_load_box_mm365_1) & s(medm_mmx_cam_Healthy_Futures_box) & s(medm_mmx_slb_Healthy_Futures_box)
+alarm_if_fail: 1
+alarm_if_terminated: 1
+
+/* ----------------- medm_mmx_slb_cam_combine ----------------- */ 
+
+ insert_job: medm_mmx_slb_cam_combine  job_type: CMD 
+ box_name: medm_mmx_slb_cam_combine_MM365_box
+ command: $CYCSHELL/run_pmcmd $CTLDIR/CORE/wf_Combine_SLB_CAM_Healthy_Futures.ctl
+ machine: usfkl21as554v
+ owner: infprd10@usfkl21as554v
+ permission: gx,wx,mx
+ date_conditions: 0
+ description: "Combine SLB and CAM file & send outboud to MM365"
+ std_out_file: "$CYCLOG/CORE/medm_mm365_combine_slb_cam_stdout.log"
+ std_err_file: "$CYCLOG/CORE/medm_mm365_combine_slb_cam_stderr.log"
+ max_run_alarm: 960
+ alarm_if_fail: 1
+ profile: "/home/infprd10/auto.profile"
+ alarm_if_terminated: 1
+
+/* ----------------- medm_mmx_slb_cam_combine_email ----------------- */ 
+
+ insert_job: medm_mmx_slb_cam_combine_email  job_type: CMD 
+ box_name: medm_mmx_slb_cam_combine_MM365_box
+ command: ksh /data/pcenter8/scripts/SLB_CAM_Email.sh
+ machine: usfkl21as554v
+ owner: infprd10@usfkl21as554v
+ permission: gx,wx,mx
+ date_conditions: 0
+ condition: s(medm_mmx_slb_cam_combine)
+ description: "Send notification once SLB/CAM file combine is done."
+ std_out_file: "$CYCLOG/CORE/medm_mm365_combine_slb_cam_email_stdout.log"
+ std_err_file: "$CYCLOG/CORE/medm_mm365_combine_slb_cam_email_stderr.log"
+ max_run_alarm: 960
+ alarm_if_fail: 1
+ profile: "/home/infprd10/auto.profile"
+ alarm_if_terminated: 1
+
+/* ----------------- mechat_w_ChatSessionDetailsArchive ----------------- */ 
+
+insert_job: mechat_w_ChatSessionDetailsArchive  job_type: CMD 
+command: "D:\Autosys\batch\ChatSessionDetailsArchive.bat"
+machine: usfkl11as364v.mrshmc.com
+owner: svc-moxiechat@dmzprod01
+permission: gx,ge,mx,me
+date_conditions: 1
+days_of_week: su
+start_times: "23:14"
+condition: s(mechat_w_chatsarchive)
+description: "run the job to archive ChatSessionDetails records to the ChatSessionDetailsArchive table. Delete records from the ChatSessionDetails table after successfully inserting records into the ChatSessionDetailsArchive table. If there is an issue with the archive step, an email is sent to an internal distribution list."
+std_out_file: "D:\Autosys\logs\ChatSessionDetailsArchive.%autorun%.out.txt"
+std_err_file: "D:\Autosys\logs\ChatSessionDetailsArchive.%autorun%.err.txt"
+alarm_if_fail: 0
+alarm_if_terminated: 0
+
+/* ----------------- mechat_w_ChatTransmissionArchive ----------------- */ 
+
+insert_job: mechat_w_ChatTransmissionArchive  job_type: CMD 
+command: "D:\Autosys\batch\ChatTransmissionArchive.bat"
+machine: usfkl11as364v.mrshmc.com
+owner: svc-moxiechat@dmzprod01
+permission: gx,ge,mx,me
+date_conditions: 1
+days_of_week: su
+start_times: "23:24"
+condition: s(mechat_w_ChatSessionDetailsArchive)
+description: "run the job to archive ChatTransmission records to the ChatTransmissionArchive table. Delete records from the ChatTransmission table after successfully inserting records into the ChatTransmissionArchive table. If there is an issue with the archive step, an email is sent to an internal distribution list."
+std_out_file: "D:\Autosys\logs\ChatTransmissionArchive.%autorun%.out.txt"
+std_err_file: "D:\Autosys\logs\ChatTransmissionArchive.%autorun%.err.txt"
+alarm_if_fail: 0
+alarm_if_terminated: 0
+
+/* ----------------- medm_mmx_WPP_MM365P_load_box ----------------- */ 
+
+insert_job: medm_mmx_WPP_MM365P_load_box  job_type: BOX 
+owner: infprd10@usfkl21as554v
+permission: gx,wx
+date_conditions: 1
+days_of_week: mo,th
+start_times: "19:10"
+alarm_if_fail: 1
+alarm_if_terminated: 1
+
+/* ----------------- medm_mmx_WPP_MM365P_filewatcher ----------------- */ 
+
+ insert_job: medm_mmx_WPP_MM365P_filewatcher  job_type: FW 
+ box_name: medm_mmx_WPP_MM365P_load_box
+ machine: usfkl21as554v
+ owner: infprd10@usfkl21as554v
+ permission: gx,wx,mx
+ date_conditions: 0
+ condition: s(medm_mmx_wpp_load_box)
+ description: "Checks if any new MMX WPP file exists"
+ max_run_alarm: 2880
+ alarm_if_fail: 1
+ profile: "/home/infprd10/auto.profile"
+ alarm_if_terminated: 1
+ watch_file: "/PRD_RECEIVED/ftp.mmx.com/inbound/WPP_Concatenation/WPPInbound*.csv"
+ watch_interval: 100
+
+/* ----------------- medm_mmx_WPP_to_MM356P ----------------- */ 
+
+ insert_job: medm_mmx_WPP_to_MM356P  job_type: CMD 
+ box_name: medm_mmx_WPP_MM365P_load_box
+ command: $CYCSHELL/run_pmcmd $CTLDIR/CORE/wf_WPP_to_MM365P.ctl
+ machine: usfkl21as554v
+ owner: infprd10@usfkl21as554v
+ permission: gx,wx,mx
+ date_conditions: 0
+ condition: s(medm_mmx_WPP_MM365P_filewatcher)
+ description: "Processes WPP file & send outbound to MM365Plus"
+ std_out_file: "$CYCLOG/CORE/medm_mmx_WPP_to_MM356P_stdout.log"
+ std_err_file: "$CYCLOG/CORE/medm_mmx_WPP_to_MM356P_stderr.log"
+ max_run_alarm: 960
+ alarm_if_fail: 1
+ profile: "/home/infprd10/auto.profile"
+ alarm_if_terminated: 1
+
+/* ----------------- memmx_d_win_load_deva_init_files_uat_box ----------------- */ 
+
+insert_job: memmx_d_win_load_deva_init_files_uat_box  job_type: BOX 
+owner: svc-InfAutosysPrd@mercer
+permission: gx,wx,mx
+date_conditions: 1
+days_of_week: mo,tu,we,th,fr,sa,su
+start_mins: 15,45
+alarm_if_fail: 0
+alarm_if_terminated: 0
+
+/* ----------------- memmx_d_win_watch_deva_init_emp_file_uat_job ----------------- */ 
+
+ insert_job: memmx_d_win_watch_deva_init_emp_file_uat_job  job_type: FW 
+ box_name: memmx_d_win_load_deva_init_files_uat_box
+ machine: usdfw11as286
+ owner: svc-InfAutosysPrd@mercer
+ permission: gx,wx,mx
+ date_conditions: 0
+ description: "Checks if any new DEV audit Employeee initial data file exists"
+ max_run_alarm: 48000
+ alarm_if_fail: 0
+ alarm_if_terminated: 0
+ watch_file: "\\usdfw11as286\salesforce\SrcFiles\DEVA\UAT\Emp*_*_*.csv"
+ watch_interval: 100
+
+/* ----------------- memmx_d_win_load_deva_init_emp_file_uat_job ----------------- */ 
+
+ insert_job: memmx_d_win_load_deva_init_emp_file_uat_job  job_type: CMD 
+ box_name: memmx_d_win_load_deva_init_files_uat_box
+ command: \\usdfw11as286\MercerExchange\Scripts\runwfpmcmd.cmd Mercer_Marketplace_Data_Migration_UAT wf_Load_DEVA_Employee_File_Load
+ machine: usdfw11as286
+ owner: svc-InfAutosysPrd@mercer
+ permission: gx,wx,mx
+ date_conditions: 0
+ condition: s(memmx_d_win_watch_deva_init_emp_file_uat_job) & s(memmx_d_win_load_deva_emp_uat_job)
+ description: "Load data to Salesforce contact object"
+ job_terminator: 1
+ std_out_file: "\\usdfw11as286\MercerExchange\Temp\memmx_d_win_load_deva_init_emp_file_uat_job.log"
+ std_err_file: "\\usdfw11as286\MercerExchange\Temp\memmx_d_win_load_deva_init_emp_file_uat_job.err"
+ max_run_alarm: 180
+ alarm_if_fail: 0
+ alarm_if_terminated: 0
+
+/* ----------------- memmx_d_win_watch_deva_init_dep_file_uat_job ----------------- */ 
+
+ insert_job: memmx_d_win_watch_deva_init_dep_file_uat_job  job_type: FW 
+ box_name: memmx_d_win_load_deva_init_files_uat_box
+ machine: usdfw11as286
+ owner: svc-InfAutosysPrd@mercer
+ permission: gx,wx,mx
+ date_conditions: 0
+ description: "Checks if any new DEV audit Dependent initial data file exists"
+ max_run_alarm: 48000
+ alarm_if_fail: 0
+ alarm_if_terminated: 0
+ watch_file: "\\usdfw11as286\salesforce\SrcFiles\DEVA\UAT\Dep*_*_*.csv"
+ watch_interval: 100
+
+/* ----------------- memmx_d_win_load_deva_init_dep_file_uat_job ----------------- */ 
+
+ insert_job: memmx_d_win_load_deva_init_dep_file_uat_job  job_type: CMD 
+ box_name: memmx_d_win_load_deva_init_files_uat_box
+ command: \\usdfw11as286\MercerExchange\Scripts\runwfpmcmd.cmd Mercer_Marketplace_Data_Migration_UAT wf_Load_DEVA_Dependent_File_Load
+ machine: usdfw11as286
+ owner: svc-InfAutosysPrd@mercer
+ permission: gx,wx,mx
+ date_conditions: 0
+ condition: s(memmx_d_win_load_deva_init_emp_file_uat_job) & s(memmx_d_win_watch_deva_init_dep_file_uat_job) & s(memmx_d_win_load_deva_dep_uat_job)
+ description: "Load data to Salesforce Audit_dependents__c object"
+ job_terminator: 1
+ std_out_file: "\\usdfw11as286\MercerExchange\Temp\memmx_d_win_load_deva_init_dep_file_uat_job.log"
+ std_err_file: "\\usdfw11as286\MercerExchange\Temp\memmx_d_win_load_deva_init_dep_file_uat_job.err"
+ max_run_alarm: 180
+ alarm_if_fail: 0
+ alarm_if_terminated: 0
+
+/* ----------------- memmx_d_win_load_deva_ongoing_uat_box ----------------- */ 
+
+insert_job: memmx_d_win_load_deva_ongoing_uat_box  job_type: BOX 
+owner: svc-InfAutosysPrd@mercer
+permission: gx,wx,mx
+date_conditions: 1
+days_of_week: mo,tu,we,th,fr,sa,su
+start_mins: 00,30
+alarm_if_fail: 0
+alarm_if_terminated: 0
+
+/* ----------------- memmx_d_win_load_deva_emp_uat_job ----------------- */ 
+
+ insert_job: memmx_d_win_load_deva_emp_uat_job  job_type: CMD 
+ box_name: memmx_d_win_load_deva_ongoing_uat_box
+ command: \\usdfw11as286\MercerExchange\Scripts\runwfpmcmd.cmd Mercer_Marketplace_Data_Migration_UAT wf_Load_DEVA_Employee_Load
+ machine: usdfw11as286
+ owner: svc-InfAutosysPrd@mercer
+ permission: gx,wx,mx
+ date_conditions: 0
+ description: "Load data to Salesforce contact object"
+ job_terminator: 1
+ std_out_file: "\\usdfw11as286\MercerExchange\Temp\memmx_d_win_load_deva_emp_uat_job.log"
+ std_err_file: "\\usdfw11as286\MercerExchange\Temp\memmx_d_win_load_deva_emp_uat_job.err"
+ max_run_alarm: 240
+ alarm_if_fail: 0
+ alarm_if_terminated: 0
+
+/* ----------------- memmx_d_win_load_deva_dep_uat_job ----------------- */ 
+
+ insert_job: memmx_d_win_load_deva_dep_uat_job  job_type: CMD 
+ box_name: memmx_d_win_load_deva_ongoing_uat_box
+ command: \\usdfw11as286\MercerExchange\Scripts\runwfpmcmd.cmd Mercer_Marketplace_Data_Migration_UAT wf_Load_DEVA_Dependent_Load
+ machine: usdfw11as286
+ owner: svc-InfAutosysPrd@mercer
+ permission: gx,wx,mx
+ date_conditions: 0
+ condition: s(memmx_d_win_load_deva_emp_uat_job)
+ description: "Load data to Salesforce Audit_dependents__c object"
+ job_terminator: 1
+ std_out_file: "\\usdfw11as286\MercerExchange\Temp\memmx_d_win_load_deva_dep_uat_job.log"
+ std_err_file: "\\usdfw11as286\MercerExchange\Temp\memmx_d_win_load_deva_dep_uat_job.err"
+ max_run_alarm: 240
+ alarm_if_fail: 0
+ alarm_if_terminated: 0
+
+/* ----------------- mepetl_trion_wcc_box ----------------- */ 
+
+insert_job: mepetl_trion_wcc_box  job_type: BOX 
+owner: infprd10@USFKL21AS554V
+permission: gx,wx
+date_conditions: 1
+days_of_week: we
+start_times: "10:30"
+alarm_if_fail: 1
+alarm_if_terminated: 1
+
+/* ----------------- mepetl_wcc_create_lookup ----------------- */ 
+
+ insert_job: mepetl_wcc_create_lookup  job_type: CMD 
+ box_name: mepetl_trion_wcc_box
+ command: $CYCSHELL/run_pmcmd $CTLDIR/TRION/wf_Create_Belong_BW_Lookup.ctl
+ machine: USFKL21AS554V
+ owner: infprd10@USFKL21AS554V
+ permission: gx,wx,mx
+ date_conditions: 0
+ description: "Create BW lookup for creation of WCC Time Warner file."
+ std_out_file: "$CYCLOG/TRION/mepetl_wcc_create_lookup_stdout.log"
+ std_err_file: "$CYCLOG/TRION/mepetl_wcc_create_lookup_stderr.log"
+ max_run_alarm: 960
+ alarm_if_fail: 1
+ profile: "/home/infprd10/auto.profile"
+ alarm_if_terminated: 1
+
+/* ----------------- mepetl_wcc_create_file ----------------- */ 
+
+ insert_job: mepetl_wcc_create_file  job_type: CMD 
+ box_name: mepetl_trion_wcc_box
+ command: $CYCSHELL/run_pmcmd $CTLDIR/TRION/wf_Create_Belong_File.ctl
+ machine: USFKL21AS554V
+ owner: infprd10@USFKL21AS554V
+ permission: gx,wx,mx
+ date_conditions: 0
+ condition: s(mepetl_wcc_create_lookup)
+ description: "Create WCC file to send to Time Warner."
+ std_out_file: "$CYCLOG/TRION/mepetl_wcc_create_file_stdout.log"
+ std_err_file: "$CYCLOG/TRION/mepetl_wcc_create_file_stderr.log"
+ max_run_alarm: 960
+ alarm_if_fail: 1
+ profile: "/home/infprd10/auto.profile"
+ alarm_if_terminated: 1
+
+/* ----------------- mepetl_wcc_move_file ----------------- */ 
+
+ insert_job: mepetl_wcc_move_file  job_type: CMD 
+ box_name: mepetl_trion_wcc_box
+ command: $CTLDIR/TRION/move_wcc_file.ksh RUN
+ machine: USFKL21AS554V
+ owner: infprd10@USFKL21AS554V
+ permission: gx,wx,mx
+ date_conditions: 0
+ condition: s(mepetl_wcc_create_file)
+ description: "Move WCC file to NAS drive."
+ std_out_file: "$CYCLOG/TRION/mepetl_wcc_move_file_stdout.log"
+ std_err_file: "$CYCLOG/TRION/mepetl_wcc_move_file_stderr.log"
+ max_run_alarm: 960
+ alarm_if_fail: 1
+ profile: "/home/infprd10/auto.profile"
+ alarm_if_terminated: 1
+
+/* ----------------- mepetl_d_bw_usrdel_box ----------------- */ 
+
+insert_job: mepetl_d_bw_usrdel_box  job_type: BOX 
+owner: infprd10@USFKL21AS554V
+permission: gx,wx
+date_conditions: 1
+days_of_week: mo,tu,we,th,fr
+exclude_calendar: holidays
+start_times: "8:05,8:20,12:05,12:20,16:05,16:20,20:05,20:20"
+alarm_if_fail: 1
+alarm_if_terminated: 1
+
+/* ----------------- mepetl_d_bw_rename_files ----------------- */ 
+
+ insert_job: mepetl_d_bw_rename_files  job_type: CMD 
+ box_name: mepetl_d_bw_usrdel_box
+ command: $CTLDIR/BW/mepetl_bw_rename.ksh RUN
+ machine: USFKL21AS554V
+ owner: infprd10@USFKL21AS554V
+ permission: gx,wx,mx
+ date_conditions: 0
+ std_out_file: "$CYCLOG/bw/mepetl_d_bw_rename_files_stdout.log"
+ std_err_file: "$CYCLOG/bw/mepetl_d_bw_rename_files_stderr.log"
+ alarm_if_fail: 1
+ profile: "/home/infprd10/auto.profile"
+ alarm_if_terminated: 1
+
+/* ----------------- mepetl_d_bw_load_data ----------------- */ 
+
+ insert_job: mepetl_d_bw_load_data  job_type: CMD 
+ box_name: mepetl_d_bw_usrdel_box
+ command: $CYCSHELL/run_pmcmd $CTLDIR/BW/wf_BW_MASS_DELETES_LOAD.ctl
+ machine: USFKL21AS554V
+ owner: infprd10@USFKL21AS554V
+ permission: gx,wx,mx
+ date_conditions: 0
+ condition: s(mepetl_d_bw_rename_files)
+ description: "Load BW User Deletes Data."
+ std_out_file: "$CYCLOG/bw/mepetl_d_bw_load_data_stdout.log"
+ std_err_file: "$CYCLOG/bw/mepetl_d_bw_load_data_stderr.log"
+ alarm_if_fail: 1
+ profile: "/home/infprd10/auto.profile"
+ alarm_if_terminated: 1
+
+/* ----------------- mepetl_d_bw_delete_data ----------------- */ 
+
+ insert_job: mepetl_d_bw_delete_data  job_type: CMD 
+ box_name: mepetl_d_bw_usrdel_box
+ command: $CYCSHELL/run_pmcmd $CTLDIR/BW/wf_BW_STORED_PROC.ctl
+ machine: USFKL21AS554V
+ owner: infprd10@USFKL21AS554V
+ permission: gx,wx,mx
+ date_conditions: 0
+ condition: s(mepetl_d_bw_load_data)
+ description: "Load BW User Deletes Data."
+ std_out_file: "$CYCLOG/bw/mepetl_d_bw_delete_data_stdout.log"
+ std_err_file: "$CYCLOG/bw/mepetl_d_bw_delete_data_stderr.log"
+ alarm_if_fail: 1
+ profile: "/home/infprd10/auto.profile"
+ alarm_if_terminated: 1
+
+/* ----------------- mepetl_d_bw_reporting ----------------- */ 
+
+ insert_job: mepetl_d_bw_reporting  job_type: CMD 
+ box_name: mepetl_d_bw_usrdel_box
+ command: $CYCSHELL/run_pmcmd $CTLDIR/BW/wf_BW_REPORTING.ctl
+ machine: USFKL21AS554V
+ owner: infprd10@USFKL21AS554V
+ permission: gx,wx,mx
+ date_conditions: 0
+ condition: s(mepetl_d_bw_delete_data)
+ description: "Load BW User Deletes Data."
+ std_out_file: "$CYCLOG/bw/mepetl_d_bw_reporting_stdout.log"
+ std_err_file: "$CYCLOG/bw/mepetl_d_bw_reporting_stderr.log"
+ alarm_if_fail: 1
+ profile: "/home/infprd10/auto.profile"
+ alarm_if_terminated: 1
+
+/* ----------------- mepetl_d_bw_email_report ----------------- */ 
+
+ insert_job: mepetl_d_bw_email_report  job_type: CMD 
+ box_name: mepetl_d_bw_usrdel_box
+ command: $CTLDIR/BW/bw_email.ksh dummy
+ machine: USFKL21AS554V
+ owner: infprd10@USFKL21AS554V
+ permission: gx,wx,mx
+ date_conditions: 0
+ condition: s(mepetl_d_bw_reporting)
+ description: "Load BW User Deletes Data."
+ std_out_file: "$CYCLOG/bw/mepetl_d_bw_email_report_stdout.log"
+ std_err_file: "$CYCLOG/bw/mepetl_d_bw_email_report_stderr.log"
+ alarm_if_fail: 1
+ profile: "/home/infprd10/auto.profile"
+ alarm_if_terminated: 1
+
+/* ----------------- mepetl_image_load_box ----------------- */ 
+
+insert_job: mepetl_image_load_box  job_type: BOX 
+owner: infprd10@USFKL21AS554V
+permission: gx,wx
+date_conditions: 1
+days_of_week: mo,tu,we,th,fr,sa,su
+start_mins: 00,10,20,30,40,50
+alarm_if_fail: 1
+alarm_if_terminated: 1
+
+/* ----------------- mepetl_image_rename_files ----------------- */ 
+
+ insert_job: mepetl_image_rename_files  job_type: CMD 
+ box_name: mepetl_image_load_box
+ command: $CTLDIR/IMAGE/mepetl_image_rename.ksh RUN
+ machine: USFKL21AS554V
+ owner: infprd10@USFKL21AS554V
+ permission: gx,wx,mx
+ date_conditions: 0
+ std_out_file: "$CYCLOG/IMAGE/mepetl_image_rename_files_stdout.log"
+ std_err_file: "$CYCLOG/IMAGE/mepetl_image_rename_files_stderr.log"
+ alarm_if_fail: 0
+ profile: "/home/infprd10/auto.profile"
+ alarm_if_terminated: 0
+
+/* ----------------- mepetl_image_load_file ----------------- */ 
+
+ insert_job: mepetl_image_load_file  job_type: CMD 
+ box_name: mepetl_image_load_box
+ command: $CYCSHELL/run_pmcmd $CTLDIR/IMAGE/wf_REMAP_CLIENT_FILE_SARALEE.ctl
+ machine: USFKL21AS554V
+ owner: infprd10@USFKL21AS554V
+ permission: gx,wx,mx
+ date_conditions: 0
+ condition: s(mepetl_image_rename_files)
+ description: "Load data to image tables."
+ std_out_file: "$CYCLOG/IMAGE/mepetl_image_load_file_stdout.log"
+ std_err_file: "$CYCLOG/IMAGE/mepetl_image_load_file_stderr.log"
+ alarm_if_fail: 0
+ profile: "/home/infprd10/auto.profile"
+ alarm_if_terminated: 0
+
+/* ----------------- mepetl_image_batch_details ----------------- */ 
+
+ insert_job: mepetl_image_batch_details  job_type: CMD 
+ box_name: mepetl_image_load_box
+ command: $CYCSHELL/run_pmcmd $CTLDIR/IMAGE/wf_REMAP_UPDATE_BATCH_DETAILS.ctl
+ machine: USFKL21AS554V
+ owner: infprd10@USFKL21AS554V
+ permission: gx,wx,mx
+ date_conditions: 0
+ condition: s(mepetl_image_load_file)
+ description: "Update batch details image tables."
+ std_out_file: "$CYCLOG/IMAGE/mepetl_image_batch_details_stdout.log"
+ std_err_file: "$CYCLOG/IMAGE/mepetl_image_batch_details_stderr.log"
+ alarm_if_fail: 0
+ profile: "/home/infprd10/auto.profile"
+ alarm_if_terminated: 0
+
+/* ----------------- mepetl_d_bw_usrdel_daily_report_box ----------------- */ 
+
+insert_job: mepetl_d_bw_usrdel_daily_report_box  job_type: BOX 
+owner: infprd10@USFKL21AS554V
+permission: gx,wx
+date_conditions: 1
+days_of_week: tu,we,th,fr,sa
+exclude_calendar: holidays
+start_times: "00:05"
+alarm_if_fail: 1
+alarm_if_terminated: 1
+
+/* ----------------- mepetl_d_bw_create_report ----------------- */ 
+
+ insert_job: mepetl_d_bw_create_report  job_type: CMD 
+ box_name: mepetl_d_bw_usrdel_daily_report_box
+ command: $CYCSHELL/run_pmcmd $CTLDIR/BW/wf_DAILY_REPORT.ctl
+ machine: USFKL21AS554V
+ owner: infprd10@USFKL21AS554V
+ permission: gx,wx,mx
+ date_conditions: 0
+ description: "Create BW User Delete Data Daily Report."
+ std_out_file: "$CYCLOG/bw/mepetl_d_bw_create_report_stdout.log"
+ std_err_file: "$CYCLOG/bw/mepetl_d_bw_create_report_stderr.log"
+ alarm_if_fail: 1
+ profile: "/home/infprd10/auto.profile"
+ alarm_if_terminated: 1
+
+/* ----------------- mepetl_d_bw_email_daily_report ----------------- */ 
+
+ insert_job: mepetl_d_bw_email_daily_report  job_type: CMD 
+ box_name: mepetl_d_bw_usrdel_daily_report_box
+ command: $CTLDIR/BW/bw_email_daily.ksh RUN
+ machine: USFKL21AS554V
+ owner: infprd10@USFKL21AS554V
+ permission: gx,wx,mx
+ date_conditions: 0
+ condition: s(mepetl_d_bw_create_report)
+ description: "Load BW User Deletes Data."
+ std_out_file: "$CYCLOG/bw/mepetl_d_bw_email_daily_report_stdout.log"
+ std_err_file: "$CYCLOG/bw/mepetl_d_bw_email_daily_report_stderr.log"
+ alarm_if_fail: 1
+ profile: "/home/infprd10/auto.profile"
+ alarm_if_terminated: 1
+
+/* ----------------- mamims_d_MIMS_RISKONNECT_SYNC ----------------- */ 
+
+insert_job: mamims_d_MIMS_RISKONNECT_SYNC  job_type: CMD 
+command: /u/Marsh/UNX/scripts/MIMS_RISKONNECT_SYNC/scripts/MIMS_RISKONNECT_SYNC.sh 645
+machine: USURB31AS24V
+owner: dias@USURB31AS24V
+permission: mx,me
+date_conditions: 1
+days_of_week: mo
+start_times: "05:00"
+description: "MIMS_RISKONNECT_SYNC"
+std_out_file: "/u/marsh/UNX/scripts/MIMS_RISKONNECT_SYNC/logs/MIMS_RISKONNECT_SYNC_`date +%m%d`.log"
+std_err_file: "/u/marsh/UNX/scripts/MIMS_RISKONNECT_SYNC/logs/MIMS_RISKONNECT_SYNC_`date +%m%d`.err"
+alarm_if_fail: 1
+alarm_if_terminated: 1
+
+/* ----------------- medm_u_mm365a_aap_belong_box ----------------- */ 
+
+insert_job: medm_u_mm365a_aap_belong_box  job_type: BOX 
+owner: infprd10@usfkl21as554v
+permission: gx,wx
+date_conditions: 1
+days_of_week: mo,tu,we,th,fr
+start_mins: 05
+run_window: "08:00-18:00"
+box_success: s(medm_u_mm365c_aap_belong_copy) | t(medm_u_mm365b_aap_belong_fw)
+description: "DataMan MM365 client Advance Auto Parts box job for copying an inbound file to an internal file share and sending to Belong"
+alarm_if_fail: 1
+alarm_if_terminated: 1
+
+/* ----------------- medm_u_mm365b_aap_belong_fw ----------------- */ 
+
+ insert_job: medm_u_mm365b_aap_belong_fw  job_type: FW 
+ box_name: medm_u_mm365a_aap_belong_box
+ machine: usfkl21as554v
+ owner: infprd10@usfkl21as554v
+ permission: gx,wx,mx
+ date_conditions: 0
+ description: "Check if the MM365 Advance Auto Parts inbound client file exists"
+ term_run_time: 3
+ max_run_alarm: 15
+ alarm_if_fail: 1
+ profile: "/home/infprd10/auto.profile"
+ alarm_if_terminated: 0
+ watch_file: "/PRD_RECEIVED/ftp.mmx.com/inbound/AdvanceAutoInbound*.csv"
+ watch_interval: 120
+
+/* ----------------- medm_u_mm365c_aap_belong_copy ----------------- */ 
+
+ insert_job: medm_u_mm365c_aap_belong_copy  job_type: CMD 
+ box_name: medm_u_mm365a_aap_belong_box
+ command: $CYCSHELL/mm365_aap_belong_copy.csh
+ machine: usfkl21as554v
+ owner: infprd10@usfkl21as554v
+ permission: gx,wx,mx
+ date_conditions: 0
+ condition: s(medm_u_mm365b_aap_belong_fw)
+ description: "Send email notification that the file was received and that the file copy has started"
+ term_run_time: 60
+ std_out_file: "$CYCLOG/medm_u_mm365c_aap_belong_copy_`date +%Y%m%d_%H%M`.log"
+ std_err_file: "$CYCLOG/medm_u_mm365c_aap_belong_copy_`date +%Y%m%d_%H%M`.err"
+ max_run_alarm: 960
+ alarm_if_fail: 1
+ profile: "/home/infprd10/auto.profile"
+ alarm_if_terminated: 0
+
+/* ----------------- medm_u_mm365d_aap_belong_incident ----------------- */ 
+
+ insert_job: medm_u_mm365d_aap_belong_incident  job_type: CMD 
+ box_name: medm_u_mm365a_aap_belong_box
+ command: $CYCSHELL/mm365_aap_belong_incident.csh
+ machine: usfkl21as554v
+ owner: infprd10@usfkl21as554v
+ permission: gx,wx,mx
+ date_conditions: 0
+ condition: f(medm_u_mm365c_aap_belong_copy)
+ description: "Create an incident ticket on the failure of the file copy process"
+ std_out_file: "$CYCLOG/medm_u_mm365d_aap_belong_incident_`date +%Y%m%d_%H%M`.log"
+ std_err_file: "$CYCLOG/medm_u_mm365d_aap_belong_incident_`date +%Y%m%d_%H%M`.err"
+ max_run_alarm: 960
+ alarm_if_fail: 1
+ profile: "/home/infprd10/auto.profile"
+ alarm_if_terminated: 0
+
+/* ----------------- medm_ibc_docprod_shipconfirm_load_box ----------------- */ 
+
+insert_job: medm_ibc_docprod_shipconfirm_load_box  job_type: BOX 
+owner: infprd10@USFKL21AS554V
+permission: mx,me
+date_conditions: 1
+days_of_week: mo,tu,we,th,fr
+start_mins: 00,05,10,15,20,25,30,35,40,45,50,55
+alarm_if_fail: 1
+alarm_if_terminated: 1
+
+/* ----------------- medm_ibc_docprod_filewatcher ----------------- */ 
+
+ insert_job: medm_ibc_docprod_filewatcher  job_type: FW 
+ box_name: medm_ibc_docprod_shipconfirm_load_box
+ machine: USFKL21AS554V
+ owner: infprd10@USFKL21AS554V
+ permission: mx,me
+ date_conditions: 0
+ description: "Load data from ship confirm file to DocProd tables"
+ max_run_alarm: 1800
+ alarm_if_fail: 1
+ profile: "/home/infprd10/auto.profile"
+ alarm_if_terminated: 1
+ watch_file: "/PRD_RECEIVED/ftp.universal.com/MercUn-*-ShipConfirm.xml"
+ watch_interval: 100
+
+/* ----------------- medm_ibc_docprod_shipconfirm_load ----------------- */ 
+
+ insert_job: medm_ibc_docprod_shipconfirm_load  job_type: CMD 
+ box_name: medm_ibc_docprod_shipconfirm_load_box
+ command: $CYCSHELL/run_pmcmd $CTLDIR/CORE/wf_DocProd_Delivery_Status_Load.ctl
+ machine: USFKL21AS554V
+ owner: infprd10@USFKL21AS554V
+ permission: mx,me
+ date_conditions: 0
+ condition: s(medm_ibc_docprod_filewatcher)
+ description: "Load data from ship confirm file to DocProd tables"
+ std_out_file: "$CYCLOG/CORE/dcm_docprod_stdout.log"
+ std_err_file: "$CYCLOG/CORE/dcm_docprod_stderr.log"
+ max_run_alarm: 120
+ alarm_if_fail: 1
+ profile: "/home/infprd10/auto.profile"
+ alarm_if_terminated: 1
+
+/* ----------------- medm_ibc_Universal_Wilde_Backfeed_to_BeneCalc ----------------- */ 
+
+ insert_job: medm_ibc_Universal_Wilde_Backfeed_to_BeneCalc  job_type: CMD 
+ box_name: medm_ibc_docprod_shipconfirm_load_box
+ command: $CYCSHELL/run_pmcmd $CTLDIR/CORE/wf_Universal_Wilde_Backfeed_to_BeneCalc.ctl
+ machine: USFKL21AS554V
+ owner: infprd10@USFKL21AS554V
+ permission: mx,me
+ date_conditions: 0
+ condition: s(medm_ibc_docprod_shipconfirm_load) & s(medm_ibc_docprod_filewatcher)
+ description: "Load data from ship confirm file to DocProd tables"
+ std_out_file: "$CYCLOG/CORE/dcm_UWFED_stdout.log"
+ std_err_file: "$CYCLOG/CORE/dcm_UWFED_stderr.log"
+ max_run_alarm: 120
+ alarm_if_fail: 1
+ profile: "/home/infprd10/auto.profile"
+ alarm_if_terminated: 1
+
+/* ----------------- mavel_d_vel_31as15v_CFA_Property_90Day_Notice ----------------- */ 
+
+insert_job: mavel_d_vel_31as15v_CFA_Property_90Day_Notice  job_type: CMD 
+command: /u/marsh/UNX/scripts/MSP/Chick_Fil_A/CFA_Property90DaysNotice/scripts/CFA_Property90DaysNotice.sh
+machine: usurb31as15v
+owner: dias@usurb31as15v
+permission: mx,me
+date_conditions: 1
+days_of_week: mo,tu,we,th,fr
+start_times: "17:30"
+description: "CFA Property 90 Days Notice"
+std_out_file: "/u/marsh/UNX/scripts/MSP/Chick_Fil_A/CFA_Property90DaysNotice/log/CFA_Property_90Day_Notice_job_`date +%m%d`.out"
+std_err_file: "/u/marsh/UNX/scripts/MSP/Chick_Fil_A/CFA_Property90DaysNotice/log/CFA_Property_90Day_Notice_job_`date +%m%d`.err"
+max_run_alarm: 5000
+alarm_if_fail: 1
+alarm_if_terminated: 1
+timezone: CentralTime
+
+/* ----------------- pacc_r_autosys_usfkl21db89cn1-2_ONICE ----------------- */ 
+
+insert_job: pacc_r_autosys_usfkl21db89cn1-2_ONICE  job_type: CMD 
+command: $SCRIPT_DIR/autosys_event.pl $SCRIPT_DIR/status_env.csh JOB_ON_ICE $INPUT/ usfkl21db89cn1_2.txt
+machine: usfkl21as210v
+owner: prodacc@usfkl21as210v
+permission: wx,mx,me
+date_conditions: 0
+description: "pacc_r_autosys_ usfkl21db89cn1-2_ONICE"
+std_out_file: "$LOGDIR/pacc_r_autosys_set_ONICE_`date +%m%d`.log"
+std_err_file: "$LOGDIR/pacc_r_autosys_set_ONICE_`date +%m%d`.err"
+alarm_if_fail: 0
+profile: "/home/prodacc/auto.profile.forcast"
+alarm_if_terminated: 0
+
+/* ----------------- pacc_r_autosys_usfkl21db89cn1-2_OFF_ICE ----------------- */ 
+
+insert_job: pacc_r_autosys_usfkl21db89cn1-2_OFF_ICE  job_type: CMD 
+command: $SCRIPT_DIR/autosys_event.pl $SCRIPT_DIR/status_env.csh JOB_OFF_ICE $INPUT/ usfkl21db89cn1_2.txt
+machine: usfkl21as210v
+owner: prodacc@usfkl21as210v
+permission: wx,mx,me
+date_conditions: 0
+description: "pacc_r_autosys_ usfkl21db89cn1-2_OFF_ICE"
+std_out_file: "$LOGDIR/pacc_r_autosys_set_ONICE_`date +%m%d`.log"
+std_err_file: "$LOGDIR/pacc_r_autosys_set_ONICE_`date +%m%d`.err"
+alarm_if_fail: 0
+profile: "/home/prodacc/auto.profile.forcast"
+alarm_if_terminated: 0
+
+/* ----------------- mebwd_hotbk_dd_bwprod26 ----------------- */ 
+
+insert_job: mebwd_hotbk_dd_bwprod26  job_type: CMD 
+command: $BACKCYCSHELL/incr_backup_rman_data_domain bwprod26
+machine: usdfw22db16vcn3
+owner: oracle@usdfw22db16vcn3
+permission: mx,me
+date_conditions: 1
+days_of_week: we
+start_times: "22:00"
+description: "RMAN Data Domain Hot backup for bwprod26 database"
+job_terminator: 1
+std_out_file: "$BACKCYCLOG/mebwd_hotbk_dd_bwprod26_`date +%m%d%y`.log"
+std_err_file: "$BACKCYCLOG/mebwd_hotbk_dd_bwprod26_`date +%m%d%y`.log"
+max_run_alarm: 720
+alarm_if_fail: 1
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 1
+
+/* ----------------- mebwd_archbk_dd_bwprod26 ----------------- */ 
+
+insert_job: mebwd_archbk_dd_bwprod26  job_type: CMD 
+command: $BACKCYCSHELL/archive_backup_rman_data_domain bwprod26
+machine: usdfw22db16vcn3
+owner: oracle@usdfw22db16vcn3
+permission: mx,me
+date_conditions: 1
+days_of_week: su,mo,tu,we,th,fr,sa
+start_times: "02:30,08:30,11:30,14:30, 17:30, 23:30"
+description: "RMAN Data Domain backup for archive logs of bwprod26 database"
+std_out_file: "$BACKCYCLOG/mebwd_archbk_dd_bwprod26_`date +%m%d%y`.log"
+std_err_file: "$BACKCYCLOG/mebwd_archbk_dd_bwprod26_`date +%m%d%y`.log"
+max_run_alarm: 720
+alarm_if_fail: 1
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 1
+
+/* ----------------- mepetl_w_info10_box ----------------- */ 
+
+insert_job: mepetl_w_info10_box  job_type: BOX 
+owner: infprd10@USFKL21AS554V
+permission: gx,wx
+date_conditions: 1
+days_of_week: fr
+start_times: "19:30"
+alarm_if_fail: 1
+alarm_if_terminated: 1
+
+/* ----------------- mepetl_w_backup_info10 ----------------- */ 
+
+ insert_job: mepetl_w_backup_info10  job_type: CMD 
+ box_name: mepetl_w_info10_box
+ command: $CYCSHELL/backup_repos_pmrep
+ machine: USFKL21AS554V
+ owner: infprd10@USFKL21AS554V
+ permission: gx,wx,mx
+ date_conditions: 0
+ description: "Backup Informatica repository."
+ std_out_file: "$CYCLOG/backup_info10_repos_stdout.log"
+ std_err_file: "$CYCLOG/backup_info10_repos_stderr.log"
+ alarm_if_fail: 1
+ profile: "/home/infprd10/auto.profile"
+ alarm_if_terminated: 1
+
+/* ----------------- mepetl_w_trunc_info10_log ----------------- */ 
+
+ insert_job: mepetl_w_trunc_info10_log  job_type: CMD 
+ box_name: mepetl_w_info10_box
+ command: $CYCSHELL/truncate_log_pmrep
+ machine: USFKL21AS554V
+ owner: infprd10@USFKL21AS554V
+ permission: gx,wx,mx
+ date_conditions: 0
+ condition: s(mepetl_w_backup_info10)
+ description: "Truncate Informatica Log Over 180 Days old"
+ std_out_file: "$CYCLOG/trunc_info10_log_stdout.log"
+ std_err_file: "$CYCLOG/trunc_info10_log_stderr.log"
+ alarm_if_fail: 1
+ profile: "/home/infprd10/auto.profile"
+ alarm_if_terminated: 1
+
+/* ----------------- mebwd_hotbk_dd_bwprod25 ----------------- */ 
+
+insert_job: mebwd_hotbk_dd_bwprod25  job_type: CMD 
+command: $BACKCYCSHELL/incr_backup_rman_data_domain bwprod25
+machine: usdfw22db16vcn3
+owner: oracle@usdfw22db16vcn3
+permission: mx,me
+date_conditions: 1
+days_of_week: mo
+start_times: "22:00"
+description: "RMAN Data Domain Hot backup for bwprod25 database"
+job_terminator: 1
+std_out_file: "$BACKCYCLOG/mebwd_hotbk_dd_bwprod25_`date +%m%d%y`.log"
+std_err_file: "$BACKCYCLOG/mebwd_hotbk_dd_bwprod25_`date +%m%d%y`.log"
+max_run_alarm: 720
+alarm_if_fail: 1
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 1
+
+/* ----------------- mebwd_archbk_dd_bwprod25 ----------------- */ 
+
+insert_job: mebwd_archbk_dd_bwprod25  job_type: CMD 
+command: $BACKCYCSHELL/archive_backup_rman_data_domain bwprod25
+machine: usdfw22db16vcn3
+owner: oracle@usdfw22db16vcn3
+permission: mx,me
+date_conditions: 1
+days_of_week: su,mo,tu,we,th,fr,sa
+start_times: "02:00,05:00, 08:00,11:00,14:00, 17:00,20:00, 23:00"
+description: "RMAN Data Domain backup for archive logs of bwprod25 database"
+std_out_file: "$BACKCYCLOG/mebwd_archbk_dd_bwprod25_`date +%m%d%y`.log"
+std_err_file: "$BACKCYCLOG/mebwd_archbk_dd_bwprod25_`date +%m%d%y`.log"
+max_run_alarm: 720
+alarm_if_fail: 1
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 1
+
+/* ----------------- pmmacc_r_tst_autosys_elk_ls_al2 ----------------- */ 
+
+insert_job: pmmacc_r_tst_autosys_elk_ls_al2  job_type: CMD 
+command: more /home/oracle/auto.profile
+machine: usdfw22db16vcn3
+owner: root
+permission: mx,me
+date_conditions: 0
+description: "test autosys"
+std_out_file: "/tmp/pmmacc_r_tst_autosys_elk_ls_al.log"
+std_err_file: "/tmp/pmmacc_r_tst_autosys_elk_ls_al.err"
+alarm_if_fail: 0
+alarm_if_terminated: 0
+
+/* ----------------- mamims_d_MIMS_WEBSERVICE_TRAN_CLEANUP ----------------- */ 
+
+insert_job: mamims_d_MIMS_WEBSERVICE_TRAN_CLEANUP  job_type: CMD 
+command: /u/Marsh/UNX/scripts/Webservice_Tran_Cleanup/Scripts/webservice_tran_cleanup.sh
+machine: usurb31as24v
+owner: dias@usurb31as24v
+permission: mx,me
+date_conditions: 1
+days_of_week: mo,tu,we,th,fr,sa
+start_times: "05:00"
+description: "WEBSERVICE_TRAN_CLEANUPC"
+std_out_file: "/u/Marsh/UNX/scripts/Webservice_Tran_Cleanup/logs/webservice_tran_autolog_`date +%m%d`.log"
+std_err_file: "/u/marsh/UNX/scripts/MIMS_RISKONNECT_SYNC/logs/webservice_tran_autolog_`date +%m%d`.err"
+alarm_if_fail: 1
+alarm_if_terminated: 1
+
+/* ----------------- mamims_w_MIMS_WEBSERVICE_TRAN_CLEANUP ----------------- */ 
+
+insert_job: mamims_w_MIMS_WEBSERVICE_TRAN_CLEANUP  job_type: CMD 
+command: /u/Marsh/UNX/scripts/Webservice_Tran_Cleanup/Scripts/webservice_tran_cleanup.sh
+machine: usurb31as24v
+owner: dias@usurb31as24v
+permission: mx,me
+date_conditions: 1
+days_of_week: su
+start_times: "06:00"
+description: "WEBSERVICE_TRAN_CLEANUPC"
+std_out_file: "/u/Marsh/UNX/scripts/Webservice_Tran_Cleanup/logs/webservice_tran_autolog_`date +%m%d`.log"
+std_err_file: "/u/marsh/UNX/scripts/MIMS_RISKONNECT_SYNC/logs/webservice_tran_autolog_`date +%m%d`.err"
+alarm_if_fail: 1
+alarm_if_terminated: 1
+
+/* ----------------- mewqm_d_win_zip_files_marketing ----------------- */ 
+
+insert_job: mewqm_d_win_zip_files_marketing  job_type: CMD 
+command: "C:\WQMZipFlies\ZipFilesMarketingFiles.vbs"
+machine: usdf11v0255
+owner: U829970_app@MGD
+permission: 
+date_conditions: 1
+days_of_week: su,mo,tu,we,th,fr,sa
+start_mins: 30
+std_out_file: "%tmp%\%AUTO_JOB_NAME%.log"
+std_err_file: "%tmp%\%AUTO_JOB_NAME%.err"
+alarm_if_fail: 1
+alarm_if_terminated: 1
+
+/* ----------------- mebwd_hotbk_dd_bwprod22 ----------------- */ 
+
+insert_job: mebwd_hotbk_dd_bwprod22  job_type: CMD 
+command: $BACKCYCSHELL/incr_backup_rman_data_domain bwprod22
+machine: usfkl21db88cn3
+owner: oracle@usfkl21db88cn3
+permission: mx,me
+date_conditions: 1
+days_of_week: we
+start_times: "19:03"
+description: "RMAN Data Domain Hot backup for bwprod22 database"
+job_terminator: 1
+std_out_file: "$BACKCYCLOG/mebwd_hotbk_dd_bwprod22_`date +%m%d%y`.log"
+std_err_file: "$BACKCYCLOG/mebwd_hotbk_dd_bwprod22_`date +%m%d%y`.log"
+max_run_alarm: 720
+alarm_if_fail: 0
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 0
+
+/* ----------------- mebwd_archbk_dd_bwprod22 ----------------- */ 
+
+insert_job: mebwd_archbk_dd_bwprod22  job_type: CMD 
+command: $BACKCYCSHELL/archive_backup_rman_data_domain bwprod22
+machine: usfkl21db88cn3
+owner: oracle@usfkl21db88cn3
+permission: mx,me
+date_conditions: 1
+days_of_week: all
+start_times: "08:15,19:45"
+description: "RMAN Data Domain backup for archive logs of bwprod22 database"
+job_terminator: 1
+std_out_file: "$BACKCYCLOG/mebwd_archbk_dd_bwprod22_`date +%m%d%y`.log"
+std_err_file: "$BACKCYCLOG/mebwd_archbk_dd_bwprod22_`date +%m%d%y`.log"
+max_run_alarm: 180
+alarm_if_fail: 0
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 0
+
+/* ----------------- mebwd_hotbk_dd_bwprod05 ----------------- */ 
+
+insert_job: mebwd_hotbk_dd_bwprod05  job_type: CMD 
+command: $BACKCYCSHELL/incr_backup_rman_data_domain bwprod05
+machine: usfkl21db88cn2
+owner: oracle@usfkl21db88cn2
+permission: mx,me
+date_conditions: 1
+days_of_week: su
+start_times: "16:03"
+description: "RMAN Data Domain Hot backup for bwprod05 database"
+job_terminator: 1
+std_out_file: "$BACKCYCLOG/mebwd_hotbk_dd_bwprod05_`date +%m%d%y`.log"
+std_err_file: "$BACKCYCLOG/mebwd_hotbk_dd_bwprod05_`date +%m%d%y`.log"
+max_run_alarm: 720
+alarm_if_fail: 0
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 0
+
+/* ----------------- mebwd_archbk_dd_bwprod05 ----------------- */ 
+
+insert_job: mebwd_archbk_dd_bwprod05  job_type: CMD 
+command: $BACKCYCSHELL/archive_backup_rman_data_domain bwprod05
+machine: usfkl21db88cn2
+owner: oracle@usfkl21db88cn2
+permission: mx,me
+date_conditions: 1
+days_of_week: all
+start_times: "07:15,18:45"
+description: "RMAN Data Domain backup for archive logs of bwprod05 database"
+job_terminator: 1
+std_out_file: "$BACKCYCLOG/mebwd_archbk_dd_bwprod05_`date +%m%d%y`.log"
+std_err_file: "$BACKCYCLOG/mebwd_archbk_dd_bwprod05_`date +%m%d%y`.log"
+max_run_alarm: 180
+alarm_if_fail: 0
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 0
+
+/* ----------------- mebwd_hotbk_dd_bwprod03 ----------------- */ 
+
+insert_job: mebwd_hotbk_dd_bwprod03  job_type: CMD 
+command: $BACKCYCSHELL/incr_backup_rman_data_domain bwprod03
+machine: usfkl21db88cn2
+owner: oracle@usfkl21db88cn2
+permission: mx,me
+date_conditions: 1
+days_of_week: th
+start_times: "19:03"
+description: "RMAN Data Domain Hot backup for bwprod03 database"
+job_terminator: 1
+std_out_file: "$BACKCYCLOG/mebwd_hotbk_dd_bwprod03_`date +%m%d%y`.log"
+std_err_file: "$BACKCYCLOG/mebwd_hotbk_dd_bwprod03_`date +%m%d%y`.log"
+max_run_alarm: 720
+alarm_if_fail: 0
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 0
+
+/* ----------------- mebwd_archbk_dd_bwprod03 ----------------- */ 
+
+insert_job: mebwd_archbk_dd_bwprod03  job_type: CMD 
+command: $BACKCYCSHELL/archive_backup_rman_data_domain bwprod03
+machine: usfkl21db88cn2
+owner: oracle@usfkl21db88cn2
+permission: mx,me
+date_conditions: 1
+days_of_week: all
+start_times: "05:15,19:45"
+description: "RMAN Data Domain backup for archive logs of bwprod03 database"
+job_terminator: 1
+std_out_file: "$BACKCYCLOG/mebwd_archbk_dd_bwprod03_`date +%m%d%y`.log"
+std_err_file: "$BACKCYCLOG/mebwd_archbk_dd_bwprod03_`date +%m%d%y`.log"
+max_run_alarm: 180
+alarm_if_fail: 0
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 0
+
+/* ----------------- mamsearch_d_solr_company_init_prod_4x ----------------- */ 
+
+insert_job: mamsearch_d_solr_company_init_prod_4x  job_type: CMD 
+command: /opt/apps/batch/SolrImporterBatch/bin/solr_batch.sh company delta 5000
+machine: USFKL21AS281V.mrshmc.com
+owner: wasadmin@USFKL21AS281V
+permission: mx,me
+date_conditions: 1
+days_of_week: su,mo,tu,we,th,fr,sa
+start_mins: 00,10,20,30,40,50
+run_window: "00:16-23:29"
+description: "Company delta job for reindexing from scratch"
+std_out_file: "/opt/applogs/usprd1tcsslr/batch/SolrImporterBatch/company_stdout_`date +%m%d`.log"
+std_err_file: "/opt/applogs/usprd1tcsslr/batch/SolrImporterBatch/company_stderr_`date +%m%d`.log"
+max_run_alarm: 150
+alarm_if_fail: 1
+alarm_if_terminated: 1
+
+/* ----------------- mavel_d_vel_31as15v_Velocity_Sequence_Usage_Monitoring ----------------- */ 
+
+insert_job: mavel_d_vel_31as15v_Velocity_Sequence_Usage_Monitoring  job_type: CMD 
+command: /u/marsh/UNX/scripts/Sequence_Usage_Monitoring/script/Sequence_Usage_Monitoring.sh
+machine: usurb31as15v
+owner: dias@usurb31as15v
+permission: mx,me
+date_conditions: 1
+days_of_week: mo,tu,we,th,fr,sa,su
+start_times: "07:00"
+description: "Velocity Sequence Usage Monitoring"
+std_out_file: "/u/marsh/UNX/scripts/Sequence_Usage_Monitoring/log/Velocity_Sequence_Usage_Monitoring_job_`date +%m%d`.out"
+std_err_file: "/u/marsh/UNX/scripts/Sequence_Usage_Monitoring/log/Velocity_Sequence_Usage_Monitoring_job_`date +%m%d`.err"
+max_run_alarm: 5000
+alarm_if_fail: 1
+alarm_if_terminated: 1
+timezone: CentralTime
+
+/* ----------------- mavel_d_vel_31as15v_PET_Eligibility_Validation_Report ----------------- */ 
+
+insert_job: mavel_d_vel_31as15v_PET_Eligibility_Validation_Report  job_type: CMD 
+command: /u/marsh/UNX/scripts/MSP/PET/pet_elgibility_report_val/scripts/Eligibility_Report_Validation.sh
+machine: usurb31as15v
+owner: dias@usurb31as15v
+permission: mx,me
+date_conditions: 1
+days_of_week: mo,tu,we,th,fr,sa,su
+start_times: "06:00"
+description: "PET Eligibility Validation Report"
+std_out_file: "/u/marsh/UNX/scripts/MSP/PET/pet_elgibility_report_val/logs/PET_Eligibility_Validation_RPT_job_`date +%m%d`.out"
+std_err_file: "/u/marsh/UNX/scripts/MSP/PET/pet_elgibility_report_val/logs/PET_Eligibility_Validation_RPT_job_`date +%m%d`.err"
+max_run_alarm: 5000
+alarm_if_fail: 1
+alarm_if_terminated: 1
+timezone: CentralTime
+
+/* ----------------- mebwd_hotbk_dd_bwprod26 ----------------- */ 
+
+insert_job: mebwd_hotbk_dd_bwprod26  job_type: CMD 
+command: $BACKCYCSHELL/incr_backup_rman_data_domain bwprod26
+machine: usdfw21db75vcn2
+owner: oracle@usdfw21db75vcn2
+permission: mx,me
+date_conditions: 1
+days_of_week: we
+start_times: "22:00"
+description: "RMAN Data Domain Hot backup for bwprod26 database"
+job_terminator: 1
+std_out_file: "$BACKCYCLOG/mebwd_hotbk_dd_bwprod26_`date +%m%d%y`.log"
+std_err_file: "$BACKCYCLOG/mebwd_hotbk_dd_bwprod26_`date +%m%d%y`.log"
+max_run_alarm: 720
+alarm_if_fail: 1
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 1
+
+/* ----------------- mebwd_archbk_dd_bwprod26 ----------------- */ 
+
+insert_job: mebwd_archbk_dd_bwprod26  job_type: CMD 
+command: $BACKCYCSHELL/archive_backup_rman_data_domain bwprod26
+machine: usdfw21db75vcn2
+owner: oracle@usdfw21db75vcn2
+permission: mx,me
+date_conditions: 1
+days_of_week: su,mo,tu,we,th,fr,sa
+start_times: "02:30,08:30,11:30,14:30, 17:30, 23:30"
+description: "RMAN Data Domain backup for archive logs of bwprod26 database"
+std_out_file: "$BACKCYCLOG/mebwd_archbk_dd_bwprod26_`date +%m%d%y`.log"
+std_err_file: "$BACKCYCLOG/mebwd_archbk_dd_bwprod26_`date +%m%d%y`.log"
+max_run_alarm: 720
+alarm_if_fail: 1
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 1
+
+/* ----------------- mebwd_hotbk_dd_bwprod25 ----------------- */ 
+
+insert_job: mebwd_hotbk_dd_bwprod25  job_type: CMD 
+command: $BACKCYCSHELL/incr_backup_rman_data_domain bwprod25
+machine: usdfw21db75vcn1
+owner: oracle@usdfw21db75vcn1
+permission: mx,me
+date_conditions: 1
+days_of_week: su
+start_times: "13:00"
+description: "RMAN Data Domain Hot backup for bwprod25 database"
+job_terminator: 1
+std_out_file: "$BACKCYCLOG/mebwd_hotbk_dd_bwprod25_`date +%m%d%y`.log"
+std_err_file: "$BACKCYCLOG/mebwd_hotbk_dd_bwprod25_`date +%m%d%y`.log"
+max_run_alarm: 720
+alarm_if_fail: 1
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 1
+
+/* ----------------- mebwd_archbk_dd_bwprod25 ----------------- */ 
+
+insert_job: mebwd_archbk_dd_bwprod25  job_type: CMD 
+command: $BACKCYCSHELL/archive_backup_rman_data_domain bwprod25
+machine: usdfw21db75vcn1
+owner: oracle@usdfw21db75vcn1
+permission: mx,me
+date_conditions: 1
+days_of_week: su,mo,tu,we,th,fr,sa
+start_times: "02:00,05:00, 08:00,11:00,14:00, 17:00,20:00, 23:00"
+description: "RMAN Data Domain backup for archive logs of bwprod25 database"
+std_out_file: "$BACKCYCLOG/mebwd_archbk_dd_bwprod25_`date +%m%d%y`.log"
+std_err_file: "$BACKCYCLOG/mebwd_archbk_dd_bwprod25_`date +%m%d%y`.log"
+max_run_alarm: 720
+alarm_if_fail: 1
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 1

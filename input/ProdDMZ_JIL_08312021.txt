@@ -1,0 +1,3962 @@
+
+
+/* ----------------- pacc_test_tlit_box_put4dextr_putxfer ----------------- */ 
+
+insert_job: pacc_test_tlit_box_put4dextr_putxfer   job_type: BOX 
+owner: elitftp@palermo
+permission: mx,me
+date_conditions: 1
+days_of_week: mo,tu,we,th,fr
+exclude_calendar: holidays
+start_mins: 00
+run_window: "08:00-20:00"
+description: "Box Wrapper - Putnam 4D Extract Putnam transfer watch test"
+max_run_alarm: 60
+alarm_if_fail: 0
+alarm_if_terminated: 0
+
+
+/* ----------------- mepsie_box_d_spp81_app_stop ----------------- */ 
+
+insert_job: mepsie_box_d_spp81_app_stop   job_type: BOX 
+owner: siebsrv@usfkl21ws24
+permission: mx,me
+date_conditions: 1
+days_of_week: su,mo,tu,we,th,fr
+start_times: "22:05"
+condition: s(mewb_d_box_SPP_PRD_OHS_stop)
+description: "Box Job for the recycling Siebel Partner Portal appserver instance on usfkl21ws24,usfkl21ws30"
+job_terminator: 1
+alarm_if_fail: 1
+alarm_if_terminated: 1
+
+
+/* ----------------- mamway_d_marshwaybix_usprd1was01pga ----------------- */ 
+
+insert_job: mamway_d_marshwaybix_usprd1was01pga   job_type: CMD 
+command: /opt/sharedlib/usprd1waspga/applications/bixmway/onemarshbix.sh
+machine: usfkl21as78
+owner: wasadmin@usfkl21as78
+permission: mx,me
+date_conditions: 1
+days_of_week: mo,tu,we,th,fr
+start_times: "23:30"
+description: "Runnning on marshwaybix job on autosys"
+std_out_file: "/opt/applogs/usprd1waspga/bixmway/onemarshbix_out.txt._`date +%m%d`.log"
+std_err_file: "/opt/applogs/usprd1waspga/bixmway/onemarshbix_err.txt._`date +%m%d`.log"
+alarm_if_fail: 1
+alarm_if_terminated: 1
+
+
+/* ----------------- mamway_d_marshwaybix_usprd1was02pga ----------------- */ 
+
+insert_job: mamway_d_marshwaybix_usprd1was02pga   job_type: CMD 
+command: /opt/sharedlib/usprd1waspga/applications/bixmway/onemarshbix.sh
+machine: usfkl21as95
+owner: wasadmin@usfkl21as95
+permission: mx,me
+date_conditions: 1
+days_of_week: mo,tu,we,th,fr
+start_times: "23:30"
+description: "Runnning on marshwaybix job on autosys"
+std_out_file: "/opt/applogs/usprd1waspga/bixmway/onemarshbix_out.txt._`date +%m%d`.log"
+std_err_file: "/opt/applogs/usprd1waspga/bixmway/onemarshbix_err.txt._`date +%m%d`.log"
+alarm_if_fail: 1
+alarm_if_terminated: 1
+
+
+/* ----------------- pingtest ----------------- */ 
+
+insert_job: pingtest   job_type: CMD 
+command: ping -c 4 localhost
+machine: localhost
+owner: root@usfkl21as210v
+permission: 
+date_conditions: 0
+std_out_file: "/tmp/pingtest.out"
+std_err_file: "/tmp/pingtest.err"
+alarm_if_fail: 1
+alarm_if_terminated: 1
+
+
+/* ----------------- pmmacc_r_nonwin_dmz_box ----------------- */ 
+
+insert_job: pmmacc_r_nonwin_dmz_box   job_type: BOX 
+owner: root
+permission: mx,me
+date_conditions: 1
+days_of_week: tu,we,th,fr,sa
+start_times: "08:00"
+description: "test autosys"
+term_run_time: 15
+alarm_if_fail: 0
+alarm_if_terminated: 0
+
+
+ /* ----------------- pmmacc_r_tst_dmzautosys_usfkl21as78 ----------------- */ 
+
+ insert_job: pmmacc_r_tst_dmzautosys_usfkl21as78   job_type: CMD 
+ box_name: pmmacc_r_nonwin_dmz_box
+ command: /bin/date
+ machine: usfkl21as78
+ owner: root
+ permission: mx,me
+ date_conditions: 0
+ description: "test autosys"
+ std_out_file: "%TMP%\%AUTO_JOB_NAME%.log"
+ std_err_file: "%TMP%\%AUTO_JOB_NAME%.err"
+ alarm_if_fail: 1
+ alarm_if_terminated: 1
+
+
+ /* ----------------- pmmacc_r_tst_dmzautosys_usfkl21as95 ----------------- */ 
+
+ insert_job: pmmacc_r_tst_dmzautosys_usfkl21as95   job_type: CMD 
+ box_name: pmmacc_r_nonwin_dmz_box
+ command: /bin/date
+ machine: usfkl21as95
+ owner: root
+ permission: mx,me
+ date_conditions: 0
+ description: "test autosys"
+ std_out_file: "%TMP%\%AUTO_JOB_NAME%.log"
+ std_err_file: "%TMP%\%AUTO_JOB_NAME%.err"
+ alarm_if_fail: 1
+ alarm_if_terminated: 1
+
+
+ /* ----------------- pmmacc_r_tst_dmzautosys_usfkl21as86 ----------------- */ 
+
+ insert_job: pmmacc_r_tst_dmzautosys_usfkl21as86   job_type: CMD 
+ box_name: pmmacc_r_nonwin_dmz_box
+ command: /bin/date
+ machine: usfkl21as86
+ owner: root
+ permission: mx,me
+ date_conditions: 0
+ description: "test autosys"
+ std_out_file: "%TMP%\%AUTO_JOB_NAME%.log"
+ std_err_file: "%TMP%\%AUTO_JOB_NAME%.err"
+ alarm_if_fail: 1
+ alarm_if_terminated: 1
+
+
+ /* ----------------- pmmacc_r_tst_dmzautosys_usfkl21as225v ----------------- */ 
+
+ insert_job: pmmacc_r_tst_dmzautosys_usfkl21as225v   job_type: CMD 
+ box_name: pmmacc_r_nonwin_dmz_box
+ command: /bin/date
+ machine: usfkl21as225v
+ owner: autosys
+ permission: mx,me
+ date_conditions: 0
+ description: "test autosys"
+ std_out_file: "%TMP%\%AUTO_JOB_NAME%.log"
+ std_err_file: "%TMP%\%AUTO_JOB_NAME%.err"
+ alarm_if_fail: 1
+ alarm_if_terminated: 1
+
+
+ /* ----------------- pmmacc_r_tst_dmzautosys_usfkl21db94vcn1 ----------------- */ 
+
+ insert_job: pmmacc_r_tst_dmzautosys_usfkl21db94vcn1   job_type: CMD 
+ box_name: pmmacc_r_nonwin_dmz_box
+ command: /bin/date
+ machine: usfkl21db94vcn1
+ owner: root
+ permission: mx,me
+ date_conditions: 0
+ description: "test autosys"
+ std_out_file: "%TMP%\%AUTO_JOB_NAME%.log"
+ std_err_file: "%TMP%\%AUTO_JOB_NAME%.err"
+ alarm_if_fail: 1
+ alarm_if_terminated: 1
+
+
+ /* ----------------- pmmacc_r_tst_dmzautosys_usfkl21db94vcn2 ----------------- */ 
+
+ insert_job: pmmacc_r_tst_dmzautosys_usfkl21db94vcn2   job_type: CMD 
+ box_name: pmmacc_r_nonwin_dmz_box
+ command: /bin/date
+ machine: usfkl21db94vcn2
+ owner: root
+ permission: mx,me
+ date_conditions: 0
+ description: "test autosys"
+ std_out_file: "%TMP%\%AUTO_JOB_NAME%.log"
+ std_err_file: "%TMP%\%AUTO_JOB_NAME%.err"
+ alarm_if_fail: 1
+ alarm_if_terminated: 1
+
+
+ /* ----------------- pmmacc_r_tst_dmzautosys_usfkl21db94vcn3 ----------------- */ 
+
+ insert_job: pmmacc_r_tst_dmzautosys_usfkl21db94vcn3   job_type: CMD 
+ box_name: pmmacc_r_nonwin_dmz_box
+ command: /bin/date
+ machine: usfkl21db94vcn3
+ owner: root
+ permission: mx,me
+ date_conditions: 0
+ description: "test autosys"
+ std_out_file: "%TMP%\%AUTO_JOB_NAME%.log"
+ std_err_file: "%TMP%\%AUTO_JOB_NAME%.err"
+ alarm_if_fail: 1
+ alarm_if_terminated: 1
+
+
+ /* ----------------- pmmacc_r_tst_dmzautosys_usfkl21as86.mrshmc.com ----------------- */ 
+
+ insert_job: pmmacc_r_tst_dmzautosys_usfkl21as86.mrshmc.com   job_type: CMD 
+ box_name: pmmacc_r_nonwin_dmz_box
+ command: /bin/date
+ machine: usfkl21as86.mrshmc.com
+ owner: root
+ permission: mx,me
+ date_conditions: 0
+ description: "test autosys"
+ std_out_file: "%TMP%\%AUTO_JOB_NAME%.log"
+ std_err_file: "%TMP%\%AUTO_JOB_NAME%.err"
+ alarm_if_fail: 1
+ alarm_if_terminated: 1
+
+
+ /* ----------------- pmmacc_r_tst_autosys_usfkl21as337vcn1 ----------------- */ 
+
+ insert_job: pmmacc_r_tst_autosys_usfkl21as337vcn1   job_type: CMD 
+ box_name: pmmacc_r_nonwin_dmz_box
+ command: /bin/date
+ machine: usfkl21as337vcn1
+ owner: root
+ permission: mx,me
+ date_conditions: 0
+ description: "test autosys"
+ std_out_file: "%TMP%\%AUTO_JOB_NAME%.log"
+ std_err_file: "%TMP%\%AUTO_JOB_NAME%.err"
+ alarm_if_fail: 1
+ alarm_if_terminated: 1
+
+
+ /* ----------------- pmmacc_r_tst_autosys_usfkl21as337vcn2 ----------------- */ 
+
+ insert_job: pmmacc_r_tst_autosys_usfkl21as337vcn2   job_type: CMD 
+ box_name: pmmacc_r_nonwin_dmz_box
+ command: /bin/date
+ machine: usfkl21as337vcn2
+ owner: root
+ permission: mx,me
+ date_conditions: 0
+ description: "test autosys"
+ std_out_file: "%TMP%\%AUTO_JOB_NAME%.log"
+ std_err_file: "%TMP%\%AUTO_JOB_NAME%.err"
+ alarm_if_fail: 1
+ alarm_if_terminated: 1
+
+
+ /* ----------------- pmmacc_r_tst_autosys_usfkl21as337vcn1_elk ----------------- */ 
+
+ insert_job: pmmacc_r_tst_autosys_usfkl21as337vcn1_elk   job_type: CMD 
+ box_name: pmmacc_r_nonwin_dmz_box
+ command: ls -al
+ machine: usfkl21as337vcn1
+ owner: root
+ permission: mx,me
+ date_conditions: 0
+ description: "test autosys"
+ std_out_file: "%TMP%\%AUTO_JOB_NAME%.log"
+ std_err_file: "%TMP%\%AUTO_JOB_NAME%.err"
+ alarm_if_fail: 0
+ alarm_if_terminated: 0
+
+
+ /* ----------------- pmmacc_r_tst_dmzautosys_usdf21v0516 ----------------- */ 
+
+ insert_job: pmmacc_r_tst_dmzautosys_usdf21v0516   job_type: CMD 
+ box_name: pmmacc_r_nonwin_dmz_box
+ command: /bin/date
+ machine: usdf21v0516
+ owner: root
+ permission: mx,me
+ date_conditions: 0
+ description: "test autosys"
+ std_out_file: "%TMP%\%AUTO_JOB_NAME%.log"
+ std_err_file: "%TMP%\%AUTO_JOB_NAME%.err"
+ alarm_if_fail: 1
+ alarm_if_terminated: 1
+
+
+ /* ----------------- pmmacc_r_tst_dmzautosys_usdfw21db72v ----------------- */ 
+
+ insert_job: pmmacc_r_tst_dmzautosys_usdfw21db72v   job_type: CMD 
+ box_name: pmmacc_r_nonwin_dmz_box
+ command: /bin/date
+ machine: usdfw21db72v
+ owner: root
+ permission: mx,me
+ date_conditions: 0
+ description: "test autosys"
+ std_out_file: "%TMP%\%AUTO_JOB_NAME%.log"
+ std_err_file: "%TMP%\%AUTO_JOB_NAME%.err"
+ alarm_if_fail: 1
+ alarm_if_terminated: 1
+
+
+/* ----------------- pmmacc_r_win_dmz_box ----------------- */ 
+
+insert_job: pmmacc_r_win_dmz_box   job_type: BOX 
+owner: root
+permission: mx,me
+date_conditions: 1
+days_of_week: we,th,fr,sa
+start_times: "8:00"
+description: "test autosys"
+term_run_time: 15
+alarm_if_fail: 0
+alarm_if_terminated: 0
+
+
+ /* ----------------- pmmacc_r_tst_dmzautosys_usfkl11db11ci1 ----------------- */ 
+
+ insert_job: pmmacc_r_tst_dmzautosys_usfkl11db11ci1   job_type: CMD 
+ box_name: pmmacc_r_win_dmz_box
+ command: C\:\windows\system32\ping 127.0.0.1
+ machine: usfkl11db11ci1
+ owner: svc_mersql05@DMZPROD01
+ permission: mx,me
+ date_conditions: 0
+ description: "test autosys"
+ std_out_file: "%TMP%\%AUTO_JOB_NAME%.log"
+ std_err_file: "%TMP%\%AUTO_JOB_NAME%.err"
+ alarm_if_fail: 1
+ alarm_if_terminated: 1
+
+
+ /* ----------------- pmmacc_r_tst_dmzautosys_usfkl11db11cn1 ----------------- */ 
+
+ insert_job: pmmacc_r_tst_dmzautosys_usfkl11db11cn1   job_type: CMD 
+ box_name: pmmacc_r_win_dmz_box
+ command: C\:\windows\system32\ping 127.0.0.1
+ machine: usfkl11db11cn1
+ owner: svc_mersql05@DMZPROD01
+ permission: mx,me
+ date_conditions: 0
+ description: "test autosys"
+ std_out_file: "%TMP%\%AUTO_JOB_NAME%.log"
+ std_err_file: "%TMP%\%AUTO_JOB_NAME%.err"
+ alarm_if_fail: 1
+ alarm_if_terminated: 1
+
+
+ /* ----------------- pmmacc_r_tst_dmzautosys_usfkl11db11cn2 ----------------- */ 
+
+ insert_job: pmmacc_r_tst_dmzautosys_usfkl11db11cn2   job_type: CMD 
+ box_name: pmmacc_r_win_dmz_box
+ command: C\:\windows\system32\ping 127.0.0.1
+ machine: usfkl11db11cn2
+ owner: svc_mersql05@DMZPROD01
+ permission: mx,me
+ date_conditions: 0
+ description: "test autosys"
+ std_out_file: "%TMP%\%AUTO_JOB_NAME%.log"
+ std_err_file: "%TMP%\%AUTO_JOB_NAME%.err"
+ alarm_if_fail: 1
+ alarm_if_terminated: 1
+
+
+ /* ----------------- pmmacc_r_tst_dmzautosys_usfkl11db11cn3 ----------------- */ 
+
+ insert_job: pmmacc_r_tst_dmzautosys_usfkl11db11cn3   job_type: CMD 
+ box_name: pmmacc_r_win_dmz_box
+ command: C\:\windows\system32\ping 127.0.0.1
+ machine: usfkl11db11cn3
+ owner: svc_mersql05@DMZPROD01
+ permission: mx,me
+ date_conditions: 0
+ description: "test autosys"
+ std_out_file: "%TMP%\%AUTO_JOB_NAME%.log"
+ std_err_file: "%TMP%\%AUTO_JOB_NAME%.err"
+ alarm_if_fail: 1
+ alarm_if_terminated: 1
+
+
+ /* ----------------- pmmacc_r_tst_dmzautosys_usfkl11db11ci2 ----------------- */ 
+
+ insert_job: pmmacc_r_tst_dmzautosys_usfkl11db11ci2   job_type: CMD 
+ box_name: pmmacc_r_win_dmz_box
+ command: C\:\windows\system32\ping 127.0.0.1
+ machine: usfkl11db11ci2
+ owner: svc_mersql05@DMZPROD01
+ permission: mx,me
+ date_conditions: 0
+ description: "test autosys"
+ std_out_file: "%TMP%\%AUTO_JOB_NAME%.log"
+ std_err_file: "%TMP%\%AUTO_JOB_NAME%.err"
+ alarm_if_fail: 1
+ alarm_if_terminated: 1
+
+
+ /* ----------------- pmmacc_r_tst_dmzautosys_usfkl11db11cn3_kms ----------------- */ 
+
+ insert_job: pmmacc_r_tst_dmzautosys_usfkl11db11cn3_kms   job_type: CMD 
+ box_name: pmmacc_r_win_dmz_box
+ command: C\:\windows\system32\ping 127.0.0.
+ machine: usfkl11db11cn3
+ owner: svc_mersql05@DMZPROD01
+ permission: mx,me
+ date_conditions: 0
+ description: "test autosys"
+ std_out_file: "%TMP%\%AUTO_JOB_NAME%.log"
+ std_err_file: "%TMP%\%AUTO_JOB_NAME%.err"
+ alarm_if_fail: 1
+ alarm_if_terminated: 1
+
+
+/* ----------------- pmmacc_r_xplatform_prod_DMZ_box ----------------- */ 
+
+insert_job: pmmacc_r_xplatform_prod_DMZ_box   job_type: BOX 
+owner: root
+permission: mx,me
+date_conditions: 0
+condition: s(pmmacc_r_tst_xplatform_prod_usfkl21db30^PRD)
+description: "test autosys"
+term_run_time: 30
+alarm_if_fail: 0
+alarm_if_terminated: 0
+
+
+/* ----------------- pmmacc_r_autosys_autorep_machines_PDZ_email ----------------- */ 
+
+insert_job: pmmacc_r_autosys_autorep_machines_PDZ_email   job_type: CMD 
+command: perl /home/autosys/shell_files/EmailJobReportForBox_machine.pl -b ALL -e release_management_email.lst
+machine: usfkl21as225v
+owner: autosys@usfkl21as225v
+permission: mx,me
+date_conditions: 0
+description: "testing status autorep_machines DMZ email"
+std_out_file: "/home/autosys/logs/$AUTO_JOB_NAME_`date +%m%d`.log"
+std_err_file: "/home/autosys/logs/$AUTO_JOB_NAME_`date +%m%d`.err"
+alarm_if_fail: 0
+profile: "/home/autosys/auto.profile"
+alarm_if_terminated: 0
+
+
+/* ----------------- pacc_w_autosys_wkly_jil_bkup_PROD_DMZ ----------------- */ 
+
+insert_job: pacc_w_autosys_wkly_jil_bkup_PROD_DMZ   job_type: CMD 
+command: $SHELL/weekly_jil_backup.csh
+machine: usfkl21as225v
+owner: autosys@usfkl21as225v
+permission: wx,mx,me
+date_conditions: 1
+days_of_week: su
+start_times: "9:00"
+description: "Weekly Dump of autosys JILs"
+std_out_file: ">$LOG/pacc_w_autosys_wkly_jil_bkup_`date +%m%d`.log"
+std_err_file: ">$LOG/pacc_w_autosys_wkly_jil_bkup_`date +%m%d`.err"
+alarm_if_fail: 0
+profile: "/home/autosys/auto.profile"
+alarm_if_terminated: 0
+
+
+/* ----------------- pacc_w_autotrack_bkup_log_DMZ ----------------- */ 
+
+insert_job: pacc_w_autotrack_bkup_log_DMZ   job_type: CMD 
+command: /home/autosys/shell_files/autotrack_log.csh
+machine: usfkl21as225v
+owner: autosys@usfkl21as225v
+permission: wx,mx,me
+date_conditions: 1
+days_of_week: su
+start_times: "23:50"
+description: "Autotrack weekly backup job."
+std_out_file: "/home/autosys/logs/pacc_w_autotrack_bkup_log_`date +%m%d`.log"
+std_err_file: "/home/autosys/logs/pacc_w_autotrack_bkup_log_`date +%m%d`.err"
+alarm_if_fail: 0
+profile: "/home/autosys/auto.profile"
+alarm_if_terminated: 0
+
+
+/* ----------------- pmmacc_r_autosys_test_PDZ_email ----------------- */ 
+
+insert_job: pmmacc_r_autosys_test_PDZ_email   job_type: CMD 
+command: perl /home/autosys/shell_files/EmailJobReportForBox.pl -b pmmacc_r_win_dmz_box -e release_management_email.lst
+machine: usfkl21as225v
+owner: autosys@usfkl21as225v
+permission: mx,me
+date_conditions: 0
+description: "testing status DMZ email"
+std_out_file: "/home/autosys/logs/$AUTO_JOB_NAME_`date +%m%d`.log"
+std_err_file: "/home/autosys/logs/$AUTO_JOB_NAME_`date +%m%d`.err"
+alarm_if_fail: 0
+profile: "/home/autosys/auto.profile"
+alarm_if_terminated: 0
+
+
+/* ----------------- pacc_r_autosys_DMZ_set_stuff_elk5 ----------------- */ 
+
+insert_job: pacc_r_autosys_DMZ_set_stuff_elk5   job_type: CMD 
+command: /opt/CA/WorkloadAutomationAE/autosys/bin/autorep -j pmmacc%stuff%
+machine: usfkl21as225v
+owner: root
+permission: wx,mx,me
+date_conditions: 0
+description: "just testing"
+std_out_file: "/tmp/pacc_r_autosys_set_stuff6_elk_5.log"
+std_err_file: "/tmp/pacc_r_autosys_set_stuff6_elk_5.err"
+alarm_if_fail: 0
+profile: "/etc/auto.profile"
+alarm_if_terminated: 0
+
+
+/* ----------------- pacc_d_autosysjobs_DMZ_running ----------------- */ 
+
+insert_job: pacc_d_autosysjobs_DMZ_running   job_type: CMD 
+command: /home/autosys/shell_files/autosysjobs_running.csh
+machine: usfkl21as225v
+owner: autosys@usfkl21as225v
+permission: wx,mx,me
+date_conditions: 1
+days_of_week: su,mo,tu,we,th,fr,sa
+start_times: "23:57"
+description: "Daily count of jobs RUNNING - send email to lance if fail."
+std_out_file: "/home/autosys/logs/pacc_d_autosysjobs_running_`date +%m%d`.log"
+std_err_file: "/home/autosys/logs/pacc_d_autosysjobss_running_`date +%m%d`.err"
+alarm_if_fail: 0
+profile: "/home/autosys/auto.profile"
+alarm_if_terminated: 0
+
+
+/* ----------------- pacc_r_autosysjobs_DMZ_mthly_wc_l ----------------- */ 
+
+insert_job: pacc_r_autosysjobs_DMZ_mthly_wc_l   job_type: CMD 
+command: /home/autosys/shell_files/autosysjob_MTHLY_count_totals_wc.csh 05 2014
+machine: usfkl21as225v
+owner: autosys@usfkl21as225v
+permission: wx,mx,me
+date_conditions: 0
+description: "Monthly word count /program.csh parm1 parm2 -ie mm yyyy 05 2014 example"
+std_out_file: "/home/autosys/logs/pacc_r_autosysjobs_mthly_wc_l_`date +%m%d`.log"
+std_err_file: "/home/autosys/logs/pacc_r_autosysjobs_mthly_wc_l_`date +%m%d`.err"
+alarm_if_fail: 0
+alarm_if_terminated: 0
+
+
+/* ----------------- pmmacc_d_autosys_prod_dmz_jobs_dump_sql_file ----------------- */ 
+
+insert_job: pmmacc_d_autosys_prod_dmz_jobs_dump_sql_file   job_type: CMD 
+command: /home/autosys/SQL/prodaccpt_r11_autosys.csh
+machine: usfkl21as225v
+owner: autosys@usfkl21as225v
+permission: wx,mx,me
+date_conditions: 0
+description: "Raw data fron the DB"
+std_out_file: "$LOG/tmmacc_d_autosys_job_dump_sql_file_`date +%m%d`.log"
+std_err_file: "$LOG/tmmacc_d_autosys_job_dump_sql_file_`date +%m%d`.err"
+alarm_if_fail: 0
+profile: "/home/autosys/auto.profile"
+alarm_if_terminated: 0
+
+
+/* ----------------- pmdocsapacprod_d_uni_start_mdocsexceptionnotification ----------------- */ 
+
+insert_job: pmdocsapacprod_d_uni_start_mdocsexceptionnotification   job_type: CMD 
+command: /opt/apps/apac/DFC/customJobs/shellScripts/ExceptionNotification.sh
+machine: usfkl21as86
+owner: mdocsapacadm@usfkl21as86
+permission: mx,me
+date_conditions: 1
+days_of_week: all
+start_times: "12:30"
+description: "Exception Notification Job"
+std_out_file: "/opt/applogs/customJobs/apac/ExceptionNotification/stdout_`date +%m%d`.log"
+std_err_file: "/opt/applogs/customJobs/apac/ExceptionNotification/stderr_`date +%m%d`.log"
+max_run_alarm: 90
+alarm_if_fail: 1
+alarm_if_terminated: 1
+
+
+/* ----------------- pmdocsprod_d_uni_start_mdocsexceptionnotification ----------------- */ 
+
+insert_job: pmdocsprod_d_uni_start_mdocsexceptionnotification   job_type: CMD 
+command: /opt/apps/DFC/customJobs/shellScripts/ExceptionNotification.sh
+machine: usfkl21as86
+owner: mdocs-admin@usfkl21as86
+permission: mx,me
+date_conditions: 1
+days_of_week: all
+start_times: "5:30"
+description: "Exception Notification Job"
+std_out_file: "/opt/applogs/customJobs/ExceptionNotification/stdout_`date +%m%d`.log"
+std_err_file: "/opt/applogs/customJobs/ExceptionNotification/stderr_`date +%m%d`.log"
+max_run_alarm: 90
+alarm_if_fail: 1
+alarm_if_terminated: 1
+
+
+/* ----------------- pmmacc_d_autosys_PDZ_sql_jobrow_file ----------------- */ 
+
+insert_job: pmmacc_d_autosys_PDZ_sql_jobrow_file   job_type: CMD 
+command: /home/autosys/SQL/autosys_sql_script_jobrow.csh
+machine: usfkl21as225v
+owner: autosys@usfkl21as225v
+permission: wx,mx,me
+date_conditions: 0
+description: "Raw data fron the DB"
+std_out_file: "$LOG/pmmacc_d_autosys_TSZ_sql_jobrow_file_`date +%m%d`.log"
+std_err_file: "$LOG/pmmacc_d_autosys_TSZ_sql_jobrow_file_`date +%m%d`.err"
+alarm_if_fail: 0
+profile: "/home/autosys/auto.profile"
+alarm_if_terminated: 0
+
+
+/* ----------------- pacc_d_autosys_chase_30mins_PDZ ----------------- */ 
+
+insert_job: pacc_d_autosys_chase_30mins_PDZ   job_type: CMD 
+command: /opt/CA/WorkloadAutomationAE/autosys/bin/chase -E -A
+machine: usfkl21as225v
+owner: autosys@usfkl21as225v
+permission: wx,mx,me
+date_conditions: 1
+days_of_week: su,mo,tu,we,th,fr,sa
+start_mins: 08
+description: "Chase job -crital job to help capture starting conditions"
+std_out_file: ">$LOG/pacc_d_autosys_chase_30mins`date +%m%d`.log"
+std_err_file: ">$LOG/pacc_d_autosys_chase_30mins_`date +%m%d`.err"
+alarm_if_fail: 0
+profile: "/home/autosys/auto.profile"
+alarm_if_terminated: 0
+
+
+/* ----------------- pacc_r_autosysjobs_mthly_OPCO_PDZ ----------------- */ 
+
+insert_job: pacc_r_autosysjobs_mthly_OPCO_PDZ   job_type: CMD 
+command: /home/autosys/shell_files/autosysjob_MTHLY_OPCO_totals_PDZ.csh 08 2019
+machine: usfkl21as225v
+owner: autosys@usfkl21as225v
+permission: wx,mx,me
+date_conditions: 0
+description: "Monthly word count /program.csh parm1 parm2 -ie mm yyyy 01 2018 example (last month.)"
+std_out_file: "/home/autosys/logs/pacc_r_autosysjobs_mthly_OPCO_`date +%m%d`.log"
+std_err_file: "/home/autosys/logs/pacc_r_autosysjobs_mthly_OPCO_`date +%m%d`.err"
+alarm_if_fail: 0
+profile: "/home/autosys/auto.profile"
+alarm_if_terminated: 0
+
+
+/* ----------------- pmmacc_d_autosysjobs_hourly_running_totals_PDZ ----------------- */ 
+
+insert_job: pmmacc_d_autosysjobs_hourly_running_totals_PDZ   job_type: CMD 
+command: /home/autosys/shell_files/autosysjobs_hourly_running.csh
+machine: usfkl21as225v
+owner: autosys@usfkl21as225v
+permission: wx,mx,me
+date_conditions: 1
+days_of_week: su,sa
+start_mins: 01, 16, 31, 46
+description: "Daily count of jobs RUNNING - send email to lance if fail."
+std_out_file: "/home/autosys/logs/pmmacc_d_autosysjobs_hourly_running_`date +%m%d%y`.log"
+std_err_file: "/home/autosys/logs/pmmacc_d_autosysjobss_hourly_running_`date +%m%d%y`.err"
+alarm_if_fail: 0
+alarm_if_terminated: 0
+success_codes: 1
+
+
+/* ----------------- mamdocs_d_apacprod_exception_file_handling ----------------- */ 
+
+insert_job: mamdocs_d_apacprod_exception_file_handling   job_type: CMD 
+command: /opt/apps/apac/DFC/customJobs/shellScripts/ExceptionFileHandling.sh
+machine: usfkl21as86.mrshmc.com
+owner: mdocsapacadm@usfkl21as86.mrshmc.com
+permission: mx,me
+date_conditions: 1
+days_of_week: su,mo,tu,we,th,fr,sa
+start_times: "6:30"
+description: "Exception File Handling Job"
+std_out_file: "/opt/applogs/customJobs/apac/ExceptionFileHandling/stdout_`date +%m%d`.log"
+std_err_file: "/opt/applogs/customJobs/apac/ExceptionFileHandling/stderr_`date +%m%d`.log"
+max_run_alarm: 90
+alarm_if_fail: 1
+alarm_if_terminated: 1
+
+
+/* ----------------- mamdocs_d_prod_exception_file_handling ----------------- */ 
+
+insert_job: mamdocs_d_prod_exception_file_handling   job_type: CMD 
+command: /opt/apps/DFC/customJobs/shellScripts/ExceptionFileHandling.sh
+machine: usfkl21as86.mrshmc.com
+owner: mdocs-admin@usfkl21as86.mrshmc.com
+permission: mx,me
+date_conditions: 1
+days_of_week: su,mo,tu,we,th,fr,sa
+start_times: "23:00"
+description: "Exception File Handling Job"
+std_out_file: "/opt/applogs/customJobs/ExceptionFileHandling/stdout_`date +%m%d`.log"
+std_err_file: "/opt/applogs/customJobs/ExceptionFileHandling/stderr_`date +%m%d`.log"
+max_run_alarm: 250
+alarm_if_fail: 1
+alarm_if_terminated: 1
+
+
+/* ----------------- pmdocs_apac_checkout_report ----------------- */ 
+
+insert_job: pmdocs_apac_checkout_report   job_type: CMD 
+command: /opt/apps/apac/DFC/customJobs/shellScripts/CheckoutReport.sh
+machine: usfkl21as86
+owner: mdocsapacadm@usfkl21as86
+permission: mx,me
+date_conditions: 1
+days_of_week: all
+start_times: "6:00"
+description: "Checkout Report Job"
+std_out_file: "/opt/applogs/customJobs/apac/CheckoutReport/stdout_`date +%m%d`.log"
+std_err_file: "/opt/applogs/customJobs/apac/CheckoutReport/stderr_`date +%m%d`.log"
+max_run_alarm: 90
+alarm_if_fail: 1
+alarm_if_terminated: 1
+
+
+/* ----------------- pmdocs_us_checkout_report ----------------- */ 
+
+insert_job: pmdocs_us_checkout_report   job_type: CMD 
+command: /opt/apps/DFC/customJobs/shellScripts/CheckoutReport.sh
+machine: usfkl21as86
+owner: mdocs-admin@usfkl21as86
+permission: mx,me
+date_conditions: 1
+days_of_week: su,mo,tu,we,th,fr,sa
+start_times: "4:00"
+description: "Checkout Report Job"
+std_out_file: "/opt/applogs/customJobs/CheckoutReport/stdout_`date +%m%d`.log"
+std_err_file: "/opt/applogs/customJobs/CheckoutReport/stderr_`date +%m%d`.log"
+max_run_alarm: 250
+alarm_if_fail: 1
+alarm_if_terminated: 1
+
+
+/* ----------------- pacc_r_autosys_DMZ_set_stuff_elk2_ls ----------------- */ 
+
+insert_job: pacc_r_autosys_DMZ_set_stuff_elk2_ls   job_type: CMD 
+command: more /var/oracle/admin/oltp22/appdev/bin/npt_update_acpr_statu.ksh
+machine: usdfw21db72v
+owner: root
+permission: wx,mx,me
+date_conditions: 0
+description: "just testing"
+std_out_file: "/tmp/pacc_r_autosys_DMZ_set_stuff_elk2_ls.log"
+std_err_file: "/tmp/pacc_r_autosys_DMZ_set_stuff_elk2_ls.err"
+alarm_if_fail: 0
+alarm_if_terminated: 0
+
+
+/* ----------------- pacc_r_autosys_DMZ_set_stuff_elk2_mdir ----------------- */ 
+
+insert_job: pacc_r_autosys_DMZ_set_stuff_elk2_mdir   job_type: CMD 
+command: mkdir /opt/applogs/customJobs/apac/CheckoutReport
+machine: usfkl21as86
+owner: mdocsapacadm@usfkl21as86
+permission: wx,mx,me
+date_conditions: 0
+description: "just testing"
+std_out_file: "/tmp/pacc_r_autosys_DMZ_set_stuff_elk2_mkdir.log"
+std_err_file: "/tmp/pacc_r_autosys_DMZ_set_stuff_elk2_mkdir_.err"
+alarm_if_fail: 0
+alarm_if_terminated: 0
+
+
+/* ----------------- me_mssql_afbo_sync_box ----------------- */ 
+
+insert_job: me_mssql_afbo_sync_box   job_type: BOX 
+owner: svc_mersql05@DMZPROD01
+permission: mx,me
+date_conditions: 1
+days_of_week: mo,tu,we,th,fr,sa,su
+exclude_calendar: holidays
+start_times: "05:30"
+alarm_if_fail: 1
+alarm_if_terminated: 1
+
+
+ /* ----------------- me_mssql_afbo_sync ----------------- */ 
+
+ insert_job: me_mssql_afbo_sync   job_type: CMD 
+ box_name: me_mssql_afbo_sync_box
+ command: d\:\Stage\scripts\PRDAFBO_sync.bat PRDBO_UAS USFKL11DB124CI1.MRSHMC.COM\USFKL11DB124CI1
+ machine: usfkl11db124ci1
+ owner: svc_mersql05@DMZPROD01
+ permission: mx,me
+ date_conditions: 0
+ description: "This job syncs the AF back office UAS database with the Core UAS database"
+ std_out_file: "d:\Stage\log\PRDBO_UAS_AFBO_SYNC_id_%AUTORUN%.log"
+ std_err_file: "d:\Stage\log\PRDBO_UAS_AFBO_SYNC_id_%AUTORUN%.err"
+ max_run_alarm: 30
+ alarm_if_fail: 1
+ alarm_if_terminated: 1
+
+
+/* ----------------- pacc_d_elk_testing_jil_insert_update_PDZ ----------------- */ 
+
+insert_job: pacc_d_elk_testing_jil_insert_update_PDZ   job_type: CMD 
+command: /home/autosys/scripts/elk_test_autoupdate_jil.csh
+machine: usfkl21as225v
+owner: autosys@usfkl21as225v
+permission: mx,me
+date_conditions: 0
+description: "Daily count of job FAILUREs - send email to lance if fail."
+std_out_file: "/home/autosys/logs/pacc_d_elk_testing_jil_insert_update_`date +%m%d`.log"
+std_err_file: "/home/autosys/logs/pacc_d_elk_testing_jil_insert_update_`date +%m%d`.err"
+alarm_if_fail: 0
+alarm_if_terminated: 0
+
+
+/* ----------------- me_mssql_d_usfkl11db11ci2_nc_box ----------------- */ 
+
+insert_job: me_mssql_d_usfkl11db11ci2_nc_box   job_type: BOX 
+owner: svc_mersql05@DMZPROD01
+permission: mx,me
+date_conditions: 1
+days_of_week: mo,tu,we,th,fr
+start_times: "03:00"
+alarm_if_fail: 1
+alarm_if_terminated: 1
+
+
+ /* ----------------- me_mssql_d_usfkl11db11ci2_nc_bc ----------------- */ 
+
+ insert_job: me_mssql_d_usfkl11db11ci2_nc_bc   job_type: CMD 
+ box_name: me_mssql_d_usfkl11db11ci2_nc_box
+ command: c\:\WINDOWS\System32\windowspowershell\v1.0\powershell.exe d\:\Stage\scripts\nightly\BackupCleanup.ps1
+ machine: usfkl11db11ci2
+ owner: svc_mersql05@DMZPROD01
+ permission: mx,me
+ date_conditions: 0
+ description: "This job is to clean up the old backups and logs for usfkl11db11ci2."
+ std_out_file: "d:\Stage\scripts\nightly\logs\me_mssql_d_usfkl11db11ci2_nc_bc_%AUTORUN%.log"
+ std_err_file: "d:\Stage\scripts\nightly\logs\me_mssql_d_usfkl11db11ci2_nc_bc_%AUTORUN%.err"
+ max_run_alarm: 15
+ alarm_if_fail: 1
+ alarm_if_terminated: 1
+
+
+ /* ----------------- me_mssql_d_usfkl11db11ci2_nc_cycle ----------------- */ 
+
+ insert_job: me_mssql_d_usfkl11db11ci2_nc_cycle   job_type: CMD 
+ box_name: me_mssql_d_usfkl11db11ci2_nc_box
+ command: c\:\WINDOWS\System32\windowspowershell\v1.0\powershell.exe d\:\Stage\scripts\nightly\Nighlycycle.ps1 "usfkl11db11ci2\usfkl11db11si2"
+ machine: usfkl11db11ci2
+ owner: svc_mersql05@DMZPROD01
+ permission: mx,me
+ date_conditions: 0
+ condition: s(me_mssql_d_usfkl11db11ci2_nc_bc)
+ description: "This job executes the nightly cycle for usfkl11db11ci2."
+ std_out_file: "d:\Stage\scripts\nightly\logs\me_mssql_d_usfkl11db11ci2_nc_cycle_%AUTORUN%.log"
+ std_err_file: "d:\Stage\scripts\nightly\logs\me_mssql_d_usfkl11db11ci2_nc_cycle_%AUTORUN%.err"
+ max_run_alarm: 180
+ alarm_if_fail: 1
+ alarm_if_terminated: 1
+
+
+/* ----------------- me_mssql_w_usfkl11db11ci2_nc_box ----------------- */ 
+
+insert_job: me_mssql_w_usfkl11db11ci2_nc_box   job_type: BOX 
+owner: svc_mersql05@DMZPROD01
+permission: mx,me
+date_conditions: 1
+days_of_week: sa,su
+start_times: "03:00"
+alarm_if_fail: 1
+alarm_if_terminated: 1
+
+
+ /* ----------------- me_mssql_w_usfkl11db11ci2_nc_bc ----------------- */ 
+
+ insert_job: me_mssql_w_usfkl11db11ci2_nc_bc   job_type: CMD 
+ box_name: me_mssql_w_usfkl11db11ci2_nc_box
+ command: c\:\WINDOWS\System32\windowspowershell\v1.0\powershell.exe d\:\Stage\scripts\nightly\BackupCleanup.ps1
+ machine: usfkl11db11ci2
+ owner: svc_mersql05@DMZPROD01
+ permission: mx,me
+ date_conditions: 0
+ description: "This job is to clean up the old backups and logs for usfkl11db11ci2."
+ std_out_file: "d:\Stage\scripts\nightly\logs\me_mssql_w_usfkl11db11ci2_nc_bc_%AUTORUN%.log"
+ std_err_file: "d:\Stage\scripts\nightly\logs\me_mssql_w_usfkl11db11ci2_nc_bc_%AUTORUN%.err"
+ max_run_alarm: 15
+ alarm_if_fail: 1
+ alarm_if_terminated: 1
+
+
+ /* ----------------- me_mssql_w_usfkl11db11ci2_nc_cycle ----------------- */ 
+
+ insert_job: me_mssql_w_usfkl11db11ci2_nc_cycle   job_type: CMD 
+ box_name: me_mssql_w_usfkl11db11ci2_nc_box
+ command: c\:\WINDOWS\System32\windowspowershell\v1.0\powershell.exe d\:\Stage\scripts\nightly\Nighlycycle.ps1 "usfkl11db11ci2\usfkl11db11si2"
+ machine: usfkl11db11ci2
+ owner: svc_mersql05@DMZPROD01
+ permission: mx,me
+ date_conditions: 0
+ condition: s(me_mssql_w_usfkl11db11ci2_nc_bc)
+ description: "This job executes the nightly cycle for usfkl11db11ci2."
+ std_out_file: "d:\Stage\scripts\nightly\logs\me_mssql_w_usfkl11db11ci2_nc_cycle_%AUTORUN%.log"
+ std_err_file: "d:\Stage\scripts\nightly\logs\me_mssql_w_usfkl11db11ci2_nc_cycle_%AUTORUN%.err"
+ max_run_alarm: 720
+ alarm_if_fail: 1
+ alarm_if_terminated: 1
+
+
+/* ----------------- me_mssql_d_usfkl11db124ci1_nc_box ----------------- */ 
+
+insert_job: me_mssql_d_usfkl11db124ci1_nc_box   job_type: BOX 
+owner: svc_mersql05@DMZPROD01
+permission: mx,me
+date_conditions: 1
+days_of_week: mo,tu,we,th,fr
+start_times: "03:00"
+alarm_if_fail: 1
+alarm_if_terminated: 1
+
+
+ /* ----------------- me_mssql_d_usfkl11db124ci1_nc_bc ----------------- */ 
+
+ insert_job: me_mssql_d_usfkl11db124ci1_nc_bc   job_type: CMD 
+ box_name: me_mssql_d_usfkl11db124ci1_nc_box
+ command: c\:\WINDOWS\System32\windowspowershell\v1.0\powershell.exe d\:\Stage\scripts\nightly\BackupCleanup.ps1
+ machine: usfkl11db124ci1
+ owner: svc_mersql05@DMZPROD01
+ permission: mx,me
+ date_conditions: 0
+ description: "This job is to clean up the old backups and logs for usfkl11db124ci1."
+ std_out_file: "d:\Stage\scripts\nightly\logs\me_mssql_d_usfkl11db124ci1_nc_bc_%AUTORUN%.log"
+ std_err_file: "d:\Stage\scripts\nightly\logs\me_mssql_d_usfkl11db124ci1_nc_bc_%AUTORUN%.err"
+ max_run_alarm: 15
+ alarm_if_fail: 1
+ alarm_if_terminated: 1
+
+
+ /* ----------------- me_mssql_d_usfkl11db124ci1_nc_cycle ----------------- */ 
+
+ insert_job: me_mssql_d_usfkl11db124ci1_nc_cycle   job_type: CMD 
+ box_name: me_mssql_d_usfkl11db124ci1_nc_box
+ command: c\:\WINDOWS\System32\windowspowershell\v1.0\powershell.exe d\:\Stage\scripts\nightly\Nighlycycle.ps1 "usfkl11db124ci1\usfkl11db124ci1"
+ machine: usfkl11db124ci1
+ owner: svc_mersql05@DMZPROD01
+ permission: mx,me
+ date_conditions: 0
+ condition: s(me_mssql_d_usfkl11db124ci1_nc_bc)
+ description: "This job executes the nightly cycle for usfkl11db124ci1."
+ std_out_file: "d:\Stage\scripts\nightly\logs\me_mssql_d_usfkl11db124ci1_nc_cycle_%AUTORUN%.log"
+ std_err_file: "d:\Stage\scripts\nightly\logs\me_mssql_d_usfkl11db124ci1_nc_cycle_%AUTORUN%.err"
+ max_run_alarm: 180
+ alarm_if_fail: 1
+ alarm_if_terminated: 1
+
+
+/* ----------------- me_mssql_w_usfkl11db124ci1_nc_box ----------------- */ 
+
+insert_job: me_mssql_w_usfkl11db124ci1_nc_box   job_type: BOX 
+owner: svc_mersql05@DMZPROD01
+permission: mx,me
+date_conditions: 1
+days_of_week: sa,su
+start_times: "03:00"
+alarm_if_fail: 1
+alarm_if_terminated: 1
+
+
+ /* ----------------- me_mssql_w_usfkl11db124ci1_nc_bc ----------------- */ 
+
+ insert_job: me_mssql_w_usfkl11db124ci1_nc_bc   job_type: CMD 
+ box_name: me_mssql_w_usfkl11db124ci1_nc_box
+ command: c\:\WINDOWS\System32\windowspowershell\v1.0\powershell.exe d\:\Stage\scripts\nightly\BackupCleanup.ps1
+ machine: usfkl11db124ci1
+ owner: svc_mersql05@DMZPROD01
+ permission: mx,me
+ date_conditions: 0
+ description: "This job is to clean up the old backups and logs for usfkl11db124ci1."
+ std_out_file: "d:\Stage\scripts\nightly\logs\me_mssql_w_usfkl11db124ci1_nc_bc_%AUTORUN%.log"
+ std_err_file: "d:\Stage\scripts\nightly\logs\me_mssql_w_usfkl11db124ci1_nc_bc_%AUTORUN%.err"
+ max_run_alarm: 15
+ alarm_if_fail: 1
+ alarm_if_terminated: 1
+
+
+ /* ----------------- me_mssql_w_usfkl11db124ci1_nc_cycle ----------------- */ 
+
+ insert_job: me_mssql_w_usfkl11db124ci1_nc_cycle   job_type: CMD 
+ box_name: me_mssql_w_usfkl11db124ci1_nc_box
+ command: c\:\WINDOWS\System32\windowspowershell\v1.0\powershell.exe d\:\Stage\scripts\nightly\Nighlycycle.ps1 "usfkl11db124ci1\usfkl11db124ci1"
+ machine: usfkl11db124ci1
+ owner: svc_mersql05@DMZPROD01
+ permission: mx,me
+ date_conditions: 0
+ condition: s(me_mssql_w_usfkl11db124ci1_nc_bc)
+ description: "This job executes the nightly cycle for usfkl11db124ci1."
+ std_out_file: "d:\Stage\scripts\nightly\logs\me_mssql_w_usfkl11db124ci1_nc_cycle_%AUTORUN%.log"
+ std_err_file: "d:\Stage\scripts\nightly\logs\me_mssql_w_usfkl11db124ci1_nc_cycle_%AUTORUN%.err"
+ max_run_alarm: 720
+ alarm_if_fail: 1
+ alarm_if_terminated: 1
+
+
+/* ----------------- me_mssql_d_usfkl11db11ci2_tape_box ----------------- */ 
+
+insert_job: me_mssql_d_usfkl11db11ci2_tape_box   job_type: BOX 
+owner: svc_mersql05@DMZPROD01
+permission: mx,me
+date_conditions: 1
+days_of_week: mo,tu,we,th,fr
+start_times: "03:00"
+alarm_if_fail: 1
+alarm_if_terminated: 1
+
+
+ /* ----------------- me_mssql_d_usfkl11db11ci2_mv_to_tape ----------------- */ 
+
+ insert_job: me_mssql_d_usfkl11db11ci2_mv_to_tape   job_type: CMD 
+ box_name: me_mssql_d_usfkl11db11ci2_tape_box
+ command: c\:\WINDOWS\System32\windowspowershell\v1.0\powershell.exe d\:\Stage\scripts\nightly\Move2Tape.ps1
+ machine: usfkl11db11ci2
+ owner: svc_mersql05@DMZPROD01
+ permission: mx,me
+ date_conditions: 0
+ condition: s(me_mssql_d_usfkl11db11ci2_nc_box)
+ description: "This moves files from backup directory to tapes directory to get backed up."
+ std_out_file: "d:\Stage\scripts\nightly\logs\me_mssql_usfkl11db11ci2_mv_to_tape_%AUTORUN%.log"
+ std_err_file: "d:\Stage\scripts\nightly\logs\me_mssql_usfkl11db11ci2_mv_to_tape_%AUTORUN%.err"
+ max_run_alarm: 15
+ alarm_if_fail: 1
+ alarm_if_terminated: 1
+
+
+ /* ----------------- me_mssql_d_usfkl11db11ci2_backup_tape ----------------- */ 
+
+ insert_job: me_mssql_d_usfkl11db11ci2_backup_tape   job_type: CMD 
+ box_name: me_mssql_d_usfkl11db11ci2_tape_box
+ command: c\:\WINDOWS\System32\windowspowershell\v1.0\powershell.exe d\:\Stage\scripts\nightly\CIVeritasBackup.ps1 USFKL11DB11SI2
+ machine: usfkl11db11ci2
+ owner: svc_mersql05@DMZPROD01
+ permission: mx,me
+ date_conditions: 0
+ condition: s(me_mssql_d_usfkl11db11ci2_mv_to_tape)
+ description: "This job executes the nightly backup for usfkl11db11ci2."
+ std_out_file: "d:\Stage\scripts\nightly\logs\me_mssql_usfkl11db11ci2_backup_%AUTORUN%.log"
+ std_err_file: "d:\Stage\scripts\nightly\logs\me_mssql_usfkl11db11ci2_backup_%AUTORUN%.err"
+ max_run_alarm: 840
+ alarm_if_fail: 1
+ alarm_if_terminated: 1
+
+
+ /* ----------------- me_mssql_d_usfkl11db11ci2_mv_to_backup ----------------- */ 
+
+ insert_job: me_mssql_d_usfkl11db11ci2_mv_to_backup   job_type: CMD 
+ box_name: me_mssql_d_usfkl11db11ci2_tape_box
+ command: c\:\WINDOWS\System32\windowspowershell\v1.0\powershell.exe d\:\Stage\scripts\nightly\Move2Back.ps1
+ machine: usfkl11db11ci2
+ owner: svc_mersql05@DMZPROD01
+ permission: mx,me
+ date_conditions: 0
+ condition: s(me_mssql_d_usfkl11db11ci2_backup_tape)
+ description: "This moves files from tapes directory to backup directory for usfkl11db11ci2."
+ std_out_file: "d:\Stage\scripts\nightly\logs\me_mssql_usfkl11db11ci2_mv_to_backup_%AUTORUN%.log"
+ std_err_file: "d:\Stage\scripts\nightly\logs\me_mssql_usfkl11db11ci2_mv_to_backup_%AUTORUN%.err"
+ max_run_alarm: 15
+ alarm_if_fail: 1
+ alarm_if_terminated: 1
+
+
+/* ----------------- me_mssql_w_usfkl11db11ci2_tape_box ----------------- */ 
+
+insert_job: me_mssql_w_usfkl11db11ci2_tape_box   job_type: BOX 
+owner: svc_mersql05@DMZPROD01
+permission: mx,me
+date_conditions: 1
+days_of_week: sa,su
+start_times: "03:00"
+alarm_if_fail: 1
+alarm_if_terminated: 1
+
+
+ /* ----------------- me_mssql_w_usfkl11db11ci2_mv_to_tape ----------------- */ 
+
+ insert_job: me_mssql_w_usfkl11db11ci2_mv_to_tape   job_type: CMD 
+ box_name: me_mssql_w_usfkl11db11ci2_tape_box
+ command: c\:\WINDOWS\System32\windowspowershell\v1.0\powershell.exe d\:\Stage\scripts\nightly\Move2Tape.ps1
+ machine: usfkl11db11ci2
+ owner: svc_mersql05@DMZPROD01
+ permission: mx,me
+ date_conditions: 0
+ condition: s(me_mssql_w_usfkl11db11ci2_nc_box)
+ description: "This moves files from backup directory to tapes directory to get backed up."
+ std_out_file: "d:\Stage\scripts\nightly\logs\me_mssql_usfkl11db11ci2_mv_to_tape_%AUTORUN%.log"
+ std_err_file: "d:\Stage\scripts\nightly\logs\me_mssql_usfkl11db11ci2_mv_to_tape_%AUTORUN%.err"
+ max_run_alarm: 15
+ alarm_if_fail: 1
+ alarm_if_terminated: 1
+
+
+ /* ----------------- me_mssql_w_usfkl11db11ci2_backup_tape ----------------- */ 
+
+ insert_job: me_mssql_w_usfkl11db11ci2_backup_tape   job_type: CMD 
+ box_name: me_mssql_w_usfkl11db11ci2_tape_box
+ command: c\:\WINDOWS\System32\windowspowershell\v1.0\powershell.exe d\:\Stage\scripts\nightly\CIVeritasBackup.ps1 USFKL11DB11SI2
+ machine: usfkl11db11ci2
+ owner: svc_mersql05@DMZPROD01
+ permission: mx,me
+ date_conditions: 0
+ condition: s(me_mssql_w_usfkl11db11ci2_mv_to_tape)
+ description: "This job executes the nightly backup for usfkl11db11ci2."
+ std_out_file: "d:\Stage\scripts\nightly\logs\me_mssql_usfkl11db11ci2_w_backup_%AUTORUN%.log"
+ std_err_file: "d:\Stage\scripts\nightly\logs\me_mssql_usfkl11db11ci2_w_backup_%AUTORUN%.err"
+ max_run_alarm: 840
+ alarm_if_fail: 1
+ alarm_if_terminated: 1
+
+
+ /* ----------------- me_mssql_w_usfkl11db11ci2_mv_to_backup ----------------- */ 
+
+ insert_job: me_mssql_w_usfkl11db11ci2_mv_to_backup   job_type: CMD 
+ box_name: me_mssql_w_usfkl11db11ci2_tape_box
+ command: c\:\WINDOWS\System32\windowspowershell\v1.0\powershell.exe d\:\Stage\scripts\nightly\Move2Back.ps1
+ machine: usfkl11db11ci2
+ owner: svc_mersql05@DMZPROD01
+ permission: mx,me
+ date_conditions: 0
+ condition: s(me_mssql_w_usfkl11db11ci2_backup_tape)
+ description: "This moves files from tapes directory to backup directory for usfkl11db11ci2."
+ std_out_file: "d:\Stage\scripts\nightly\logs\me_mssql_usfkl11db11ci2_mv_to_backup_%AUTORUN%.log"
+ std_err_file: "d:\Stage\scripts\nightly\logs\me_mssql_usfkl11db11ci2_mv_to_backup_%AUTORUN%.err"
+ max_run_alarm: 15
+ alarm_if_fail: 1
+ alarm_if_terminated: 1
+
+
+/* ----------------- me_mssql_d_usfkl11db11ci1_tape_box ----------------- */ 
+
+insert_job: me_mssql_d_usfkl11db11ci1_tape_box   job_type: BOX 
+owner: svc_mersql05@DMZPROD01
+permission: mx,me
+date_conditions: 1
+days_of_week: mo,tu,we,th,fr
+start_times: "03:00"
+alarm_if_fail: 0
+alarm_if_terminated: 0
+
+
+ /* ----------------- me_mssql_d_usfkl11db11ci1_mv_to_tape ----------------- */ 
+
+ insert_job: me_mssql_d_usfkl11db11ci1_mv_to_tape   job_type: CMD 
+ box_name: me_mssql_d_usfkl11db11ci1_tape_box
+ command: c\:\WINDOWS\System32\windowspowershell\v1.0\powershell.exe d\:\Stage\scripts\nightly\Move2Tape.ps1
+ machine: usfkl11db11ci1
+ owner: svc_mersql05@DMZPROD01
+ permission: mx,me
+ date_conditions: 0
+ condition: s(me_mssql_d_usfkl11db11ci1_nc_box)
+ description: "This moves files from backup directory to tapes directory to get backed up."
+ std_out_file: "d:\Stage\scripts\nightly\logs\me_mssql_usfkl11db11ci1_mv_to_tape_%AUTORUN%.log"
+ std_err_file: "d:\Stage\scripts\nightly\logs\me_mssql_usfkl11db11ci1_mv_to_tape_%AUTORUN%.err"
+ max_run_alarm: 15
+ alarm_if_fail: 1
+ alarm_if_terminated: 1
+
+
+ /* ----------------- me_mssql_d_usfkl11db11ci1_backup_tape ----------------- */ 
+
+ insert_job: me_mssql_d_usfkl11db11ci1_backup_tape   job_type: CMD 
+ box_name: me_mssql_d_usfkl11db11ci1_tape_box
+ command: c\:\WINDOWS\System32\windowspowershell\v1.0\powershell.exe d\:\Stage\scripts\nightly\CIVeritasBackup.ps1 SQL1
+ machine: usfkl11db11ci1
+ owner: svc_mersql05@DMZPROD01
+ permission: mx,me
+ date_conditions: 0
+ condition: s(me_mssql_d_usfkl11db11ci1_mv_to_tape)
+ description: "This job executes the nightly backup for usfkl11db11ci1."
+ std_out_file: "d:\Stage\scripts\nightly\logs\me_mssql_usfkl11db11ci1_backup_%AUTORUN%.log"
+ std_err_file: "d:\Stage\scripts\nightly\logs\me_mssql_usfkl11db11ci1_backup_%AUTORUN%.err"
+ max_run_alarm: 840
+ alarm_if_fail: 1
+ alarm_if_terminated: 1
+
+
+ /* ----------------- me_mssql_d_usfkl11db11ci1_mv_to_backup ----------------- */ 
+
+ insert_job: me_mssql_d_usfkl11db11ci1_mv_to_backup   job_type: CMD 
+ box_name: me_mssql_d_usfkl11db11ci1_tape_box
+ command: c\:\WINDOWS\System32\windowspowershell\v1.0\powershell.exe d\:\Stage\scripts\nightly\Move2Back.ps1
+ machine: usfkl11db11ci1
+ owner: svc_mersql05@DMZPROD01
+ permission: mx,me
+ date_conditions: 0
+ condition: s(me_mssql_d_usfkl11db11ci1_backup_tape)
+ description: "This moves files from tapes directory to backup directory for usfkl11db11ci1."
+ std_out_file: "d:\Stage\scripts\nightly\logs\me_mssql_usfkl11db11ci1_mv_to_backup_%AUTORUN%.log"
+ std_err_file: "d:\Stage\scripts\nightly\logs\me_mssql_usfkl11db11ci1_mv_to_backup_%AUTORUN%.err"
+ max_run_alarm: 15
+ alarm_if_fail: 1
+ alarm_if_terminated: 1
+
+
+/* ----------------- me_mssql_w_usfkl11db11ci1_tape_box ----------------- */ 
+
+insert_job: me_mssql_w_usfkl11db11ci1_tape_box   job_type: BOX 
+owner: svc_mersql05@DMZPROD01
+permission: mx,me
+date_conditions: 1
+days_of_week: sa,su
+start_times: "03:00"
+alarm_if_fail: 1
+alarm_if_terminated: 1
+
+
+ /* ----------------- me_mssql_w_usfkl11db11ci1_mv_to_tape ----------------- */ 
+
+ insert_job: me_mssql_w_usfkl11db11ci1_mv_to_tape   job_type: CMD 
+ box_name: me_mssql_w_usfkl11db11ci1_tape_box
+ command: c\:\WINDOWS\System32\windowspowershell\v1.0\powershell.exe d\:\Stage\scripts\nightly\Move2Tape.ps1
+ machine: usfkl11db11ci1
+ owner: svc_mersql05@DMZPROD01
+ permission: mx,me
+ date_conditions: 0
+ condition: s(me_mssql_w_usfkl11db11ci1_nc_box)
+ description: "This moves files from backup directory to tapes directory to get backed up."
+ std_out_file: "d:\Stage\scripts\nightly\logs\me_mssql_usfkl11db11ci1_mv_to_tape_%AUTORUN%.log"
+ std_err_file: "d:\Stage\scripts\nightly\logs\me_mssql_usfkl11db11ci1_mv_to_tape_%AUTORUN%.err"
+ max_run_alarm: 15
+ alarm_if_fail: 1
+ alarm_if_terminated: 1
+
+
+ /* ----------------- me_mssql_w_usfkl11db11ci1_backup_tape ----------------- */ 
+
+ insert_job: me_mssql_w_usfkl11db11ci1_backup_tape   job_type: CMD 
+ box_name: me_mssql_w_usfkl11db11ci1_tape_box
+ command: c\:\WINDOWS\System32\windowspowershell\v1.0\powershell.exe d\:\Stage\scripts\nightly\CIVeritasBackup.ps1 SQL1
+ machine: usfkl11db11ci1
+ owner: svc_mersql05@DMZPROD01
+ permission: mx,me
+ date_conditions: 0
+ condition: s(me_mssql_w_usfkl11db11ci1_mv_to_tape)
+ description: "This job executes the nightly backup for usfkl11db11ci1."
+ std_out_file: "d:\Stage\scripts\nightly\logs\me_mssql_usfkl11db11ci1_w_backup_%AUTORUN%.log"
+ std_err_file: "d:\Stage\scripts\nightly\logs\me_mssql_usfkl11db11ci1_w_backup_%AUTORUN%.err"
+ max_run_alarm: 840
+ alarm_if_fail: 1
+ alarm_if_terminated: 1
+
+
+ /* ----------------- me_mssql_w_usfkl11db11ci1_mv_to_backup ----------------- */ 
+
+ insert_job: me_mssql_w_usfkl11db11ci1_mv_to_backup   job_type: CMD 
+ box_name: me_mssql_w_usfkl11db11ci1_tape_box
+ command: c\:\WINDOWS\System32\windowspowershell\v1.0\powershell.exe d\:\Stage\scripts\nightly\Move2Back.ps1
+ machine: usfkl11db11ci1
+ owner: svc_mersql05@DMZPROD01
+ permission: mx,me
+ date_conditions: 0
+ condition: s(me_mssql_w_usfkl11db11ci1_backup_tape)
+ description: "This moves files from tapes directory to backup directory for usfkl11db11ci1."
+ std_out_file: "d:\Stage\scripts\nightly\logs\me_mssql_usfkl11db11ci1_mv_to_backup_%AUTORUN%.log"
+ std_err_file: "d:\Stage\scripts\nightly\logs\me_mssql_usfkl11db11ci1_mv_to_backup_%AUTORUN%.err"
+ max_run_alarm: 15
+ alarm_if_fail: 1
+ alarm_if_terminated: 1
+
+
+/* ----------------- me_mssql_d_usfkl11db124ci1_tape_box ----------------- */ 
+
+insert_job: me_mssql_d_usfkl11db124ci1_tape_box   job_type: BOX 
+owner: svc_mersql05@DMZPROD01
+permission: mx,me
+date_conditions: 1
+days_of_week: mo,tu,we,th,fr
+start_times: "03:00"
+alarm_if_fail: 0
+alarm_if_terminated: 0
+
+
+ /* ----------------- me_mssql_d_usfkl11db124ci1_mv_to_tape ----------------- */ 
+
+ insert_job: me_mssql_d_usfkl11db124ci1_mv_to_tape   job_type: CMD 
+ box_name: me_mssql_d_usfkl11db124ci1_tape_box
+ command: c\:\WINDOWS\System32\windowspowershell\v1.0\powershell.exe d\:\Stage\scripts\nightly\Move2Tape.ps1
+ machine: usfkl11db124ci1
+ owner: svc_mersql05@DMZPROD01
+ permission: mx,me
+ date_conditions: 0
+ condition: s(me_mssql_d_usfkl11db124ci1_nc_box)
+ description: "This moves files from backup directory to tapes directory to get backed up."
+ std_out_file: "d:\Stage\scripts\nightly\logs\me_mssql_usfkl11db124ci1_mv_to_tape_%AUTORUN%.log"
+ std_err_file: "d:\Stage\scripts\nightly\logs\me_mssql_usfkl11db124ci1_mv_to_tape_%AUTORUN%.err"
+ max_run_alarm: 15
+ alarm_if_fail: 1
+ alarm_if_terminated: 1
+
+
+ /* ----------------- me_mssql_d_usfkl11db124ci1_backup_tape ----------------- */ 
+
+ insert_job: me_mssql_d_usfkl11db124ci1_backup_tape   job_type: CMD 
+ box_name: me_mssql_d_usfkl11db124ci1_tape_box
+ command: c\:\WINDOWS\System32\windowspowershell\v1.0\powershell.exe d\:\Stage\scripts\nightly\VeritasBackup.ps1
+ machine: usfkl11db124ci1
+ owner: svc_mersql05@DMZPROD01
+ permission: mx,me
+ date_conditions: 0
+ condition: s(me_mssql_d_usfkl11db124ci1_mv_to_tape)
+ description: "This job executes the nightly backup for usfkl11db124ci1."
+ std_out_file: "d:\Stage\scripts\nightly\logs\me_mssql_usfkl11db124ci1_backup_%AUTORUN%.log"
+ std_err_file: "d:\Stage\scripts\nightly\logs\me_mssql_usfkl11db124ci1_backup_%AUTORUN%.err"
+ max_run_alarm: 840
+ alarm_if_fail: 1
+ alarm_if_terminated: 1
+
+
+ /* ----------------- me_mssql_d_usfkl11db124ci1_mv_to_backup ----------------- */ 
+
+ insert_job: me_mssql_d_usfkl11db124ci1_mv_to_backup   job_type: CMD 
+ box_name: me_mssql_d_usfkl11db124ci1_tape_box
+ command: c\:\WINDOWS\System32\windowspowershell\v1.0\powershell.exe d\:\Stage\scripts\nightly\Move2Back.ps1
+ machine: usfkl11db124ci1
+ owner: svc_mersql05@DMZPROD01
+ permission: mx,me
+ date_conditions: 0
+ condition: s(me_mssql_d_usfkl11db124ci1_backup_tape)
+ description: "This moves files from tapes directory to backup directory for usfkl11db124ci1."
+ std_out_file: "d:\Stage\scripts\nightly\logs\me_mssql_usfkl11db124ci1_mv_to_backup_%AUTORUN%.log"
+ std_err_file: "d:\Stage\scripts\nightly\logs\me_mssql_usfkl11db124ci1_mv_to_backup_%AUTORUN%.err"
+ max_run_alarm: 15
+ alarm_if_fail: 1
+ alarm_if_terminated: 1
+
+
+/* ----------------- me_mssql_w_usfkl11db124ci1_tape_box ----------------- */ 
+
+insert_job: me_mssql_w_usfkl11db124ci1_tape_box   job_type: BOX 
+owner: svc_mersql05@DMZPROD01
+permission: mx,me
+date_conditions: 1
+days_of_week: sa,su
+start_times: "03:00"
+alarm_if_fail: 1
+alarm_if_terminated: 1
+
+
+ /* ----------------- me_mssql_w_usfkl11db124ci1_mv_to_tape ----------------- */ 
+
+ insert_job: me_mssql_w_usfkl11db124ci1_mv_to_tape   job_type: CMD 
+ box_name: me_mssql_w_usfkl11db124ci1_tape_box
+ command: c\:\WINDOWS\System32\windowspowershell\v1.0\powershell.exe d\:\Stage\scripts\nightly\Move2Tape.ps1
+ machine: usfkl11db124ci1
+ owner: svc_mersql05@DMZPROD01
+ permission: mx,me
+ date_conditions: 0
+ condition: s(me_mssql_w_usfkl11db124ci1_nc_box)
+ description: "This moves files from backup directory to tapes directory to get backed up."
+ std_out_file: "d:\Stage\scripts\nightly\logs\me_mssql_usfkl11db124ci1_mv_to_tape_%AUTORUN%.log"
+ std_err_file: "d:\Stage\scripts\nightly\logs\me_mssql_usfkl11db124ci1_mv_to_tape_%AUTORUN%.err"
+ max_run_alarm: 15
+ alarm_if_fail: 1
+ alarm_if_terminated: 1
+
+
+ /* ----------------- me_mssql_w_usfkl11db124ci1_backup_tape ----------------- */ 
+
+ insert_job: me_mssql_w_usfkl11db124ci1_backup_tape   job_type: CMD 
+ box_name: me_mssql_w_usfkl11db124ci1_tape_box
+ command: c\:\WINDOWS\System32\windowspowershell\v1.0\powershell.exe d\:\Stage\scripts\nightly\VeritasBackup.ps1
+ machine: usfkl11db124ci1
+ owner: svc_mersql05@DMZPROD01
+ permission: mx,me
+ date_conditions: 0
+ condition: s(me_mssql_w_usfkl11db124ci1_mv_to_tape)
+ description: "This job executes the nightly backup for usfkl11db124ci1."
+ std_out_file: "d:\Stage\scripts\nightly\logs\me_mssql_usfkl11db124ci1_backup_%AUTORUN%.log"
+ std_err_file: "d:\Stage\scripts\nightly\logs\me_mssql_usfkl11db124ci1_backup_%AUTORUN%.err"
+ max_run_alarm: 840
+ alarm_if_fail: 1
+ alarm_if_terminated: 1
+
+
+ /* ----------------- me_mssql_w_usfkl11db124ci1_mv_to_backup ----------------- */ 
+
+ insert_job: me_mssql_w_usfkl11db124ci1_mv_to_backup   job_type: CMD 
+ box_name: me_mssql_w_usfkl11db124ci1_tape_box
+ command: c\:\WINDOWS\System32\windowspowershell\v1.0\powershell.exe d\:\Stage\scripts\nightly\Move2Back.ps1
+ machine: usfkl11db124ci1
+ owner: svc_mersql05@DMZPROD01
+ permission: mx,me
+ date_conditions: 0
+ condition: s(me_mssql_w_usfkl11db124ci1_backup_tape)
+ description: "This moves files from tapes directory to backup directory for usfkl11db124ci1."
+ std_out_file: "d:\Stage\scripts\nightly\logs\me_mssql_usfkl11db124ci1_mv_to_backup_%AUTORUN%.log"
+ std_err_file: "d:\Stage\scripts\nightly\logs\me_mssql_usfkl11db124ci1_mv_to_backup_%AUTORUN%.err"
+ max_run_alarm: 15
+ alarm_if_fail: 1
+ alarm_if_terminated: 1
+
+
+/* ----------------- dcop_reset_mssql_emerg_ibcg2 ----------------- */ 
+
+insert_job: dcop_reset_mssql_emerg_ibcg2   job_type: CMD 
+command: d\:\Stage\scripts\EMERG_id.bat master usfkl11db124ci1.mrshmc.com\usfkl11db124ci1
+machine: usfkl11db124ci1
+owner: svc_mersql05@DMZPROD01
+permission: mx,me
+date_conditions: 0
+description: "Requires Emgergency Chage request for DCOps to run. Generates Password for use my MHRS AppDev for Production access"
+std_out_file: "d:\Stage\log\mhrssql_emergency_id_%AUTORUN%.log"
+std_err_file: "d:\Stage\log\mhrssql_emergency_id_%AUTORUN%.err"
+max_run_alarm: 400
+alarm_if_fail: 1
+alarm_if_terminated: 1
+
+
+/* ----------------- pmmacc_d_autosys_PDZ_sql_machine_file ----------------- */ 
+
+insert_job: pmmacc_d_autosys_PDZ_sql_machine_file   job_type: CMD 
+command: /home/autosys/SQL/autosys_sql_script_machine.csh
+machine: usfkl21as225v
+owner: autosys@usfkl21as225v
+permission: wx,mx,me
+date_conditions: 0
+description: "Raw data fron the DB"
+std_out_file: "$LOG/pmmacc_d_autosys_TSZ_sql_machine_file_`date +%m%d`.log"
+std_err_file: "$LOG/pmmacc_d_autosys_TSZ_sql_machine_file_`date +%m%d`.err"
+alarm_if_fail: 0
+profile: "/home/autosys/auto.profile"
+alarm_if_terminated: 0
+
+
+/* ----------------- pmmacc_r_autosys_test_PDZ_elk_ps_ef ----------------- */ 
+
+insert_job: pmmacc_r_autosys_test_PDZ_elk_ps_ef   job_type: CMD 
+command: ps -ef|grep autosys|wc -l
+machine: usfkl21as225v
+owner: root
+permission: mx,me
+date_conditions: 0
+description: "testing status"
+std_out_file: "/home/autosys/logs/$AUTO_JOB_NAME_`date +%m%d`.log"
+std_err_file: "/home/autosys/logs/$AUTO_JOB_NAME_`date +%m%d`.err"
+alarm_if_fail: 0
+profile: "/home/autosys/auto.profile"
+alarm_if_terminated: 0
+
+
+/* ----------------- marsyn_d_WAS8_5_EXT_rsync-from-PRD-N1-PRF_N1 ----------------- */ 
+
+insert_job: marsyn_d_WAS8_5_EXT_rsync-from-PRD-N1-PRF_N1   job_type: CMD 
+command: /opt/apps/scripts/DRScripts/WAS8.5_EXT_rsync-from-prd-N1-prf.sh
+machine: usfkl21ws84v
+owner: wasadmin@usfkl21ws84v
+permission: wx,mx,me
+date_conditions: 1
+days_of_week: su,mo,tu,we,th,fr,sa
+start_times: "02:00"
+description: "Daily rsync from WAS855 Prod Internal Webserver (usfkl21ws84v) to DR Internal Webserver (USDFW22WS24V)"
+std_out_file: "/opt/applogs/rsync/logs/rsync_autosys_std_out.log"
+std_err_file: "/opt/applogs/rsync/logs/rsync_autosys_std_err.log"
+alarm_if_fail: 1
+alarm_if_terminated: 1
+
+
+/* ----------------- marsyn_d_WAS8_5_EXT_rsync-from-PRD-N2-PRF_N2 ----------------- */ 
+
+insert_job: marsyn_d_WAS8_5_EXT_rsync-from-PRD-N2-PRF_N2   job_type: CMD 
+command: /opt/apps/scripts/DRScripts/WAS8.5_EXT_rsync-from-prd-N2-prf.sh
+machine: usfkl21ws85v
+owner: wasadmin@usfkl21ws85v
+permission: wx,mx,me
+date_conditions: 1
+days_of_week: su,mo,tu,we,th,fr,sa
+start_times: "02:00"
+description: "Daily rsync from WAS855 Prod Internal Webserver (usfkl21ws85v) to DR Internal Webserver (USDFW22WS25V)"
+std_out_file: "/opt/applogs/rsync/logs/rsync_autosys_std_out.log"
+std_err_file: "/opt/applogs/rsync/logs/rsync_autosys_std_err.log"
+alarm_if_fail: 1
+alarm_if_terminated: 1
+
+
+/* ----------------- meppa_d_Mkrt_UAT_CntrlFile_Setup ----------------- */ 
+
+insert_job: meppa_d_Mkrt_UAT_CntrlFile_Setup   job_type: CMD 
+command: D\:\MSSQL\PPA_Mercer_Promote\BAT\PPA_Mkrt_UAT_CntrlFile_Setup.bat
+machine: usdfw12db29cn1
+owner: svc-DFWFrm-UAT-AutoS@DMZPROD01
+permission: gx,wx,mx
+date_conditions: 1
+days_of_week: mo,tu,we,th,fr,sa,su
+start_times: "11:15"
+description: "Setup Control File on PPA UAT Server for Promote Process"
+job_terminator: 1
+std_out_file: "D:\MSSQL\PPA_Mercer_Promote\Log\PPA_Mkrt_UAT_CntrlFile_Setup_%AUTORUN%.log"
+std_err_file: "D:\MSSQL\PPA_Mercer_Promote\Log\PPA_Mkrt_UAT_CntrlFile_Setup_%AUTORUN%.err"
+max_run_alarm: 60
+alarm_if_fail: 0
+alarm_if_terminated: 0
+
+
+/* ----------------- meppa_d_Mkrt_Uat_restore ----------------- */ 
+
+insert_job: meppa_d_Mkrt_Uat_restore   job_type: CMD 
+command: D\:\MSSQL\PPA_Mercer_Promote\BAT\PPA_Mkrt_UAT_Restore.bat
+machine: usdfw12db29cn1
+owner: svc-DFWFrm-UAT-AutoS@DMZPROD01
+permission: gx,wx,mx
+date_conditions: 0
+condition: s(meppa_d_Mkrt_UAT_CntrlFile_Setup)
+description: "Restore DB on PPA UAT Server for Promote Process"
+std_out_file: "D:\MSSQL\PPA_Mercer_Promote\Log\PPA_Mkrt_UAT_Restore_%AUTORUN%.log"
+std_err_file: "D:\MSSQL\PPA_Mercer_Promote\Log\PPA_Mkrt_UAT_Restore_%AUTORUN%.err"
+max_run_alarm: 60
+alarm_if_fail: 0
+alarm_if_terminated: 0
+
+
+/* ----------------- mamdocs_guestLink_notification ----------------- */ 
+
+insert_job: mamdocs_guestLink_notification   job_type: CMD 
+command: /opt/apps/DFC/customJobs/MDocsAutosysJobs/DCTM_JOBS/shell_scripts/MDocsGuestLinkNotificationJob.sh
+machine: usfkl21as86.mrshmc.com
+owner: mdocs-admin@usfkl21as86.mrshmc.com
+permission: mx,me
+date_conditions: 1
+days_of_week: all
+start_times: "4:00"
+description: "MDocs Guestlink Notification Job"
+std_out_file: "/opt/apps/DFC/customJobs/MDocsAutosysJobs/DCTM_JOBS/logs/MDocsGuestLinkJob/stdout_`date +%m%d`.log"
+std_err_file: "/opt/apps/DFC/customJobs/MDocsAutosysJobs/DCTM_JOBS/logs/MDocsGuestLinkJob/stderr_`date +%m%d`.log"
+max_run_alarm: 90
+alarm_if_fail: 1
+alarm_if_terminated: 1
+
+
+/* ----------------- mamdocs_apac_guestLink_notification ----------------- */ 
+
+insert_job: mamdocs_apac_guestLink_notification   job_type: CMD 
+command: /opt/apps/apac/DFC/customJobs/MDocsAutosysJobs/DCTM_JOBS/shell_scripts/MDocsGuestLinkNotificationJob.sh
+machine: usfkl21as86.mrshmc.com
+owner: mdocsapacadm@usfkl21as86.mrshmc.com
+permission: mx,me
+date_conditions: 1
+days_of_week: su,mo,tu,we,th,fr,sa
+start_times: "14:00"
+description: "MDocs Guestlink Notification Job"
+std_out_file: "/opt/apps/apac/DFC/customJobs/MDocsAutosysJobs/DCTM_JOBS/logs/MDocsGuestLinkJob/stdout_`date +%m%d`.log"
+std_err_file: "/opt/apps/apac/DFC/customJobs/MDocsAutosysJobs/DCTM_JOBS/logs/MDocsGuestLinkJob/stderr_`date +%m%d`.log"
+max_run_alarm: 90
+alarm_if_fail: 1
+alarm_if_terminated: 1
+
+
+/* ----------------- pmdocs_apac_hard_delete ----------------- */ 
+
+insert_job: pmdocs_apac_hard_delete   job_type: CMD 
+command: /opt/apps/apac/DFC/customJobs/MDocsAutosysJobs/DCTM_JOBS/shell_scripts/MDocsHardDeleteJob.sh
+machine: usfkl21as86.mrshmc.com
+owner: mdocsapacadm@USFKL21as86.mrshmc.com
+permission: mx,me
+date_conditions: 1
+days_of_week: su,mo,tu,we,th,fr,sa
+start_times: "13:00"
+description: "pmdocsapac_d_uni_start_MdocsHardDelete"
+std_out_file: "/opt/apps/apac/DFC/customJobs/MDocsAutosysJobs/DCTM_JOBS/logs/MDocsHardDelete_stdout_`date +%m%d`.log"
+std_err_file: "/opt/apps/apac/DFC/customJobs/MDocsAutosysJobs/DCTM_JOBS/logs/MDocsHardDelete_stderr_`date +%m%d`.log"
+max_run_alarm: 90
+alarm_if_fail: 1
+alarm_if_terminated: 1
+
+
+/* ----------------- pmdocs_hard_delete ----------------- */ 
+
+insert_job: pmdocs_hard_delete   job_type: CMD 
+command: /opt/apps/DFC/customJobs/MDocsAutosysJobs/DCTM_JOBS/shell_scripts/MDocsHardDeleteJob.sh
+machine: usfkl21as86.mrshmc.com
+owner: mdocs-admin@usfkl21as86.mrshmc.com
+permission: mx,me
+date_conditions: 1
+days_of_week: su,mo,tu,we,th,fr,sa
+start_times: "3:00"
+description: "pmdocs_d_uni_start_MdocsHardDelete"
+std_out_file: "/opt/apps/DFC/customJobs/MDocsAutosysJobs/DCTM_JOBS/logs/MDocsHardDelete/stdout_`date +%m%d`.log"
+std_err_file: "/opt/apps/DFC/customJobs/MDocsAutosysJobs/DCTM_JOBS/logs/MDocsHardDelete/stderr_`date +%m%d`.log"
+max_run_alarm: 90
+alarm_if_fail: 1
+alarm_if_terminated: 1
+
+
+/* ----------------- pacc_r_autosys_DMZ_set_stuff_elk2_more2 ----------------- */ 
+
+insert_job: pacc_r_autosys_DMZ_set_stuff_elk2_more2   job_type: CMD 
+command: more /opt/apps/apac/DFC/customJobs/MDocsAutosysJobs/DCTM_JOBS/shell_scripts/MDocsHardDeleteJob.sh
+machine: usfkl21as86.mrshmc.com
+owner: mdocsapacadm@USFKL21as86.mrshmc.com
+permission: wx,mx,me
+date_conditions: 0
+description: "just testing"
+std_out_file: "/tmp/pacc_r_autosys_DMZ_set_stuff_elk2_more2r.log"
+std_err_file: "/tmp/pacc_r_autosys_DMZ_set_stuff_elk2_more2_.err"
+alarm_if_fail: 0
+alarm_if_terminated: 0
+
+
+/* ----------------- medba_gather_stats_bwprod24 ----------------- */ 
+
+insert_job: medba_gather_stats_bwprod24   job_type: CMD 
+command: $CYCSHELL/custom_gather_stats.csh
+machine: usfkl21db136vcn3
+owner: oracle@usfkl21db136vcn3
+permission: mx,me
+date_conditions: 1
+days_of_week: su,mo,tu,we,th,fr,sa
+start_times: "01:00"
+description: "Job will gather stats for specific tables in bwprod24"
+job_terminator: 1
+std_out_file: "$CYCLOG/medba_gather_stats_bwprod24_`date +%m%d%y`.log"
+std_err_file: "$CYCLOG/medba_gather_stats_bwprod24_`date +%m%d%y`.log"
+max_run_alarm: 180
+alarm_if_fail: 0
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 0
+
+
+/* ----------------- medba_gather_stats_weekend_bwprod24 ----------------- */ 
+
+insert_job: medba_gather_stats_weekend_bwprod24   job_type: CMD 
+command: $CYCSHELL/custom_gather_stats_weekend.csh
+machine: usfkl21db136vcn3
+owner: oracle@usfkl21db136vcn3
+permission: mx,me
+date_conditions: 1
+days_of_week: sa
+start_times: "05:00"
+description: "Job will gather stats for specific tables in bwprod24 with last_analyzed date > 7 days old"
+job_terminator: 1
+std_out_file: "$CYCLOG/medba_gather_stats_weekend_bwprod24_`date +%m%d%y`.log"
+std_err_file: "$CYCLOG/medba_gather_stats_weekend_bwprod24_`date +%m%d%y`.log"
+max_run_alarm: 360
+alarm_if_fail: 0
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 0
+
+
+/* ----------------- medba_grant_privs_to_roles_bwprod24 ----------------- */ 
+
+insert_job: medba_grant_privs_to_roles_bwprod24   job_type: CMD 
+command: $CYCSHELL/grant_privs_to_roles.csh bwprod24
+machine: usfkl21db136vcn1
+owner: oracle@usfkl21db136vcn1
+permission: mx,me
+date_conditions: 1
+days_of_week: mo,tu,we,th,fr,sa
+start_times: "06:00,12:00,18:00,00:00"
+description: "Job will grant privs on new objects  to standard MM* roles"
+job_terminator: 1
+std_out_file: "$CYCLOG/medba_grant_privs_to_roles_bwprod24_`date +%m%d%y`.log"
+std_err_file: "$CYCLOG/medba_grant_privs_to_roles_bwprod24_`date +%m%d%y`.log"
+max_run_alarm: 180
+alarm_if_fail: 0
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 0
+
+
+/* ----------------- medba_grant_privs_to_roles_bwprod25 ----------------- */ 
+
+insert_job: medba_grant_privs_to_roles_bwprod25   job_type: CMD 
+command: $CYCSHELL/grant_privs_to_roles.csh bwprod25
+machine: usfkl21db136vcn1
+owner: oracle@usfkl21db136vcn1
+permission: mx,me
+date_conditions: 1
+days_of_week: mo,tu,we,th,fr,sa
+start_times: "06:10,12:10,18:10,00:10"
+description: "Job will grant privs on new objects  to standard MM* roles"
+job_terminator: 1
+std_out_file: "$CYCLOG/medba_grant_privs_to_roles_bwprod25_`date +%m%d%y`.log"
+std_err_file: "$CYCLOG/medba_grant_privs_to_roles_bwprod25_`date +%m%d%y`.log"
+max_run_alarm: 180
+alarm_if_fail: 0
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 0
+
+
+/* ----------------- medba_grant_privs_to_roles_bwprod26 ----------------- */ 
+
+insert_job: medba_grant_privs_to_roles_bwprod26   job_type: CMD 
+command: $CYCSHELL/grant_privs_to_roles.csh bwprod26
+machine: usfkl21db136vcn1
+owner: oracle@usfkl21db136vcn1
+permission: mx,me
+date_conditions: 1
+days_of_week: mo,tu,we,th,fr,sa
+start_times: "06:20,12:20,18:20,00:20"
+description: "Job will grant privs on new objects  to standard MM* roles"
+job_terminator: 1
+std_out_file: "$CYCLOG/medba_grant_privs_to_roles_bwprod26_`date +%m%d%y`.log"
+std_err_file: "$CYCLOG/medba_grant_privs_to_roles_bwprod26_`date +%m%d%y`.log"
+max_run_alarm: 180
+alarm_if_fail: 0
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 0
+
+
+/* ----------------- pmaclev_d_win_start_PBE3Arch ----------------- */ 
+
+insert_job: pmaclev_d_win_start_PBE3Arch   job_type: CMD 
+command: \\gbbed61ns9svm_ma_app_prod_vl414.mrshmc.com\ITN_Share\Cleva_Tomcat\Prod_Batches\Utility\pmaclev_d_win_start_BE3Arch.bat
+machine: gbbe11v0367
+owner: svc-ITNAppWAS@dmzprod01
+permission: gx,wx,mx
+date_conditions: 1
+days_of_week: mo,tu,we,th
+start_times: "20:00"
+description: "BE3 Archive Documents"
+std_out_file: "\\gbbed61ns9svm_ma_app_prod_vl414.mrshmc.com\ITN_Share\Cleva_Tomcat\Prod_Batches\logs\pmaclev_d_win_start_BE3Arch_`date +%m%d`.log"
+std_err_file: "\\gbbed61ns9svm_ma_app_prod_vl414.mrshmc.com\ITN_Share\Cleva_Tomcat\Prod_Batches\logs\pmaclev_d_win_start_BE3Arch_`date +%m%d`.err"
+alarm_if_fail: 0
+alarm_if_terminated: 1
+
+
+/* ----------------- pmaclev_d_win_start_PBE3EdtDif ----------------- */ 
+
+insert_job: pmaclev_d_win_start_PBE3EdtDif   job_type: CMD 
+command: \\gbbed61ns9svm_ma_app_prod_vl414.mrshmc.com\ITN_Share\Cleva_Tomcat\Prod_Batches\Utility\pmaclev_d_win_start_BE3EdtDif.bat
+machine: gbbe11v0367
+owner: svc-ITNAppWAS@dmzprod01
+permission: gx,wx,mx
+date_conditions: 1
+days_of_week: su,mo,tu,we,th
+start_times: "14:00"
+description: "BE3 edition differee"
+std_out_file: "\\gbbed61ns9svm_ma_app_prod_vl414.mrshmc.com\ITN_Share\Cleva_Tomcat\Prod_Batches\logs\pmaclev_d_win_start_BE3EdtDif_`date +%m%d`.log"
+std_err_file: "\\gbbed61ns9svm_ma_app_prod_vl414.mrshmc.com\ITN_Share\Cleva_Tomcat\Prod_Batches\logs\pmaclev_d_win_start_BE3EdtDif_`date +%m%d`.err"
+alarm_if_fail: 0
+alarm_if_terminated: 1
+
+
+/* ----------------- mamsearch_d_prod_company_oracle_init_job ----------------- */ 
+
+insert_job: mamsearch_d_prod_company_oracle_init_job   job_type: CMD 
+command: /opt/apps/dfw1/volumes/msearch/mysqlplus/load_oratemp_company_delta.sh &> /opt/apps/dfw1/volumes/msearch/mysqlplus/logs/company/load_oratemp_company_init_`date +%Y%m%d`.log
+machine: usdf21v0516
+owner: dcradmin@usdf21v0516
+permission: mx,me
+date_conditions: 1
+days_of_week: all
+start_mins: 05,15,25,35,45,55
+run_window: "00:10-23:29"
+description: "company init oracle_job"
+max_run_alarm: 60
+alarm_if_fail: 1
+alarm_if_terminated: 1
+
+
+/* ----------------- mamsearch_d_prod_company_dih_init_job ----------------- */ 
+
+insert_job: mamsearch_d_prod_company_dih_init_job   job_type: CMD 
+command: /opt/apps/dfw1/volumes/msearch/batch/msearch-batch/SolrImporterBatchJob/bin/solr_batch.sh company delta 5000 &> /opt/apps/dfw1/volumes/msearch/batch/msearch-batch/SolrImporterBatchJob/logs/company/solr_batch_init_`date +%Y%m%d`.log
+machine: usdf21v0516
+owner: dcradmin@usdf21v0516
+permission: mx,me
+date_conditions: 1
+days_of_week: all
+start_mins: 00,10,20,30,40,50
+run_window: "00:16-23:29"
+condition: s(mamsearch_d_prod_company_oracle_init_job)
+description: "company init_job"
+max_run_alarm: 60
+alarm_if_fail: 1
+alarm_if_terminated: 1
+
+
+/* ----------------- mamsearch_d_prod_market-master_box_delta ----------------- */ 
+
+insert_job: mamsearch_d_prod_market-master_box_delta   job_type: BOX 
+owner: dcradmin@usdf21v0516
+permission: gx,wx,mx,me
+date_conditions: 1
+days_of_week: su,mo,tu,we,th,fr,sa
+start_times: "00:00"
+run_window: "07:00-06:59"
+description: "msearch_market-master_box is running"
+alarm_if_fail: 1
+alarm_if_terminated: 1
+
+
+ /* ----------------- mamsearch_d_prod_market-group_batch_job_dih_delta ----------------- */ 
+
+ insert_job: mamsearch_d_prod_market-group_batch_job_dih_delta   job_type: CMD 
+ box_name: mamsearch_d_prod_market-master_box_delta
+ command: /opt/apps/dfw1/volumes/msearch/batch/msearch-batch/SolrImporterBatchJob/bin/solr_batch.sh market-group delta 2000 &> /opt/apps/dfw1/volumes/msearch/batch/msearch-batch/SolrImporterBatchJob/logs/market-group/solr_batch_delta_`date +%Y%m%d`.log
+ machine: usdf21v0516
+ owner: dcradmin@usdf21v0516
+ permission: gx,wx,mx,me
+ date_conditions: 0
+ condition: s(mamsearch_d_prod_market-master_batch_job_dih_delta)
+ description: "market-group delta"
+ max_run_alarm: 60
+ alarm_if_fail: 1
+ alarm_if_terminated: 1
+
+
+ /* ----------------- mamsearch_d_prod_market-group_oracle_job_c_delta ----------------- */ 
+
+ insert_job: mamsearch_d_prod_market-group_oracle_job_c_delta   job_type: CMD 
+ box_name: mamsearch_d_prod_market-master_box_delta
+ command: /opt/apps/dfw1/volumes/msearch/mysqlplus/load_oratemp_market-group.sh &> /opt/apps/dfw1/volumes/msearch/mysqlplus/logs/market-group/load_oratemp_market-group_`date +%Y%m%d`.log
+ machine: usdf21v0516
+ owner: dcradmin@usdf21v0516
+ permission: gx,wx,mx,me
+ date_conditions: 0
+ condition: s(mamsearch_d_prod_market-master_oracle_job_c_delta)
+ description: "market-group oracle_job"
+ max_run_alarm: 60
+ alarm_if_fail: 1
+ alarm_if_terminated: 1
+
+
+ /* ----------------- mamsearch_d_prod_market-master_batch_job_dih_delta ----------------- */ 
+
+ insert_job: mamsearch_d_prod_market-master_batch_job_dih_delta   job_type: CMD 
+ box_name: mamsearch_d_prod_market-master_box_delta
+ command: /opt/apps/dfw1/volumes/msearch/batch/msearch-batch/SolrImporterBatchJob/bin/solr_batch.sh market-master delta 3000 &> /opt/apps/dfw1/volumes/msearch/batch/msearch-batch/SolrImporterBatchJob/logs/market-master/solr_batch_delta_`date +%Y%m%d`.log
+ machine: usdf21v0516
+ owner: dcradmin@usdf21v0516
+ permission: gx,wx,mx,me
+ date_conditions: 0
+ condition: s(mamsearch_d_prod_market-group_oracle_job_c_delta)
+ description: "market-master delta"
+ max_run_alarm: 60
+ alarm_if_fail: 1
+ alarm_if_terminated: 1
+
+
+ /* ----------------- mamsearch_d_prod_market-master_oracle_job_c_delta ----------------- */ 
+
+ insert_job: mamsearch_d_prod_market-master_oracle_job_c_delta   job_type: CMD 
+ box_name: mamsearch_d_prod_market-master_box_delta
+ command: /opt/apps/dfw1/volumes/msearch/mysqlplus/load_oratemp_market-master.sh &> /opt/apps/dfw1/volumes/msearch/mysqlplus/logs/market-master/load_oratemp_market-master_`date +%Y%m%d`.log
+ machine: usdf21v0516
+ owner: dcradmin@usdf21v0516
+ permission: gx,wx,mx,me
+ date_conditions: 0
+ description: "market-master oracle_job"
+ max_run_alarm: 60
+ alarm_if_fail: 1
+ alarm_if_terminated: 1
+
+
+/* ----------------- mamsearch_d_prod_account_dih_delta_job ----------------- */ 
+
+insert_job: mamsearch_d_prod_account_dih_delta_job   job_type: CMD 
+command: /opt/apps/dfw1/volumes/msearch/batch/msearch-batch/SolrImporterBatchJob/bin/solr_batch.sh account delta 5000 &> /opt/apps/dfw1/volumes/msearch/batch/msearch-batch/SolrImporterBatchJob/logs/account/solr_batch_delta_`date +%Y%m%d`.log
+machine: usdf21v0516
+owner: dcradmin@usdf21v0516
+permission: mx,me
+date_conditions: 1
+days_of_week: all
+start_mins: 00,15,30,45
+run_window: "00:16-23:29"
+condition: s(mamsearch_d_prod_account_oracle_delta_job)
+description: "Account delta"
+max_run_alarm: 60
+alarm_if_fail: 1
+alarm_if_terminated: 1
+
+
+/* ----------------- mamsearch_d_prod_account_oracle_delta_job ----------------- */ 
+
+insert_job: mamsearch_d_prod_account_oracle_delta_job   job_type: CMD 
+command: /opt/apps/dfw1/volumes/msearch/mysqlplus/load_oratemp_account_delta.sh &> /opt/apps/dfw1/volumes/msearch/mysqlplus/logs/account/load_oratemp_account_delta_`date +%Y%m%d`.log
+machine: usdf21v0516
+owner: dcradmin@usdf21v0516
+permission: mx,me
+date_conditions: 0
+days_of_week: all
+start_mins: 05,20,35,50
+run_window: "00:10-23:29"
+description: "account oracle_job"
+max_run_alarm: 60
+alarm_if_fail: 1
+alarm_if_terminated: 1
+
+
+/* ----------------- mamsearch_d_prod_company_dih_delta_job ----------------- */ 
+
+insert_job: mamsearch_d_prod_company_dih_delta_job   job_type: CMD 
+command: /opt/apps/dfw1/volumes/msearch/batch/msearch-batch/SolrImporterBatchJob/bin/solr_batch.sh company delta 5000 &> /opt/apps/dfw1/volumes/msearch/batch/msearch-batch/SolrImporterBatchJob/logs/company/solr_batch_delta_`date +%Y%m%d`.log
+machine: usdf21v0516
+owner: dcradmin@usdf21v0516
+permission: mx,me
+date_conditions: 1
+days_of_week: all
+start_mins: 00,15,30,45
+run_window: "00:16-23:29"
+condition: s(mamsearch_d_prod_company_oracle_delta_job)
+description: "company delta"
+max_run_alarm: 60
+alarm_if_fail: 1
+alarm_if_terminated: 1
+
+
+/* ----------------- mamsearch_d_prod_company_oracle_delta_job ----------------- */ 
+
+insert_job: mamsearch_d_prod_company_oracle_delta_job   job_type: CMD 
+command: /opt/apps/dfw1/volumes/msearch/mysqlplus/load_oratemp_company_delta.sh &> /opt/apps/dfw1/volumes/msearch/mysqlplus/logs/company/load_oratemp_company_delta_`date +%Y%m%d`.log
+machine: usdf21v0516
+owner: dcradmin@usdf21v0516
+permission: mx,me
+date_conditions: 0
+days_of_week: all
+start_mins: 05,20,35,50
+run_window: "00:10-23:29"
+description: "company oracle_job"
+max_run_alarm: 60
+alarm_if_fail: 1
+alarm_if_terminated: 1
+
+
+/* ----------------- mamsearch_d_prod_market-financial-data_dih_init_job ----------------- */ 
+
+insert_job: mamsearch_d_prod_market-financial-data_dih_init_job   job_type: CMD 
+command: /opt/apps/dfw1/volumes/msearch/batch/msearch-batch/SolrImporterBatchJob/bin/solr_batch.sh market-financial-data init 3000 &> /opt/apps/dfw1/volumes/msearch/batch/msearch-batch/SolrImporterBatchJob/logs/market-financial-data/solr_batch_init_`date +%Y%m%d`.log
+machine: usdf21v0516
+owner: dcradmin@usdf21v0516
+permission: mx,me
+date_conditions: 1
+days_of_week: all
+start_times: "07:00"
+condition: s(mamsearch_d_prod_market-financial-data_oracle_init_job)
+description: "market-financial-data init"
+max_run_alarm: 90
+alarm_if_fail: 1
+alarm_if_terminated: 1
+
+
+/* ----------------- mamsearch_d_prod_market-financial-data_oracle_init_job ----------------- */ 
+
+insert_job: mamsearch_d_prod_market-financial-data_oracle_init_job   job_type: CMD 
+command: /opt/apps/dfw1/volumes/msearch/mysqlplus/load_oratemp_market-financial-data.sh &> /opt/apps/dfw1/volumes/msearch/mysqlplus/logs/market-financial-data/load_oratemp_market-financial-data_`date +%Y%m%d`.log
+machine: usdf21v0516
+owner: dcradmin@usdf21v0516
+permission: mx,me
+date_conditions: 0
+days_of_week: all
+start_times: "06:30"
+description: "market-financial-data oracle_job"
+max_run_alarm: 90
+alarm_if_fail: 1
+alarm_if_terminated: 1
+
+
+/* ----------------- mamsearch_d_prod_market-group_dih_init_job ----------------- */ 
+
+insert_job: mamsearch_d_prod_market-group_dih_init_job   job_type: CMD 
+command: /opt/apps/dfw1/volumes/msearch/batch/msearch-batch/SolrImporterBatchJob/bin/solr_batch.sh market-group init 2000 &> /opt/apps/dfw1/volumes/msearch/batch/msearch-batch/SolrImporterBatchJob/logs/market-group/solr_batch_init_`date +%Y%m%d`.log
+machine: usdf21v0516
+owner: dcradmin@usdf21v0516
+permission: mx,me
+date_conditions: 1
+days_of_week: all
+start_times: "02:35"
+condition: s(mamsearch_d_prod_market-group_oracle_init_job)
+description: "market-group init"
+max_run_alarm: 60
+alarm_if_fail: 1
+alarm_if_terminated: 1
+
+
+/* ----------------- mamsearch_d_prod_market-group_oracle_init_job ----------------- */ 
+
+insert_job: mamsearch_d_prod_market-group_oracle_init_job   job_type: CMD 
+command: /opt/apps/dfw1/volumes/msearch/mysqlplus/load_oratemp_market-group.sh &> /opt/apps/dfw1/volumes/msearch/mysqlplus/logs/market-group/load_oratemp_market-group_`date +%Y%m%d`.log
+machine: usdf21v0516
+owner: dcradmin@usdf21v0516
+permission: mx,me
+date_conditions: 0
+days_of_week: all
+start_times: "02:30"
+description: "market-group oracle_job"
+max_run_alarm: 60
+alarm_if_fail: 1
+alarm_if_terminated: 1
+
+
+/* ----------------- mamsearch_d_prod_market-rating_dih_init_job ----------------- */ 
+
+insert_job: mamsearch_d_prod_market-rating_dih_init_job   job_type: CMD 
+command: /opt/apps/dfw1/volumes/msearch/batch/msearch-batch/SolrImporterBatchJob/bin/solr_batch.sh market-rating init 2000 &> /opt/apps/dfw1/volumes/msearch/batch/msearch-batch/SolrImporterBatchJob/logs/market-rating/solr_batch_init_`date +%Y%m%d`.log
+machine: usdf21v0516
+owner: dcradmin@usdf21v0516
+permission: mx,me
+date_conditions: 1
+days_of_week: all
+start_mins: 15,45
+condition: s(mamsearch_d_prod_market-rating_oracle_init_job)
+description: "market-rating init"
+max_run_alarm: 60
+alarm_if_fail: 1
+alarm_if_terminated: 1
+
+
+/* ----------------- mamsearch_d_prod_market-rating_oracle_init_job ----------------- */ 
+
+insert_job: mamsearch_d_prod_market-rating_oracle_init_job   job_type: CMD 
+command: /opt/apps/dfw1/volumes/msearch/mysqlplus/load_oratemp_market-rating.sh &> /opt/apps/dfw1/volumes/msearch/mysqlplus/logs/market-rating/load_oratemp_market-rating_`date +%Y%m%d`.log
+machine: usdf21v0516
+owner: dcradmin@usdf21v0516
+permission: mx,me
+date_conditions: 0
+days_of_week: all
+start_mins: 10,40
+description: "market-rating oracle_job"
+max_run_alarm: 60
+alarm_if_fail: 1
+alarm_if_terminated: 1
+
+
+/* ----------------- mamsearch_d_prod_sepr_dih_delta_job ----------------- */ 
+
+insert_job: mamsearch_d_prod_sepr_dih_delta_job   job_type: CMD 
+command: /opt/apps/dfw1/volumes/msearch/batch/msearch-batch/SolrImporterBatchJob/bin/solr_batch.sh sepr delta 3000 &> /opt/apps/dfw1/volumes/msearch/batch/msearch-batch/SolrImporterBatchJob/logs/sepr/solr_batch_delta_`date +%Y%m%d`.log
+machine: usdf21v0516
+owner: dcradmin@usdf21v0516
+permission: mx,me
+date_conditions: 1
+days_of_week: all
+start_mins: 00,15,25,35,45,55
+run_window: "00:10-23:55"
+condition: s(mamsearch_d_prod_sepr_oracle_delta_job) & n(mamsearch_d_prod_sepr_dih_init_job)
+description: "sepr delta"
+max_run_alarm: 60
+alarm_if_fail: 1
+alarm_if_terminated: 1
+
+
+/* ----------------- mamsearch_d_prod_sepr_oracle_delta_job ----------------- */ 
+
+insert_job: mamsearch_d_prod_sepr_oracle_delta_job   job_type: CMD 
+command: /opt/apps/dfw1/volumes/msearch/mysqlplus/load_oratemp_sepr_init.sh &> /opt/apps/dfw1/volumes/msearch/mysqlplus/logs/sepr/load_oratemp_sepr_init_`date +%Y%m%d`.log
+machine: usdf21v0516
+owner: dcradmin@usdf21v0516
+permission: mx,me
+date_conditions: 0
+days_of_week: all
+start_mins: 00,10,20,30,40,50
+run_window: "00:10-23:50"
+description: "sepr oracle_job"
+max_run_alarm: 60
+alarm_if_fail: 1
+alarm_if_terminated: 1
+
+
+/* ----------------- mamsearch_d_prod_sepr_dih_init_job ----------------- */ 
+
+insert_job: mamsearch_d_prod_sepr_dih_init_job   job_type: CMD 
+command: /opt/apps/dfw1/volumes/msearch/batch/msearch-batch/SolrImporterBatchJob/bin/solr_batch.sh sepr init 3000 &> /opt/apps/dfw1/volumes/msearch/batch/msearch-batch/SolrImporterBatchJob/logs/sepr/solr_batch_init_`date +%Y%m%d`.log
+machine: usdf21v0516
+owner: dcradmin@usdf21v0516
+permission: mx,me
+date_conditions: 1
+days_of_week: all
+start_times: "02:05"
+condition: s(mamsearch_d_prod_sepr_oracle_init_job) & n(mamsearch_d_prod_sepr_dih_delta_job)
+description: "sepr init"
+max_run_alarm: 60
+alarm_if_fail: 1
+alarm_if_terminated: 1
+
+
+/* ----------------- mamsearch_d_prod_sepr_oracle_init_job ----------------- */ 
+
+insert_job: mamsearch_d_prod_sepr_oracle_init_job   job_type: CMD 
+command: /opt/apps/dfw1/volumes/msearch/mysqlplus/load_oratemp_sepr_init.sh &> /opt/apps/dfw1/volumes/msearch/mysqlplus/logs/sepr/load_oratemp_sepr_init_`date +%Y%m%d`.log
+machine: usdf21v0516
+owner: dcradmin@usdf21v0516
+permission: mx,me
+date_conditions: 0
+days_of_week: all
+start_times: "01:05"
+description: "sepr oracle_job"
+max_run_alarm: 360
+alarm_if_fail: 1
+alarm_if_terminated: 1
+
+
+/* ----------------- mamsearch_d_prod_market_dih_init_job ----------------- */ 
+
+insert_job: mamsearch_d_prod_market_dih_init_job   job_type: CMD 
+command: /opt/apps/dfw1/volumes/msearch/batch/msearch-batch/SolrImporterBatchJob/bin/solr_batch.sh market init 2000 &> /opt/apps/dfw1/volumes/msearch/batch/msearch-batch/SolrImporterBatchJob/logs/market/solr_batch_init_`date +%Y%m%d`.log
+machine: usdf21v0516
+owner: dcradmin@usdf21v0516
+permission: mx,me
+date_conditions: 1
+days_of_week: all
+start_times: "2:05"
+condition: s(mamsearch_d_prod_market_oracle_init_job)
+description: "market init"
+max_run_alarm: 60
+alarm_if_fail: 1
+alarm_if_terminated: 1
+
+
+/* ----------------- mamsearch_d_prod_market_oracle_init_job ----------------- */ 
+
+insert_job: mamsearch_d_prod_market_oracle_init_job   job_type: CMD 
+command: /opt/apps/dfw1/volumes/msearch/mysqlplus/load_oratemp_market.sh &> /opt/apps/dfw1/volumes/msearch/mysqlplus/logs/market/load_oratemp_market_`date +%Y%m%d`.log
+machine: usdf21v0516
+owner: dcradmin@usdf21v0516
+permission: mx,me
+date_conditions: 0
+days_of_week: all
+start_times: "02:00"
+description: "market oracle_job"
+max_run_alarm: 60
+alarm_if_fail: 1
+alarm_if_terminated: 1
+
+
+/* ----------------- mamsearch_d_prod_office_dih_init_job ----------------- */ 
+
+insert_job: mamsearch_d_prod_office_dih_init_job   job_type: CMD 
+command: /opt/apps/dfw1/volumes/msearch/batch/msearch-batch/SolrImporterBatchJob/bin/solr_batch.sh office init 2000 &> /opt/apps/dfw1/volumes/msearch/batch/msearch-batch/SolrImporterBatchJob/logs/office/solr_batch_init_`date +%Y%m%d`.log
+machine: usdf21v0516
+owner: dcradmin@usdf21v0516
+permission: mx,me
+date_conditions: 1
+days_of_week: all
+start_times: "4:05"
+condition: s(mamsearch_d_prod_office_oracle_init_job)
+description: "office init"
+max_run_alarm: 60
+alarm_if_fail: 1
+alarm_if_terminated: 1
+
+
+/* ----------------- mamsearch_d_prod_office_oracle_init_job ----------------- */ 
+
+insert_job: mamsearch_d_prod_office_oracle_init_job   job_type: CMD 
+command: /opt/apps/dfw1/volumes/msearch/mysqlplus/load_oratemp_office_init.sh &> /opt/apps/dfw1/volumes/msearch/mysqlplus/logs/office/load_oratemp_office_init_`date +%Y%m%d`.log
+machine: usdf21v0516
+owner: dcradmin@usdf21v0516
+permission: mx,me
+date_conditions: 0
+days_of_week: all
+start_times: "04:00"
+description: "office oracle_job"
+max_run_alarm: 60
+alarm_if_fail: 1
+alarm_if_terminated: 1
+
+
+/* ----------------- mamsearch_d_prod_market-news_dih_init_job ----------------- */ 
+
+insert_job: mamsearch_d_prod_market-news_dih_init_job   job_type: CMD 
+command: /opt/apps/dfw1/volumes/msearch/batch/msearch-batch/SolrImporterBatchJob/bin/solr_batch.sh market-news init 2000 &> /opt/apps/dfw1/volumes/msearch/batch/msearch-batch/SolrImporterBatchJob/logs/market-news/solr_batch_init_`date +%Y%m%d`.log
+machine: usdf21v0516
+owner: dcradmin@usdf21v0516
+permission: mx,me
+date_conditions: 1
+days_of_week: all
+start_times: "01:35,04:35,07:35,10:35,13:35,16:35,19:35,22:35"
+condition: s(mamsearch_d_prod_market-news_oracle_init_job)
+description: "market-news init"
+max_run_alarm: 60
+alarm_if_fail: 1
+alarm_if_terminated: 1
+
+
+/* ----------------- mamsearch_d_prod_market-news_oracle_init_job ----------------- */ 
+
+insert_job: mamsearch_d_prod_market-news_oracle_init_job   job_type: CMD 
+command: /opt/apps/dfw1/volumes/msearch/mysqlplus/load_oratemp_market-news.sh &> /opt/apps/dfw1/volumes/msearch/mysqlplus/logs/market-news/load_oratemp_market-news_`date +%Y%m%d`.log
+machine: usdf21v0516
+owner: dcradmin@usdf21v0516
+permission: mx,me
+date_conditions: 0
+days_of_week: all
+start_times: "01:30,04:30,07:30,10:30,13:30,16:30,19:30,22:30"
+description: "market-news oracle_job"
+max_run_alarm: 60
+alarm_if_fail: 1
+alarm_if_terminated: 1
+
+
+/* ----------------- mamsearch_w_prod_market-master_dih_init_job ----------------- */ 
+
+insert_job: mamsearch_w_prod_market-master_dih_init_job   job_type: CMD 
+command: /opt/apps/dfw1/volumes/msearch/batch/msearch-batch/SolrImporterBatchJob/bin/solr_batch.sh market-master init 3000 &> /opt/apps/dfw1/volumes/msearch/batch/msearch-batch/SolrImporterBatchJob/logs/market-master/solr_batch_init_`date +%Y%m%d`.log
+machine: usdf21v0516
+owner: dcradmin@usdf21v0516
+permission: mx,me
+date_conditions: 1
+days_of_week: su
+start_times: "22:05"
+condition: s(mamsearch_w_prod_market-master_oracle_init_job)
+description: "market-master init"
+max_run_alarm: 60
+alarm_if_fail: 1
+alarm_if_terminated: 1
+
+
+/* ----------------- mamsearch_w_prod_market-master_oracle_init_job ----------------- */ 
+
+insert_job: mamsearch_w_prod_market-master_oracle_init_job   job_type: CMD 
+command: /opt/apps/dfw1/volumes/msearch/mysqlplus/load_oratemp_market-master.sh &> /opt/apps/dfw1/volumes/msearch/mysqlplus/logs/market-master/load_oratemp_market-master_`date +%Y%m%d`.log
+machine: usdf21v0516
+owner: dcradmin@usdf21v0516
+permission: mx,me
+date_conditions: 0
+days_of_week: su
+start_times: "21:55"
+description: "market-master oracle_job"
+max_run_alarm: 60
+alarm_if_fail: 1
+alarm_if_terminated: 1
+
+
+/* ----------------- mamsearch_d_prod_colleague_dih_delta_job ----------------- */ 
+
+insert_job: mamsearch_d_prod_colleague_dih_delta_job   job_type: CMD 
+command: /opt/apps/dfw1/volumes/msearch/batch/msearch-batch/SolrImporterBatchJob/bin/solr_batch.sh colleague delta 4000 &> /opt/apps/dfw1/volumes/msearch/batch/msearch-batch/SolrImporterBatchJob/logs/colleague/solr_batch_delta_`date +%Y%m%d`.log
+machine: usdf21v0516
+owner: dcradmin@usdf21v0516
+permission: mx,me
+date_conditions: 1
+days_of_week: all
+start_times: "07:10"
+condition: s(mamsearch_d_prod_colleague_oracle_delta_job)
+description: "colleague delta"
+max_run_alarm: 60
+alarm_if_fail: 1
+alarm_if_terminated: 1
+
+
+/* ----------------- mamsearch_d_prod_colleague_oracle_delta_job ----------------- */ 
+
+insert_job: mamsearch_d_prod_colleague_oracle_delta_job   job_type: CMD 
+command: /opt/apps/dfw1/volumes/msearch/mysqlplus/load_oratemp_colleague_delta.sh &> /opt/apps/dfw1/volumes/msearch/mysqlplus/logs/colleague/load_oratemp_colleague_delta_`date +%Y%m%d`.log
+machine: usdf21v0516
+owner: dcradmin@usdf21v0516
+permission: mx,me
+date_conditions: 0
+days_of_week: all
+start_times: "07:05"
+description: "colleague oracle_job"
+max_run_alarm: 60
+alarm_if_fail: 1
+alarm_if_terminated: 1
+
+
+/* ----------------- mamsearch_d_prod_mcas-ar_dih_init_job ----------------- */ 
+
+insert_job: mamsearch_d_prod_mcas-ar_dih_init_job   job_type: CMD 
+command: /opt/apps/dfw1/volumes/msearch/batch/msearch-batch/SolrImporterBatchJob/bin/solr_batch.sh mcas-ar init 5000 &> /opt/apps/dfw1/volumes/msearch/batch/msearch-batch/SolrImporterBatchJob/logs/mcas-ar/solr_batch_init_`date +%Y%m%d`.log
+machine: usdf21v0516
+owner: dcradmin@usdf21v0516
+permission: mx,me
+date_conditions: 1
+days_of_week: all
+start_times: "07:45"
+condition: s(mamsearch_d_prod_mcas-ar_oracle_init_job)
+description: "mcas-ar init"
+max_run_alarm: 60
+alarm_if_fail: 1
+alarm_if_terminated: 1
+
+
+/* ----------------- mamsearch_d_prod_mcas-ar_oracle_init_job ----------------- */ 
+
+insert_job: mamsearch_d_prod_mcas-ar_oracle_init_job   job_type: CMD 
+command: /opt/apps/dfw1/volumes/msearch/mysqlplus/load_oratemp_cansys_ar_init.sh &> /opt/apps/dfw1/volumes/msearch/mysqlplus/logs/mcas-ar/load_oratemp_cansys_ar_init_`date +%Y%m%d`.log
+machine: usdf21v0516
+owner: dcradmin@usdf21v0516
+permission: mx,me
+date_conditions: 0
+days_of_week: all
+start_times: "07:30"
+description: "mcas-ar oracle_job"
+max_run_alarm: 60
+alarm_if_fail: 1
+alarm_if_terminated: 1
+
+
+/* ----------------- mamsearch_d_prod_mcas-ap_dih_init_job ----------------- */ 
+
+insert_job: mamsearch_d_prod_mcas-ap_dih_init_job   job_type: CMD 
+command: /opt/apps/dfw1/volumes/msearch/batch/msearch-batch/SolrImporterBatchJob/bin/solr_batch.sh mcas-ap init 5000 &> /opt/apps/dfw1/volumes/msearch/batch/msearch-batch/SolrImporterBatchJob/logs/mcas-ap/solr_batch_init_`date +%Y%m%d`.log
+machine: usdf21v0516
+owner: dcradmin@usdf21v0516
+permission: mx,me
+date_conditions: 1
+days_of_week: all
+start_times: "07:35"
+condition: s(mamsearch_d_prod_mcas-ap_oracle_init_job)
+description: "mcas-ap init"
+max_run_alarm: 60
+alarm_if_fail: 1
+alarm_if_terminated: 1
+
+
+/* ----------------- mamsearch_d_prod_mcas-ap_oracle_init_job ----------------- */ 
+
+insert_job: mamsearch_d_prod_mcas-ap_oracle_init_job   job_type: CMD 
+command: /opt/apps/dfw1/volumes/msearch/mysqlplus/load_oratemp_cansys_ap_init.sh &> /opt/apps/dfw1/volumes/msearch/mysqlplus/logs/mcas-ap/load_oratemp_cansys_ap_init_`date +%Y%m%d`.log
+machine: usdf21v0516
+owner: dcradmin@usdf21v0516
+permission: mx,me
+date_conditions: 0
+days_of_week: all
+start_times: "07:30"
+description: "mcas-ap oracle_job"
+max_run_alarm: 60
+alarm_if_fail: 1
+alarm_if_terminated: 1
+
+
+/* ----------------- MAAPP_oms_mview_refresh_oltp22_usfkl21db89cn1 ----------------- */ 
+
+insert_job: MAAPP_oms_mview_refresh_oltp22_usfkl21db89cn1   job_type: CMD 
+command: /var/oracle/admin/oltp22/appdev/bin/oms_ref_mview.ksh
+machine: usdfw21db72v
+owner: oracle@usdfw21db72v
+permission: mx,me
+date_conditions: 1
+days_of_week: all
+start_times: "23:00"
+run_window: "23:00 - 23:59"
+description: "Execute oms_ref_mview.ksh for materialized views."
+std_out_file: "$CYCLOG/MAAPP_oms_mview_refresh_oltp22_`date +%m%d`.log"
+std_err_file: "$CYCLOG/MAAPP_oms_mview_refresh_oltp22_`date +%m%d`.err"
+max_run_alarm: 600
+alarm_if_fail: 1
+profile: "/opt/oracle/product/auto.profile"
+alarm_if_terminated: 1
+
+
+/* ----------------- MAAPP_atm_segm_inactive_usfkl21db89cn1 ----------------- */ 
+
+insert_job: MAAPP_atm_segm_inactive_usfkl21db89cn1   job_type: CMD 
+command: /var/oracle/admin/oltp22/appdev/bin/atm_segm_inactive_cleanup.ksh
+machine: usdfw21db72v
+owner: oracle@usdfw21db72v
+permission: mx,me
+date_conditions: 1
+days_of_week: sa
+start_times: "21:00"
+description: "Run SEPR refresh."
+std_out_file: "$BACKCYCLOG/MAAPP_atm_segm_inactive_usfkl21db89cn1_`date +%m%d`.log"
+std_err_file: "$BACKCYCLOG/MAAPP_atm_segm_inactive_usfkl21db89cn1_`date +%m%d`.log"
+alarm_if_fail: 1
+profile: "/opt/oracle/product/auto.profile"
+alarm_if_terminated: 1
+
+
+/* ----------------- MAAPP_cm_lucene_delete_scheduler_usfkl21db89cn1 ----------------- */ 
+
+insert_job: MAAPP_cm_lucene_delete_scheduler_usfkl21db89cn1   job_type: CMD 
+command: /var/oracle/admin/oltp22/appdev/bin/cm_lucene_delete_scheduler.ksh
+machine: usdfw21db72v
+owner: oracle@usdfw21db72v
+permission: mx,me
+date_conditions: 1
+days_of_week: all
+start_times: "22:00"
+description: "CM Lucene Delta Delete"
+std_out_file: "$BACKCYCLOG/MAAPP_cm_lucene_delete_scheduler_`date +%m%d`.log"
+std_err_file: "$BACKCYCLOG/MAAPP_cm_lucene_delete_scheduler_`date +%m%d`.log"
+alarm_if_fail: 1
+profile: "/opt/oracle/product/auto.profile"
+alarm_if_terminated: 1
+
+
+/* ----------------- MAAPP_d_ecr_syn_ctx_usfkl21db89cn1 ----------------- */ 
+
+insert_job: MAAPP_d_ecr_syn_ctx_usfkl21db89cn1   job_type: CMD 
+command: /var/oracle/admin/oltp22/appdev/bin/ecr_syn_ctx.ksh
+machine: usdfw21db72v
+owner: oracle@usdfw21db72v
+permission: mx,me
+date_conditions: 1
+days_of_week: su,mo,tu,we,th,fr,sa
+start_times: "7:30"
+description: "Synchronize ECR CTX"
+std_out_file: "$BACKCYCLOG/MAAPP_d_ecr_syn_ctx_`DATE +%m%d`.LOG"
+std_err_file: "$BACKCYCLOG/MAAPP_d_ecr_syn_ctx_`DATE +%m%d`.LOG"
+alarm_if_fail: 1
+profile: "/opt/oracle/product/auto.profile"
+alarm_if_terminated: 1
+
+
+/* ----------------- MAAPP_d_mart_ec_load_status_usfkl21db89cn1 ----------------- */ 
+
+insert_job: MAAPP_d_mart_ec_load_status_usfkl21db89cn1   job_type: CMD 
+command: /var/oracle/admin/oltp22/appdev/bin/mart_ec_load_status.ksh
+machine: usdfw21db72v
+owner: oracle@usdfw21db72v
+permission: mx,me
+date_conditions: 1
+days_of_week: all
+start_times: "6:30"
+description: "MART EC load status"
+std_out_file: "$BACKCYCLOG/MAAPP_d_mart_ec_load_status_`date +%m%d`.log"
+std_err_file: "$BACKCYCLOG/MAAPP_d_mart_ec_load_status_`date +%m%d`.log"
+alarm_if_fail: 1
+profile: "/opt/oracle/product/auto.profile"
+alarm_if_terminated: 1
+
+
+/* ----------------- MAAPP_d_mina_grp_migration_usfkl21db89cn1 ----------------- */ 
+
+insert_job: MAAPP_d_mina_grp_migration_usfkl21db89cn1   job_type: CMD 
+command: /var/oracle/admin/oltp22/appdev/bin/mina_grp_migration.ksh
+machine: usdfw21db72v
+owner: oracle@usdfw21db72v
+permission: mx,me
+date_conditions: 1
+days_of_week: all
+start_times: "1:00"
+description: "mina group migration job"
+std_out_file: "$BACKCYCLOG/MAAPP_d_mina_grp_migration_usfkl21db89cn1_`date +%m%d%H%M`.log"
+std_err_file: "$BACKCYCLOG/MAAPP_d_mina_grp_migration_usfkl21db89cn1_`date +%m%d%H%M`.err"
+alarm_if_fail: 1
+profile: "/opt/oracle/product/auto.profile"
+alarm_if_terminated: 1
+
+
+/* ----------------- MAAPP_marsh_mview_maint_oltp22_usfkl21db89cn1 ----------------- */ 
+
+insert_job: MAAPP_marsh_mview_maint_oltp22_usfkl21db89cn1   job_type: CMD 
+command: /var/oracle/admin/oltp22/appdev/bin/mina_ref_mview.ksh
+machine: usdfw21db72v
+owner: oracle@usdfw21db72v
+permission: mx,me
+date_conditions: 1
+days_of_week: all
+start_times: "09:00"
+run_window: "09:00 - 10:59"
+description: "Execute mina_ref_mview.ksh for materialized views."
+std_out_file: "$CYCLOG/MAAPP_marsh_mview_maint_oltp22_`date +%m%d`.log"
+std_err_file: "$CYCLOG/MAAPP_marsh_mview_maint_oltp22_`date +%m%d`.err"
+max_run_alarm: 30
+alarm_if_fail: 1
+profile: "/opt/oracle/product/auto.profile"
+alarm_if_terminated: 1
+
+
+/* ----------------- MAAPP_mc_alert_notification_oltp22_usfkl21db89cn1 ----------------- */ 
+
+insert_job: MAAPP_mc_alert_notification_oltp22_usfkl21db89cn1   job_type: CMD 
+command: /var/oracle/admin/oltp22/appdev/bin/mc_alert_notification.ksh
+machine: usdfw21db72v
+owner: oracle@usdfw21db72v
+permission: mx,me
+date_conditions: 1
+days_of_week: all
+start_times: "1:00"
+description: "MC Alert Notification"
+std_out_file: "$BACKCYCLOG/MAAPP_mc_alert_notification_oltp22_`date +%m%d`.log"
+std_err_file: "$BACKCYCLOG/MAAPP_mc_alert_notification_oltp22_`date +%m%d`.log"
+alarm_if_fail: 1
+profile: "/opt/oracle/product/auto.profile"
+alarm_if_terminated: 1
+
+
+/* ----------------- MAAPP_mm_batchjob_oltp22_usfkl21db89cn1 ----------------- */ 
+
+insert_job: MAAPP_mm_batchjob_oltp22_usfkl21db89cn1   job_type: CMD 
+command: /var/oracle/admin/oltp22/appdev/bin/mm_wim_rating_delta_load.ksh
+machine: usdfw21db72v
+owner: oracle@usdfw21db72v
+permission: mx,me
+date_conditions: 1
+days_of_week: all
+start_times: "2:00"
+description: "MarketMaster WIM RATING insert"
+std_out_file: "$BACKCYCLOG/MAAPP_mm_batchjob_oltp22_`DATE +%m%d`.LOG"
+std_err_file: "$BACKCYCLOG/MAAPP_mm_batchjob_oltp22_`DATE +%m%d`.LOG"
+alarm_if_fail: 1
+profile: "/opt/oracle/product/auto.profile"
+alarm_if_terminated: 1
+
+
+/* ----------------- MAAPP_rebuild_bsa_usfkl21db89cn1 ----------------- */ 
+
+insert_job: MAAPP_rebuild_bsa_usfkl21db89cn1   job_type: CMD 
+command: /var/oracle/admin/oltp22/appdev/bin/create_table_bsa_oltp22.ksh
+machine: usdfw21db72v
+owner: oracle@usdfw21db72v
+permission: mx,me
+date_conditions: 1
+days_of_week: all
+start_times: "03:30,08:30,13:30,19:30,21:30"
+description: "Refresh data for Mina Searches"
+std_out_file: "$BACKCYCLOG/MAAPP_rebuild_bsa_`date +%m%d%H%M`.log"
+std_err_file: "$BACKCYCLOG/MAAPP_rebuild_bsa_`date +%m%d%H%M`.log"
+alarm_if_fail: 0
+profile: "/opt/oracle/product/auto.profile"
+alarm_if_terminated: 1
+
+
+/* ----------------- MAAPP_sforms_batchjob_oltp22_usfkl21db89cn1 ----------------- */ 
+
+insert_job: MAAPP_sforms_batchjob_oltp22_usfkl21db89cn1   job_type: CMD 
+command: /var/oracle/admin/oltp22/appdev/bin/smartforms_batchjob_oltp22.ksh
+machine: usdfw21db72v
+owner: oracle@usdfw21db72v
+permission: mx,me
+date_conditions: 1
+days_of_week: mo,tu,we,th,fr,sa,su
+start_times: "1:00"
+description: "SmartForm Batch Job"
+std_out_file: "$BACKCYCLOG/MAAPP_sforms_batchjob_oltp22_`DATE +%m%d`.LOG"
+std_err_file: "$BACKCYCLOG/MAAPP_sforms_batchjob_oltp22_`DATE +%m%d`.LOG"
+alarm_if_fail: 1
+profile: "/opt/oracle/product/auto.profile"
+alarm_if_terminated: 1
+
+
+/* ----------------- pmcm_cm_from_mina_ref_oltp22_box ----------------- */ 
+
+insert_job: pmcm_cm_from_mina_ref_oltp22_box   job_type: BOX 
+owner: oracle
+permission: mx,me
+date_conditions: 1
+days_of_week: su,mo,tu,we,th,fr,sa
+start_mins: 15,45
+description: "CM From Mina Refresh Log JOBS usfkl21db89cn1"
+alarm_if_fail: 0
+alarm_if_terminated: 1
+
+
+ /* ----------------- pmcm_cm_from_mina_ref_oltp22_usfkl21db89cn1 ----------------- */ 
+
+ insert_job: pmcm_cm_from_mina_ref_oltp22_usfkl21db89cn1   job_type: CMD 
+ box_name: pmcm_cm_from_mina_ref_oltp22_box
+ command: /var/oracle/admin/oltp22/appdev/bin/cm_from_mina_ref.ksh
+ machine: usdfw21db72v
+ owner: oracle@usdfw21db72v
+ permission: mx,me
+ date_conditions: 0
+ description: "CM From Mina Refresh Log"
+ std_out_file: "$BACKCYCLOG/pmcm_cm_from_mina_ref_oltp22_`date +%m%d`.log"
+ std_err_file: "$BACKCYCLOG/pmcm_cm_from_mina_ref_oltp22_`date +%m%d`.log"
+ alarm_if_fail: 1
+ profile: "/opt/oracle/product/auto.profile"
+ alarm_if_terminated: 1
+
+
+/* ----------------- MA_npt_acpr_update_oltp22_usfkl21db89cn1 ----------------- */ 
+
+insert_job: MA_npt_acpr_update_oltp22_usfkl21db89cn1   job_type: CMD 
+command: /var/oracle/admin/oltp22/appdev/bin/npt_update_acpr_statu.ksh
+machine: usdfw21db72v
+owner: oracle@usdfw21db72v
+permission: mx,me
+date_conditions: 1
+days_of_week: su,mo,tu,we,th,fr,sa
+start_times: "1:00"
+description: "NPT ACPR update"
+std_out_file: "$BACKCYCLOG/MA_npt_acpr_update_oltp22_`DATE +%m%d`.LOG"
+std_err_file: "$BACKCYCLOG/MA_npt_acpr_update_oltp22_`DATE +%m%d`.LOG"
+alarm_if_fail: 1
+profile: "/opt/oracle/product/auto.profile"
+alarm_if_terminated: 1
+
+
+/* ----------------- medba_archive_backup_bwchk ----------------- */ 
+
+insert_job: medba_archive_backup_bwchk   job_type: CMD 
+command: $BACKCYCSHELL/archive_backup_rman_data_domain bwchk
+machine: usfkl21db137vcn2
+owner: oracle@usfkl21db137vcn2
+permission: mx,me
+date_conditions: 1
+days_of_week: all
+start_times: "02:30, 20:30"
+description: "RMAN backup for archive logs of bwchk database"
+job_terminator: 1
+std_out_file: "$BACKCYCLOG/medba_archive_backup_bwchk_`date +%m%d%y`.log"
+std_err_file: "$BACKCYCLOG/medba_archive_backup_bwchk_`date +%m%d%y`.log"
+max_run_alarm: 180
+alarm_if_fail: 0
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 1
+
+
+/* ----------------- medba_full_backup_bwchk ----------------- */ 
+
+insert_job: medba_full_backup_bwchk   job_type: CMD 
+command: $BACKCYCSHELL/full_backup_rman_data_domain bwchk
+machine: usfkl21db137vcn2
+owner: oracle@usfkl21db137vcn2
+permission: mx,me
+date_conditions: 1
+days_of_week: sa
+start_times: "10:00"
+description: "FULL backup of bwchk database"
+std_out_file: "$BACKCYCLOG/medba_full_backup_bwchk_`date +%m%d%y`.log"
+std_err_file: "$BACKCYCLOG/medba_full_backup_bwchk_`date +%m%d%y`.log"
+max_run_alarm: 240
+alarm_if_fail: 0
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 1
+
+
+/* ----------------- medba_archive_backup_cordysp2 ----------------- */ 
+
+insert_job: medba_archive_backup_cordysp2   job_type: CMD 
+command: $BACKCYCSHELL/archive_backup_rman_data_domain cordysp2
+machine: usfkl21db137vcn2
+owner: oracle@usfkl21db137vcn2
+permission: mx,me
+date_conditions: 1
+days_of_week: all
+start_times: "00:30, 06:30, 12:30, 18:30"
+description: "RMAN backup for archive logs of cordysp2 database"
+job_terminator: 1
+std_out_file: "$BACKCYCLOG/medba_archive_backup_cordysp2_`date +%m%d%y`.log"
+std_err_file: "$BACKCYCLOG/medba_archive_backup_cordysp2_`date +%m%d%y`.log"
+max_run_alarm: 180
+alarm_if_fail: 1
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 1
+
+
+/* ----------------- medba_full_backup_cordysp2 ----------------- */ 
+
+insert_job: medba_full_backup_cordysp2   job_type: CMD 
+command: $BACKCYCSHELL/full_backup_rman_data_domain cordysp2
+machine: usfkl21db137vcn2
+owner: oracle@usfkl21db137vcn2
+permission: mx,me
+date_conditions: 1
+days_of_week: we
+start_times: "19:30"
+description: "FULL backup of cordysp2 database"
+std_out_file: "$BACKCYCLOG/medba_full_backup_cordysp2_`date +%m%d%y`.log"
+std_err_file: "$BACKCYCLOG/medba_full_backup_cordysp2_`date +%m%d%y`.log"
+max_run_alarm: 240
+alarm_if_fail: 1
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 1
+
+
+/* ----------------- medba_archive_backup_filprd3 ----------------- */ 
+
+insert_job: medba_archive_backup_filprd3   job_type: CMD 
+command: $BACKCYCSHELL/archive_backup_rman_data_domain filprd3
+machine: usfkl21db137vcn2
+owner: oracle@usfkl21db137vcn2
+permission: mx,me
+date_conditions: 1
+days_of_week: all
+start_times: "00:45, 06:45, 12:45, 18:45"
+description: "RMAN backup for archive logs of filprd3 database"
+job_terminator: 1
+std_out_file: "$BACKCYCLOG/medba_archive_backup_filprd3_`date +%m%d%y`.log"
+std_err_file: "$BACKCYCLOG/medba_archive_backup_filprd3_`date +%m%d%y`.log"
+max_run_alarm: 180
+alarm_if_fail: 0
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 1
+
+
+/* ----------------- medba_full_backup_filprd3 ----------------- */ 
+
+insert_job: medba_full_backup_filprd3   job_type: CMD 
+command: $BACKCYCSHELL/full_backup_rman_data_domain filprd3
+machine: usfkl21db137vcn2
+owner: oracle@usfkl21db137vcn2
+permission: mx,me
+date_conditions: 1
+days_of_week: mo
+start_times: "20:45"
+description: "FULL backup of filprd3 database"
+std_out_file: "$BACKCYCLOG/medba_full_backup_filprd3_`date +%m%d%y`.log"
+std_err_file: "$BACKCYCLOG/medba_full_backup_filprd3_`date +%m%d%y`.log"
+max_run_alarm: 240
+alarm_if_fail: 0
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 1
+
+
+/* ----------------- medba_archive_backup_bpmprod ----------------- */ 
+
+insert_job: medba_archive_backup_bpmprod   job_type: CMD 
+command: $BACKCYCSHELL/archive_backup_rman_data_domain bpmprod
+machine: usfkl21db137vcn2
+owner: oracle@usfkl21db137vcn2
+permission: mx,me
+date_conditions: 1
+days_of_week: all
+start_times: "00:00, 06:00, 12:00, 18:00"
+description: "RMAN backup for archive logs of bpmprod database"
+job_terminator: 1
+std_out_file: "$BACKCYCLOG/medba_archive_backup_bpmprod_`date +%m%d%y`.log"
+std_err_file: "$BACKCYCLOG/medba_archive_backup_bpmprod_`date +%m%d%y`.log"
+max_run_alarm: 180
+alarm_if_fail: 0
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 1
+
+
+/* ----------------- medba_full_backup_bpmprod ----------------- */ 
+
+insert_job: medba_full_backup_bpmprod   job_type: CMD 
+command: $BACKCYCSHELL/full_backup_rman_data_domain bpmprod
+machine: usfkl21db137vcn2
+owner: oracle@usfkl21db137vcn2
+permission: mx,me
+date_conditions: 1
+days_of_week: mo
+start_times: "21:00"
+description: "FULL backup of bpmprod database"
+std_out_file: "$BACKCYCLOG/medba_full_backup_bpmprod_`date +%m%d%y`.log"
+std_err_file: "$BACKCYCLOG/medba_full_backup_bpmprod_`date +%m%d%y`.log"
+max_run_alarm: 240
+alarm_if_fail: 0
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 1
+
+
+/* ----------------- medba_archive_backup_idaprd1 ----------------- */ 
+
+insert_job: medba_archive_backup_idaprd1   job_type: CMD 
+command: $BACKCYCSHELL/archive_backup_rman_data_domain idaprd1
+machine: usfkl21db137vcn2
+owner: oracle@usfkl21db137vcn2
+permission: mx,me
+date_conditions: 1
+days_of_week: all
+start_times: "10:00, 07:00, 13:00, 19:00"
+description: "RMAN backup for archive logs of idaprd1 database"
+job_terminator: 1
+std_out_file: "$BACKCYCLOG/medba_archive_backup_idaprd1_`date +%m%d%y`.log"
+std_err_file: "$BACKCYCLOG/medba_archive_backup_idaprd1_`date +%m%d%y`.log"
+max_run_alarm: 180
+alarm_if_fail: 1
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 1
+
+
+/* ----------------- medba_full_backup_idaprd1 ----------------- */ 
+
+insert_job: medba_full_backup_idaprd1   job_type: CMD 
+command: $BACKCYCSHELL/full_backup_rman_data_domain idaprd1
+machine: usfkl21db137vcn2
+owner: oracle@usfkl21db137vcn2
+permission: mx,me
+date_conditions: 1
+days_of_week: mo
+start_times: "22:00"
+description: "FULL backup of idaprd1 database"
+std_out_file: "$BACKCYCLOG/medba_full_backup_idaprd1_`date +%m%d%y`.log"
+std_err_file: "$BACKCYCLOG/medba_full_backup_idaprd1_`date +%m%d%y`.log"
+max_run_alarm: 240
+alarm_if_fail: 1
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 1
+
+
+/* ----------------- medba_archive_backup_apxprd01 ----------------- */ 
+
+insert_job: medba_archive_backup_apxprd01   job_type: CMD 
+command: $BACKCYCSHELL/archive_backup_rman_data_domain apxprd01
+machine: usfkl21db137vcn1
+owner: oracle@usfkl21db137vcn1
+permission: mx,me
+date_conditions: 1
+days_of_week: all
+start_times: "02:30, 20:30"
+description: "RMAN backup for archive logs of apxprd01 database"
+job_terminator: 1
+std_out_file: "$BACKCYCLOG/medba_archive_backup_apxprd01_`date +%m%d%y`.log"
+std_err_file: "$BACKCYCLOG/medba_archive_backup_apxprd01_`date +%m%d%y`.log"
+max_run_alarm: 180
+alarm_if_fail: 0
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 1
+
+
+/* ----------------- medba_full_backup_apxprd01 ----------------- */ 
+
+insert_job: medba_full_backup_apxprd01   job_type: CMD 
+command: $BACKCYCSHELL/full_backup_rman_data_domain apxprd01
+machine: usfkl21db137vcn1
+owner: oracle@usfkl21db137vcn1
+permission: mx,me
+date_conditions: 1
+days_of_week: sa
+start_times: "11:00"
+description: "FULL backup of apxprd01 database"
+std_out_file: "$BACKCYCLOG/medba_full_backup_apxprd01_`date +%m%d%y`.log"
+std_err_file: "$BACKCYCLOG/medba_full_backup_apxprd01_`date +%m%d%y`.log"
+max_run_alarm: 240
+alarm_if_fail: 0
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 1
+
+
+/* ----------------- medba_archive_backup_infoprod ----------------- */ 
+
+insert_job: medba_archive_backup_infoprod   job_type: CMD 
+command: $BACKCYCSHELL/archive_backup_rman_data_domain infoprod
+machine: usfkl21db137vcn2
+owner: oracle@usfkl21db137vcn2
+permission: mx,me
+date_conditions: 1
+days_of_week: all
+start_times: "03:00, 10:00, 15:00, 21:00"
+description: "RMAN backup for archive logs of infoprod database"
+job_terminator: 1
+std_out_file: "$BACKCYCLOG/medba_archive_backup_infoprod_`date +%m%d%y`.log"
+std_err_file: "$BACKCYCLOG/medba_archive_backup_infoprod_`date +%m%d%y`.log"
+max_run_alarm: 180
+alarm_if_fail: 1
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 1
+
+
+/* ----------------- medba_full_backup_infoprod ----------------- */ 
+
+insert_job: medba_full_backup_infoprod   job_type: CMD 
+command: $BACKCYCSHELL/full_backup_rman_data_domain infoprod
+machine: usfkl21db137vcn2
+owner: oracle@usfkl21db137vcn2
+permission: mx,me
+date_conditions: 1
+days_of_week: we
+start_times: "21:00"
+description: "FULL backup of infoprod database"
+std_out_file: "$BACKCYCLOG/medba_full_backup_infoprod_`date +%m%d%y`.log"
+std_err_file: "$BACKCYCLOG/medba_full_backup_infoprod_`date +%m%d%y`.log"
+max_run_alarm: 240
+alarm_if_fail: 1
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 1
+
+
+/* ----------------- medba_archive_backup_bwprod11 ----------------- */ 
+
+insert_job: medba_archive_backup_bwprod11   job_type: CMD 
+command: $BACKCYCSHELL/archive_backup_rman_data_domain bwprod11
+machine: usfkl21db137vcn2
+owner: oracle@usfkl21db137vcn2
+permission: mx,me
+date_conditions: 1
+days_of_week: all
+start_times: "01:45, 07:45, 13:45, 19:45"
+description: "RMAN backup for archive logs of bwprod11 database"
+job_terminator: 1
+std_out_file: "$BACKCYCLOG/medba_archive_backup_bwprod11_`date +%m%d%y`.log"
+std_err_file: "$BACKCYCLOG/medba_archive_backup_bwprod11_`date +%m%d%y`.log"
+max_run_alarm: 180
+alarm_if_fail: 1
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 1
+
+
+/* ----------------- medba_full_backup_bwprod11 ----------------- */ 
+
+insert_job: medba_full_backup_bwprod11   job_type: CMD 
+command: $BACKCYCSHELL/full_backup_rman_data_domain bwprod11
+machine: usfkl21db137vcn2
+owner: oracle@usfkl21db137vcn2
+permission: mx,me
+date_conditions: 1
+days_of_week: tu
+start_times: "22:45"
+description: "FULL backup of bwprod11 database"
+std_out_file: "$BACKCYCLOG/medba_full_backup_bwprod11_`date +%m%d%y`.log"
+std_err_file: "$BACKCYCLOG/medba_full_backup_bwprod11_`date +%m%d%y`.log"
+max_run_alarm: 240
+alarm_if_fail: 1
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 1
+
+
+/* ----------------- medba_archive_backup_bwprod13 ----------------- */ 
+
+insert_job: medba_archive_backup_bwprod13   job_type: CMD 
+command: $BACKCYCSHELL/archive_backup_rman_data_domain bwprod13
+machine: usfkl21db137vcn2
+owner: oracle@usfkl21db137vcn2
+permission: mx,me
+date_conditions: 1
+days_of_week: all
+start_times: "03:45, 08:45, 14:45, 20:45"
+description: "RMAN backup for archive logs of bwprod13 database"
+job_terminator: 1
+std_out_file: "$BACKCYCLOG/medba_archive_backup_bwprod13_`date +%m%d%y`.log"
+std_err_file: "$BACKCYCLOG/medba_archive_backup_bwprod13_`date +%m%d%y`.log"
+max_run_alarm: 180
+alarm_if_fail: 1
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 1
+
+
+/* ----------------- medba_full_backup_bwprod13 ----------------- */ 
+
+insert_job: medba_full_backup_bwprod13   job_type: CMD 
+command: $BACKCYCSHELL/full_backup_rman_data_domain bwprod13
+machine: usfkl21db137vcn2
+owner: oracle@usfkl21db137vcn2
+permission: mx,me
+date_conditions: 1
+days_of_week: sa
+start_times: "20:45"
+description: "FULL backup of bwprod13 database"
+std_out_file: "$BACKCYCLOG/medba_full_backup_bwprod13_`date +%m%d%y`.log"
+std_err_file: "$BACKCYCLOG/medba_full_backup_bwprod13_`date +%m%d%y`.log"
+max_run_alarm: 240
+alarm_if_fail: 1
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 1
+
+
+/* ----------------- medba_archive_backup_bwstg10 ----------------- */ 
+
+insert_job: medba_archive_backup_bwstg10   job_type: CMD 
+command: $BACKCYCSHELL/archive_backup_rman_data_domain bwstg10
+machine: usfkl21db137vcn2
+owner: oracle@usfkl21db137vcn2
+permission: mx,me
+date_conditions: 1
+days_of_week: all
+start_times: "09:45, 20:45"
+description: "RMAN backup for archive logs of bwstg10 database"
+job_terminator: 1
+std_out_file: "$BACKCYCLOG/medba_archive_backup_bwstg10_`date +%m%d%y`.log"
+std_err_file: "$BACKCYCLOG/medba_archive_backup_bwstg10_`date +%m%d%y`.log"
+max_run_alarm: 180
+alarm_if_fail: 1
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 1
+
+
+/* ----------------- medba_full_backup_bwstg10 ----------------- */ 
+
+insert_job: medba_full_backup_bwstg10   job_type: CMD 
+command: $BACKCYCSHELL/full_backup_rman_data_domain bwstg10
+machine: usfkl21db137vcn2
+owner: oracle@usfkl21db137vcn2
+permission: mx,me
+date_conditions: 1
+days_of_week: su
+start_times: "16:00"
+description: "FULL backup of bwstg10 database"
+std_out_file: "$BACKCYCLOG/medba_full_backup_bwstg10_`date +%m%d%y`.log"
+std_err_file: "$BACKCYCLOG/medba_full_backup_bwstg10_`date +%m%d%y`.log"
+max_run_alarm: 240
+alarm_if_fail: 1
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 1
+
+
+/* ----------------- medba_archive_backup_cogprd12 ----------------- */ 
+
+insert_job: medba_archive_backup_cogprd12   job_type: CMD 
+command: $BACKCYCSHELL/archive_backup_rman_data_domain cogprd12
+machine: usfkl21db137vcn1
+owner: oracle@usfkl21db137vcn1
+permission: mx,me
+date_conditions: 1
+days_of_week: all
+start_times: "10:45, 22:45"
+description: "RMAN backup for archive logs of cogprd12 database"
+job_terminator: 1
+std_out_file: "$BACKCYCLOG/medba_archive_backup_cogprd12_`date +%m%d%y`.log"
+std_err_file: "$BACKCYCLOG/medba_archive_backup_cogprd12_`date +%m%d%y`.log"
+max_run_alarm: 180
+alarm_if_fail: 1
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 1
+
+
+/* ----------------- medba_full_backup_cogprd12 ----------------- */ 
+
+insert_job: medba_full_backup_cogprd12   job_type: CMD 
+command: $BACKCYCSHELL/full_backup_rman_data_domain cogprd12
+machine: usfkl21db137vcn1
+owner: oracle@usfkl21db137vcn1
+permission: mx,me
+date_conditions: 1
+days_of_week: su
+start_times: "14:00"
+description: "FULL backup of cogprd12 database"
+std_out_file: "$BACKCYCLOG/medba_full_backup_cogprd12_`date +%m%d%y`.log"
+std_err_file: "$BACKCYCLOG/medba_full_backup_cogprd12_`date +%m%d%y`.log"
+max_run_alarm: 240
+alarm_if_fail: 1
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 1
+
+
+/* ----------------- medba_archive_backup_bwstr24a ----------------- */ 
+
+insert_job: medba_archive_backup_bwstr24a   job_type: CMD 
+command: $BACKCYCSHELL/archive_backup_rman_data_domain bwstr24a
+machine: usdfw21db75vcn1
+owner: oracle@usdfw21db75vcn1
+permission: mx,me
+date_conditions: 1
+days_of_week: all
+start_times: "09:45, 20:45"
+description: "RMAN backup for archive logs of bwstr24a database"
+job_terminator: 1
+std_out_file: "$BACKCYCLOG/medba_archive_backup_bwstr24a_`date +%m%d%y`.log"
+std_err_file: "$BACKCYCLOG/medba_archive_backup_bwstr24a_`date +%m%d%y`.log"
+max_run_alarm: 180
+alarm_if_fail: 0
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 1
+
+
+/* ----------------- medba_incr_backup_bwstr24a ----------------- */ 
+
+insert_job: medba_incr_backup_bwstr24a   job_type: CMD 
+command: $BACKCYCSHELL/incr_backup_rman_data_domain bwstr24a
+machine: usdfw21db75vcn1
+owner: oracle@usdfw21db75vcn1
+permission: mx,me
+date_conditions: 1
+days_of_week: su
+start_times: "14:00"
+description: "FULL backup of bwstr24a database"
+std_out_file: "$BACKCYCLOG/medba_incr_backup_bwstr24a_`date +%m%d%y`.log"
+std_err_file: "$BACKCYCLOG/medba_incr_backup_bwstr24a_`date +%m%d%y`.log"
+max_run_alarm: 240
+alarm_if_fail: 1
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 1
+
+
+/* ----------------- medba_archive_backup_bwstr24d ----------------- */ 
+
+insert_job: medba_archive_backup_bwstr24d   job_type: CMD 
+command: $BACKCYCSHELL/archive_backup_rman_data_domain bwstr24d
+machine: usdfw21db75vcn1
+owner: oracle@usdfw21db75vcn1
+permission: mx,me
+date_conditions: 1
+days_of_week: all
+start_times: "07:45, 18:45"
+description: "RMAN backup for archive logs of bwstr24d database"
+job_terminator: 1
+std_out_file: "$BACKCYCLOG/medba_archive_backup_bwstr24d_`date +%m%d%y`.log"
+std_err_file: "$BACKCYCLOG/medba_archive_backup_bwstr24d_`date +%m%d%y`.log"
+max_run_alarm: 180
+alarm_if_fail: 0
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 0
+
+
+/* ----------------- medba_incr_backup_bwstr24d ----------------- */ 
+
+insert_job: medba_incr_backup_bwstr24d   job_type: CMD 
+command: $BACKCYCSHELL/incr_backup_rman_data_domain bwstr24d
+machine: usdfw21db75vcn1
+owner: oracle@usdfw21db75vcn1
+permission: mx,me
+date_conditions: 1
+days_of_week: su
+start_times: "16:00"
+description: "FULL backup of bwstr24d database"
+std_out_file: "$BACKCYCLOG/medba_incr_backup_bwstr24d_`date +%m%d%y`.log"
+std_err_file: "$BACKCYCLOG/medba_incr_backup_bwstr24d_`date +%m%d%y`.log"
+max_run_alarm: 240
+alarm_if_fail: 0
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 0
+
+
+/* ----------------- medba_archive_backup_oidprd01 ----------------- */ 
+
+insert_job: medba_archive_backup_oidprd01   job_type: CMD 
+command: $BACKCYCSHELL/archive_backup_rman_data_domain oidprd01
+machine: usfkl21db137vcn1
+owner: oracle@usfkl21db137vcn1
+permission: mx,me
+date_conditions: 1
+days_of_week: all
+start_times: "01:30, 06:30, 14:30,20:30"
+description: "RMAN backup for archive logs of oidprd01 database"
+job_terminator: 1
+std_out_file: "$BACKCYCLOG/medba_archive_backup_oidprd01_`date +%m%d%y`.log"
+std_err_file: "$BACKCYCLOG/medba_archive_backup_oidprd01_`date +%m%d%y`.log"
+max_run_alarm: 180
+alarm_if_fail: 1
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 1
+
+
+/* ----------------- medba_full_backup_oidprd01 ----------------- */ 
+
+insert_job: medba_full_backup_oidprd01   job_type: CMD 
+command: $BACKCYCSHELL/full_backup_rman_data_domain oidprd01
+machine: usfkl21db137vcn1
+owner: oracle@usfkl21db137vcn1
+permission: mx,me
+date_conditions: 1
+days_of_week: sa
+start_times: "08:00"
+description: "FULL backup of oidprd01 database"
+std_out_file: "$BACKCYCLOG/medba_full_backup_oidprd01_`date +%m%d%y`.log"
+std_err_file: "$BACKCYCLOG/medba_full_backup_oidprd01_`date +%m%d%y`.log"
+max_run_alarm: 240
+alarm_if_fail: 1
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 1
+
+
+/* ----------------- medba_archive_backup_oidprd02 ----------------- */ 
+
+insert_job: medba_archive_backup_oidprd02   job_type: CMD 
+command: $BACKCYCSHELL/archive_backup_rman_data_domain oidprd02
+machine: usfkl21db137vcn2
+owner: oracle@usfkl21db137vcn2
+permission: mx,me
+date_conditions: 1
+days_of_week: all
+start_times: "01:30, 06:30, 14:30,20:30"
+description: "RMAN backup for archive logs of oidprd02 database"
+job_terminator: 1
+std_out_file: "$BACKCYCLOG/medba_archive_backup_oidprd02_`date +%m%d%y`.log"
+std_err_file: "$BACKCYCLOG/medba_archive_backup_oidprd02_`date +%m%d%y`.log"
+max_run_alarm: 180
+alarm_if_fail: 1
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 1
+
+
+/* ----------------- medba_full_backup_oidprd02 ----------------- */ 
+
+insert_job: medba_full_backup_oidprd02   job_type: CMD 
+command: $BACKCYCSHELL/full_backup_rman_data_domain oidprd02
+machine: usfkl21db137vcn2
+owner: oracle@usfkl21db137vcn2
+permission: mx,me
+date_conditions: 1
+days_of_week: sa
+start_times: "09:00"
+description: "FULL backup of oidprd02 database"
+std_out_file: "$BACKCYCLOG/medba_full_backup_oidprd02_`date +%m%d%y`.log"
+std_err_file: "$BACKCYCLOG/medba_full_backup_oidprd02_`date +%m%d%y`.log"
+max_run_alarm: 240
+alarm_if_fail: 1
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 1
+
+
+/* ----------------- mebwd_hotbk_dd_bwprod26 ----------------- */ 
+
+insert_job: mebwd_hotbk_dd_bwprod26   job_type: CMD 
+command: $BACKCYCSHELL/incr_backup_rman_data_domain bwprod26
+machine: usdfw21db75vcn2
+owner: oracle@usdfw21db75vcn2
+permission: mx,me
+date_conditions: 1
+days_of_week: we
+start_times: "22:00"
+description: "RMAN Data Domain Hot backup for bwprod26 database"
+job_terminator: 1
+std_out_file: "$BACKCYCLOG/mebwd_hotbk_dd_bwprod26_`date +%m%d%y`.log"
+std_err_file: "$BACKCYCLOG/mebwd_hotbk_dd_bwprod26_`date +%m%d%y`.log"
+max_run_alarm: 720
+alarm_if_fail: 1
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 1
+
+
+/* ----------------- mebwd_archbk_dd_bwprod26 ----------------- */ 
+
+insert_job: mebwd_archbk_dd_bwprod26   job_type: CMD 
+command: $BACKCYCSHELL/archive_backup_rman_data_domain bwprod26
+machine: usdfw21db75vcn1
+owner: oracle@usdfw21db75vcn1
+permission: mx,me
+date_conditions: 1
+days_of_week: su,mo,tu,we,th,fr,sa
+start_times: "02:30,08:30,11:30,14:30, 17:30, 23:30"
+description: "RMAN Data Domain backup for archive logs of bwprod26 database"
+std_out_file: "$BACKCYCLOG/mebwd_archbk_dd_bwprod26_`date +%m%d%y`.log"
+std_err_file: "$BACKCYCLOG/mebwd_archbk_dd_bwprod26_`date +%m%d%y`.log"
+max_run_alarm: 720
+alarm_if_fail: 1
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 1
+
+
+/* ----------------- medba_gather_stats_bwprod25 ----------------- */ 
+
+insert_job: medba_gather_stats_bwprod25   job_type: CMD 
+command: $CYCSHELL/custom_gather_stats.csh
+machine: usdfw21db75vcn3
+owner: oracle@usdfw21db75vcn3
+permission: mx,me
+date_conditions: 1
+days_of_week: su,mo,tu,we,th,fr,sa
+start_times: "01:00"
+description: "Job will gather stats for specific tables in bwprod25"
+job_terminator: 1
+std_out_file: "$CYCLOG/medba_gather_stats_bwprod25_`date +%m%d%y`.log"
+std_err_file: "$CYCLOG/medba_gather_stats_bwprod25_`date +%m%d%y`.log"
+max_run_alarm: 180
+alarm_if_fail: 0
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 0
+
+
+/* ----------------- medba_gather_stats_weekend_bwprod25 ----------------- */ 
+
+insert_job: medba_gather_stats_weekend_bwprod25   job_type: CMD 
+command: $CYCSHELL/custom_gather_stats_weekend.csh
+machine: usdfw21db75vcn3
+owner: oracle@usdfw21db75vcn3
+permission: mx,me
+date_conditions: 1
+days_of_week: sa
+start_times: "05:00"
+description: "Job will gather stats for specific tables in bwprod25 with last_analyzed date > 7 days old"
+job_terminator: 1
+std_out_file: "$CYCLOG/medba_gather_stats_weekend_bwprod25_`date +%m%d%y`.log"
+std_err_file: "$CYCLOG/medba_gather_stats_weekend_bwprod25_`date +%m%d%y`.log"
+max_run_alarm: 180
+alarm_if_fail: 0
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 0
+
+
+/* ----------------- mebwd_hotbk_dd_bwprod25 ----------------- */ 
+
+insert_job: mebwd_hotbk_dd_bwprod25   job_type: CMD 
+command: $BACKCYCSHELL/incr_backup_rman_data_domain bwprod25
+machine: usdfw21db75vcn1
+owner: oracle@usdfw21db75vcn1
+permission: mx,me
+date_conditions: 1
+days_of_week: su
+start_times: "13:00"
+description: "RMAN Data Domain Hot backup for bwprod25 database"
+job_terminator: 1
+std_out_file: "$BACKCYCLOG/mebwd_hotbk_dd_bwprod25_`date +%m%d%y`.log"
+std_err_file: "$BACKCYCLOG/mebwd_hotbk_dd_bwprod25_`date +%m%d%y`.log"
+max_run_alarm: 720
+alarm_if_fail: 1
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 1
+
+
+/* ----------------- mebwd_archbk_dd_bwprod25 ----------------- */ 
+
+insert_job: mebwd_archbk_dd_bwprod25   job_type: CMD 
+command: $BACKCYCSHELL/archive_backup_rman_data_domain bwprod25
+machine: usdfw21db75vcn1
+owner: oracle@usdfw21db75vcn1
+permission: mx,me
+date_conditions: 1
+days_of_week: su,mo,tu,we,th,fr,sa
+start_times: "02:00,05:00, 08:00,11:00,14:00, 17:00,20:00, 23:00"
+description: "RMAN Data Domain backup for archive logs of bwprod25 database"
+std_out_file: "$BACKCYCLOG/mebwd_archbk_dd_bwprod25_`date +%m%d%y`.log"
+std_err_file: "$BACKCYCLOG/mebwd_archbk_dd_bwprod25_`date +%m%d%y`.log"
+max_run_alarm: 720
+alarm_if_fail: 1
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 1
+
+
+/* ----------------- medba_archive_backup_coreprod ----------------- */ 
+
+insert_job: medba_archive_backup_coreprod   job_type: CMD 
+command: $BACKCYCSHELL/archive_backup_rman_data_domain coreprod
+machine: usfkl21db137vcn1
+owner: oracle@usfkl21db137vcn1
+permission: mx,me
+date_conditions: 1
+days_of_week: all
+start_times: "02:30, 08:30, 13:30,21:30"
+description: "RMAN backup for archive logs of coreprod database"
+job_terminator: 1
+std_out_file: "$BACKCYCLOG/medba_archive_backup_coreprod_`date +%m%d%y`.log"
+std_err_file: "$BACKCYCLOG/medba_archive_backup_coreprod_`date +%m%d%y`.log"
+max_run_alarm: 180
+alarm_if_fail: 1
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 1
+
+
+/* ----------------- medba_full_backup_coreprod ----------------- */ 
+
+insert_job: medba_full_backup_coreprod   job_type: CMD 
+command: $BACKCYCSHELL/full_backup_rman_data_domain coreprod
+machine: usfkl21db137vcn1
+owner: oracle@usfkl21db137vcn1
+permission: mx,me
+date_conditions: 1
+days_of_week: sa
+start_times: "02:00"
+description: "FULL backup of coreprod database"
+std_out_file: "$BACKCYCLOG/medba_full_backup_coreprod_`date +%m%d%y`.log"
+std_err_file: "$BACKCYCLOG/medba_full_backup_coreprod_`date +%m%d%y`.log"
+max_run_alarm: 240
+alarm_if_fail: 1
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 1
+
+
+/* ----------------- medba_archive_backup_esrprod ----------------- */ 
+
+insert_job: medba_archive_backup_esrprod   job_type: CMD 
+command: $BACKCYCSHELL/archive_backup_rman_data_domain esrprod
+machine: usfkl21db137vcn1
+owner: oracle@usfkl21db137vcn1
+permission: mx,me
+date_conditions: 1
+days_of_week: all
+start_times: "00:30, 05:30, 12:30,20:30"
+description: "RMAN backup for archive logs of esrprod database"
+job_terminator: 1
+std_out_file: "$BACKCYCLOG/medba_archive_backup_esrprod_`date +%m%d%y`.log"
+std_err_file: "$BACKCYCLOG/medba_archive_backup_esrprod_`date +%m%d%y`.log"
+max_run_alarm: 180
+alarm_if_fail: 1
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 1
+
+
+/* ----------------- medba_full_backup_esrprod ----------------- */ 
+
+insert_job: medba_full_backup_esrprod   job_type: CMD 
+command: $BACKCYCSHELL/full_backup_rman_data_domain esrprod
+machine: usfkl21db137vcn1
+owner: oracle@usfkl21db137vcn1
+permission: mx,me
+date_conditions: 1
+days_of_week: sa
+start_times: "04:00"
+description: "FULL backup of esrprod database"
+std_out_file: "$BACKCYCLOG/medba_full_backup_esrprod_`date +%m%d%y`.log"
+std_err_file: "$BACKCYCLOG/medba_full_backup_esrprod_`date +%m%d%y`.log"
+max_run_alarm: 240
+alarm_if_fail: 1
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 1
+
+
+/* ----------------- mebwd_hotbk_dd_bwprod24 ----------------- */ 
+
+insert_job: mebwd_hotbk_dd_bwprod24   job_type: CMD 
+command: $BACKCYCSHELL/full_backup_rman_data_domain bwprod24
+machine: usfkl21db136vcn2
+owner: oracle@usfkl21db136vcn2
+permission: mx,me
+date_conditions: 1
+days_of_week: th
+start_times: "22:00"
+description: "RMAN Data Domain Hot backup for bwprod24 database"
+job_terminator: 1
+std_out_file: "$BACKCYCLOG/mebwd_hotbk_dd_bwprod24_`date +%m%d%y`.log"
+std_err_file: "$BACKCYCLOG/mebwd_hotbk_dd_bwprod24_`date +%m%d%y`.log"
+max_run_alarm: 720
+alarm_if_fail: 1
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 1
+
+
+/* ----------------- mebwd_archbk_dd_bwprod24 ----------------- */ 
+
+insert_job: mebwd_archbk_dd_bwprod24   job_type: CMD 
+command: $BACKCYCSHELL/archive_backup_rman_data_domain bwprod24
+machine: usfkl21db136vcn2
+owner: oracle@usfkl21db136vcn2
+permission: mx,me
+date_conditions: 1
+days_of_week: all
+start_times: "02:30, 07:30, 11:30, 14:30,17:30,22:30"
+description: "RMAN Data Domain backup for archive logs of bwprod24 database"
+std_out_file: "$BACKCYCLOG/mebwd_archbk_dd_bwprod24_`date +%m%d%y`.log"
+std_err_file: "$BACKCYCLOG/mebwd_archbk_dd_bwprod24_`date +%m%d%y`.log"
+max_run_alarm: 720
+alarm_if_fail: 1
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 1
+
+
+/* ----------------- mebwd_acct_maint_del_users ----------------- */ 
+
+insert_job: mebwd_acct_maint_del_users   job_type: CMD 
+command: $CYCSHELL/mass_priv_user_delete.csh
+machine: usfkl21db137vcn1
+owner: oracle@usfkl21db137vcn1
+permission: mx,me
+date_conditions: 0
+condition: s(mepetl_d_ma_load_as_box^PRD)
+description: "Process user deletes from AF and drop BW oracle user accounts"
+n_retrys: 2
+job_terminator: 1
+std_out_file: "$CYCLOG/mebwd_acct_maint_del_users_`date +%m%d%y`.log"
+std_err_file: "$CYCLOG/mebwd_acct_maint_del_users_`date +%m%d%y`.log"
+max_run_alarm: 180
+alarm_if_fail: 0
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 1
+
+
+/* ----------------- mebwd_acct_maint_prep_coreprod ----------------- */ 
+
+insert_job: mebwd_acct_maint_prep_coreprod   job_type: CMD 
+command: $CYCSHELL/mass_priv_check_accounts.csh coreprod
+machine: usfkl21db137vcn1
+owner: oracle@usfkl21db137vcn1
+permission: mx,me
+date_conditions: 0
+condition: s(mebwd_acct_maint_del_users)
+description: "Process any new client to the global group"
+job_terminator: 1
+std_out_file: "$CYCLOG/mebwd_acct_maint_prep_coreprod_`date +%m%d%y`.log"
+std_err_file: "$CYCLOG/mebwd_acct_maint_prep_coreprod_`date +%m%d%y`.log"
+max_run_alarm: 240
+alarm_if_fail: 0
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 1
+
+
+/* ----------------- mebwd_acct_maint_coreprod ----------------- */ 
+
+insert_job: mebwd_acct_maint_coreprod   job_type: CMD 
+command: $CYCSHELL/mass_priv_user_maint.csh coreprod 0
+machine: usfkl21db137vcn1
+owner: oracle@usfkl21db137vcn1
+permission: mx,me
+date_conditions: 0
+condition: s(mebwd_acct_maint_prep_coreprod)
+description: "Process oracle account activity from AF"
+job_terminator: 1
+std_out_file: "$CYCLOG/mebwd_acct_maint_coreprod_`date +%m%d%y`.log"
+std_err_file: "$CYCLOG/mebwd_acct_maint_coreprod_`date +%m%d%y`.log"
+max_run_alarm: 60
+alarm_if_fail: 0
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 1
+
+
+/* ----------------- medba_archive_backup_bwprod36 ----------------- */ 
+
+insert_job: medba_archive_backup_bwprod36   job_type: CMD 
+command: $BACKCYCSHELL/archive_backup_rman_data_domain bwprod36
+machine: usfkl21db137vcn1
+owner: oracle@usfkl21db137vcn1
+permission: mx,me
+date_conditions: 1
+days_of_week: all
+start_times: "00:45, 05:45, 12:45,19:45"
+description: "RMAN backup for archive logs of bwprod36 database"
+job_terminator: 1
+std_out_file: "$BACKCYCLOG/medba_archive_backup_bwprod36_`date +%m%d%y`.log"
+std_err_file: "$BACKCYCLOG/medba_archive_backup_bwprod36_`date +%m%d%y`.log"
+max_run_alarm: 180
+alarm_if_fail: 1
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 1
+
+
+/* ----------------- medba_full_backup_bwprod36 ----------------- */ 
+
+insert_job: medba_full_backup_bwprod36   job_type: CMD 
+command: $BACKCYCSHELL/full_backup_rman_data_domain bwprod36
+machine: usfkl21db137vcn1
+owner: oracle@usfkl21db137vcn1
+permission: mx,me
+date_conditions: 1
+days_of_week: su
+start_times: "18:00"
+description: "FULL backup of bwprod36 database"
+std_out_file: "$BACKCYCLOG/medba_full_backup_bwprod36_`date +%m%d%y`.log"
+std_err_file: "$BACKCYCLOG/medba_full_backup_bwprod36_`date +%m%d%y`.log"
+max_run_alarm: 240
+alarm_if_fail: 1
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 1
+
+
+/* ----------------- medba_archive_backup_bwprod07 ----------------- */ 
+
+insert_job: medba_archive_backup_bwprod07   job_type: CMD 
+command: $BACKCYCSHELL/archive_backup_rman_data_domain bwprod07
+machine: usfkl21db137vcn2
+owner: oracle@usfkl21db137vcn2
+permission: mx,me
+date_conditions: 1
+days_of_week: all
+start_times: "05:45, 15:45"
+description: "RMAN backup for archive logs of bwprod07 database"
+job_terminator: 1
+std_out_file: "$BACKCYCLOG/medba_archive_backup_bwprod07_`date +%m%d%y`.log"
+std_err_file: "$BACKCYCLOG/medba_archive_backup_bwprod07_`date +%m%d%y`.log"
+max_run_alarm: 180
+alarm_if_fail: 1
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 1
+
+
+/* ----------------- medba_full_backup_bwprod07 ----------------- */ 
+
+insert_job: medba_full_backup_bwprod07   job_type: CMD 
+command: $BACKCYCSHELL/full_backup_rman_data_domain bwprod07
+machine: usfkl21db137vcn2
+owner: oracle@usfkl21db137vcn2
+permission: mx,me
+date_conditions: 1
+days_of_week: su
+start_times: "18:00"
+description: "FULL backup of bwprod07 database"
+std_out_file: "$BACKCYCLOG/medba_full_backup_bwprod07_`date +%m%d%y`.log"
+std_err_file: "$BACKCYCLOG/medba_full_backup_bwprod07_`date +%m%d%y`.log"
+max_run_alarm: 240
+alarm_if_fail: 1
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 1
+
+
+/* ----------------- medba_archive_backup_bwprod12 ----------------- */ 
+
+insert_job: medba_archive_backup_bwprod12   job_type: CMD 
+command: $BACKCYCSHELL/archive_backup_rman_data_domain bwprod12
+machine: usfkl21db137vcn2
+owner: oracle@usfkl21db137vcn2
+permission: mx,me
+date_conditions: 1
+days_of_week: all
+start_times: "08:45, 14:45,  23:45"
+description: "RMAN backup for archive logs of bwprod12 database"
+job_terminator: 1
+std_out_file: "$BACKCYCLOG/medba_archive_backup_bwprod12_`date +%m%d%y`.log"
+std_err_file: "$BACKCYCLOG/medba_archive_backup_bwprod12_`date +%m%d%y`.log"
+max_run_alarm: 180
+alarm_if_fail: 1
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 1
+
+
+/* ----------------- medba_full_backup_bwprod12 ----------------- */ 
+
+insert_job: medba_full_backup_bwprod12   job_type: CMD 
+command: $BACKCYCSHELL/full_backup_rman_data_domain bwprod12
+machine: usfkl21db137vcn2
+owner: oracle@usfkl21db137vcn2
+permission: mx,me
+date_conditions: 1
+days_of_week: mo
+start_times: "22:00"
+description: "FULL backup of bwprod12 database"
+std_out_file: "$BACKCYCLOG/medba_full_backup_bwprod12_`date +%m%d%y`.log"
+std_err_file: "$BACKCYCLOG/medba_full_backup_bwprod12_`date +%m%d%y`.log"
+max_run_alarm: 240
+alarm_if_fail: 1
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 1
+
+
+/* ----------------- mebwd_w_bw_client_site_smlmkt_rpt ----------------- */ 
+
+insert_job: mebwd_w_bw_client_site_smlmkt_rpt   job_type: CMD 
+command: $ORASHARE_CYCSHELL/bw_client_site_smlmkt.csh coreprod
+machine: usfkl21db137vcn1
+owner: oracle@usfkl21db137vcn1
+permission: mx,me
+date_conditions: 1
+days_of_week: mo
+start_times: "09:00"
+description: "To run weekly report for Internal Control"
+std_out_file: "$ORASHARE_CYCLOG/mebwd_w_bw_client_site_smlmkt_rpt_`date +%m%d%y`.log"
+std_err_file: "$ORASHARE_CYCLOG/mebwd_w_bw_client_site_smlmkt_rpt_`date +%m%d%y`.log"
+max_run_alarm: 480
+alarm_if_fail: 0
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 1
+
+
+/* ----------------- mebwd_w_bw_client_site_rpt ----------------- */ 
+
+insert_job: mebwd_w_bw_client_site_rpt   job_type: CMD 
+command: $ORASHARE_CYCSHELL/bw_client_site.csh coreprod
+machine: usfkl21db137vcn1
+owner: oracle@usfkl21db137vcn1
+permission: mx,me
+date_conditions: 1
+days_of_week: mo
+start_times: "09:00"
+description: "To run weekly report for Internal Control"
+std_out_file: "$ORASHARE_CYCLOG/mebwd_w_bw_client_site_rpt_`date +%m%d%y`.log"
+std_err_file: "$ORASHARE_CYCLOG/mebwd_w_bw_client_site_rpt_`date +%m%d%y`.log"
+max_run_alarm: 480
+alarm_if_fail: 0
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 1
+
+
+/* ----------------- mebwd_bw_client_site_rpt_test10 ----------------- */ 
+
+insert_job: mebwd_bw_client_site_rpt_test10   job_type: CMD 
+command: $ORASHARE_CYCSHELL/bw_client_site.csh bwtest10
+machine: usfkl21db137vcn1
+owner: oracle@usfkl21db137vcn1
+permission: mx,me
+date_conditions: 1
+days_of_week: sa
+start_times: "08:00"
+description: "To run weekly report for Internal Control"
+std_out_file: "$ORASHARE_CYCLOG/mebwd_w_bw_client_site_rpt_test10_`date +%m%d%y`.log"
+std_err_file: "$ORASHARE_CYCLOG/mebwd_w_bw_client_site_rpt_test10_`date +%m%d%y`.log"
+max_run_alarm: 20
+alarm_if_fail: 0
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 1
+
+
+/* ----------------- mebwd_bw_client_site_rpt_dev10 ----------------- */ 
+
+insert_job: mebwd_bw_client_site_rpt_dev10   job_type: CMD 
+command: $ORASHARE_CYCSHELL/bw_client_site.csh bwdev10
+machine: usfkl21db137vcn1
+owner: oracle@usfkl21db137vcn1
+permission: mx,me
+date_conditions: 1
+days_of_week: sa
+start_times: "08:10"
+description: "To run weekly report for Internal Control"
+std_out_file: "$ORASHARE_CYCLOG/mebwd_w_bw_client_site_rpt_dev10_`date +%m%d%y`.log"
+std_err_file: "$ORASHARE_CYCLOG/mebwd_w_bw_client_site_rpt_dev10_`date +%m%d%y`.log"
+max_run_alarm: 20
+alarm_if_fail: 0
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 1
+
+
+/* ----------------- mebwd_bw_client_site_rpt_fv2 ----------------- */ 
+
+insert_job: mebwd_bw_client_site_rpt_fv2   job_type: CMD 
+command: $ORASHARE_CYCSHELL/bw_client_site.csh fullvol2
+machine: usfkl21db137vcn1
+owner: oracle@usfkl21db137vcn1
+permission: mx,me
+date_conditions: 1
+days_of_week: sa
+start_times: "08:40"
+description: "To run weekly report for Internal Control"
+std_out_file: "$ORASHARE_CYCLOG/mebwd_w_bw_client_site_rpt_fv2_`date +%m%d%y`.log"
+std_err_file: "$ORASHARE_CYCLOG/mebwd_w_bw_client_site_rpt_fv2_`date +%m%d%y`.log"
+max_run_alarm: 20
+alarm_if_fail: 0
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 1
+
+
+/* ----------------- mebwd_bw_client_site_rpt_cso ----------------- */ 
+
+insert_job: mebwd_bw_client_site_rpt_cso   job_type: CMD 
+command: $ORASHARE_CYCSHELL/bw_client_site.csh bwtest12
+machine: usfkl21db137vcn1
+owner: oracle@usfkl21db137vcn1
+permission: mx,me
+date_conditions: 1
+days_of_week: sa
+start_times: "08:10"
+description: "To run weekly report for Internal Control"
+std_out_file: "$ORASHARE_CYCLOG/mebwd_w_bw_client_site_rpt_cso_`date +%m%d%y`.log"
+std_err_file: "$ORASHARE_CYCLOG/mebwd_w_bw_client_site_rpt_cso_`date +%m%d%y`.log"
+max_run_alarm: 20
+alarm_if_fail: 0
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 1
+
+
+/* ----------------- medba_check_prod_autosys_jobs ----------------- */ 
+
+insert_job: medba_check_prod_autosys_jobs   job_type: CMD 
+command: $CYCSHELL/autosys_job_status.csh
+machine: usfkl21db137vcn2
+owner: oracle@usfkl21db137vcn2
+permission: gx,ge,mx,me
+date_conditions: 1
+days_of_week: all
+start_times: "09:00"
+description: "Checks autosys jobs status and email info to DBA group"
+std_out_file: "$CYCLOG/medba_check_prod_autosys_jobs_`date +%m%d`.log"
+std_err_file: "$CYCLOG/medba_check_prod_autosys_jobs_`date +%m%d`.log"
+alarm_if_fail: 1
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 1
+
+
+/* ----------------- medba_full_backup_RMANPROD ----------------- */ 
+
+insert_job: medba_full_backup_RMANPROD   job_type: CMD 
+command: $BACKCYCSHELL/incr_backup_rman_data_domain RMANPROD
+machine: usfkl21db137vcn2
+owner: oracle@usfkl21db137vcn2
+permission: mx,me
+date_conditions: 1
+days_of_week: we
+start_times: "20:03"
+description: "Data Domain Hot backup for database"
+job_terminator: 1
+std_out_file: "$BACKCYCLOG/medba_full_backup_RMANPROD_`date +%m%d%y`.log"
+std_err_file: "$BACKCYCLOG/medba_full_backup_RMANPROD_`date +%m%d%y`.log"
+max_run_alarm: 120
+alarm_if_fail: 0
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 0
+
+
+/* ----------------- medba_archive_backup_RMANPROD ----------------- */ 
+
+insert_job: medba_archive_backup_RMANPROD   job_type: CMD 
+command: $BACKCYCSHELL/archive_backup_rman_data_domain RMANPROD
+machine: usfkl21db137vcn2
+owner: oracle@usfkl21db137vcn2
+permission: mx,me
+date_conditions: 1
+days_of_week: all
+start_times: "10:15,22:15"
+description: "RMAN Data Domain backup for archive logs of RMANPROD database"
+job_terminator: 1
+std_out_file: "$BACKCYCLOG/medba_archive_backup_RMANPROD_`date +%m%d%y`.log"
+std_err_file: "$BACKCYCLOG/medba_archive_backup_RMANPROD_`date +%m%d%y`.log"
+max_run_alarm: 60
+alarm_if_fail: 0
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 0
+
+
+/* ----------------- medba_create_tnsnames_from_OID_vcn1 ----------------- */ 
+
+insert_job: medba_create_tnsnames_from_OID_vcn1   job_type: CMD 
+command: $CYCSHELL/create_tns.csh
+machine: usfkl21db137vcn1
+owner: oracle@usfkl21db137vcn1
+permission: mx,me
+date_conditions: 1
+days_of_week: all
+start_times: "00:10"
+description: "Creates tnsnames.ora from OID server : usfkl21db137vcn1"
+job_terminator: 1
+std_out_file: "$CYCLOG/medba_create_tnsnames_from_OID_vcn1_`date +%m%d%y`.log"
+std_err_file: "$CYCLOG/medba_create_tnsnames_from_OID_vcn1_`date +%m%d%y`.log"
+max_run_alarm: 30
+alarm_if_fail: 0
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 0
+
+
+/* ----------------- mebwd_emerg_acct_drop ----------------- */ 
+
+insert_job: mebwd_emerg_acct_drop   job_type: CMD 
+command: $CYCSHELL/mass_priv_emerg_drop.csh
+machine: usfkl21db137vcn1
+owner: oracle@usfkl21db137vcn1
+permission: mx,me
+date_conditions: 1
+days_of_week: all
+start_times: "12:00"
+description: "Script drops emergency accounts that are more than 1 day old"
+job_terminator: 1
+std_out_file: "$CYCLOG/mebwd_emerg_acct_drop_`date +%m%d%y`.log"
+std_err_file: "$CYCLOG/mebwd_emerg_acct_drop_`date +%m%d%y`.log"
+max_run_alarm: 60
+alarm_if_fail: 1
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 1
+
+
+/* ----------------- medba_create_tnsnames_from_OID_vcn2 ----------------- */ 
+
+insert_job: medba_create_tnsnames_from_OID_vcn2   job_type: CMD 
+command: $CYCSHELL/create_tns.csh
+machine: usfkl21db137vcn2
+owner: oracle@usfkl21db137vcn2
+permission: mx,me
+date_conditions: 1
+days_of_week: all
+start_times: "00:10"
+description: "Creates tnsnames.ora from OID server : usfkl21db137vcn2"
+job_terminator: 1
+std_out_file: "$CYCLOG/medba_create_tnsnames_from_OID_vcn2_`date +%m%d%y`.log"
+std_err_file: "$CYCLOG/medba_create_tnsnames_from_OID_vcn2_`date +%m%d%y`.log"
+max_run_alarm: 30
+alarm_if_fail: 0
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 0
+
+
+/* ----------------- mebwd_core_bw_info ----------------- */ 
+
+insert_job: mebwd_core_bw_info   job_type: CMD 
+command: $CYCSHELL/bw_core_info.csh coreprod
+machine: usfkl21db137vcn1
+owner: oracle@usfkl21db137vcn1
+permission: mx,me
+date_conditions: 1
+days_of_week: all
+start_times: "06:02"
+description: "Refreshs data for Info_mgr bw_client_database tbl"
+job_terminator: 1
+std_out_file: "$CYCLOG/mebwd_core_bw_info_`date +%m%d%y`.log"
+std_err_file: "$CYCLOG/mebwd_core_bw_info_`date +%m%d%y`.log"
+max_run_alarm: 10
+alarm_if_fail: 1
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 1
+
+
+/* ----------------- pmdocsusprod_d_uni_start_MdocsETLReport ----------------- */ 
+
+insert_job: pmdocsusprod_d_uni_start_MdocsETLReport   job_type: CMD 
+command: /opt/apps/DFC/customJobs/MDocsAutosysJobs/DCTM_JOBS/ETL_Report/ETL_job.sh
+machine: usfkl21as86
+owner: mdocs-admin@usfkl21as86
+permission: mx,me
+date_conditions: 1
+days_of_week: mo
+start_times: "3:00"
+description: "pmdocsusprod_d_uni_start_MdocsETLReport"
+std_out_file: "/opt/apps/DFC/customJobs/MDocsAutosysJobs/DCTM_JOBS/logs/ETL/stdout_`date +%m%d`.log"
+std_err_file: "/opt/apps/DFC/customJobs/MDocsAutosysJobs/DCTM_JOBS/logs/ETL/stderr_`date +%m%d`.log"
+max_run_alarm: 90
+alarm_if_fail: 1
+alarm_if_terminated: 1
+
+
+/* ----------------- medba_archive_backup_bwproda ----------------- */ 
+
+insert_job: medba_archive_backup_bwproda   job_type: CMD 
+command: $BACKCYCSHELL/archive_backup_rman_data_domain bwproda
+machine: usfkl21db137vcn2
+owner: oracle@usfkl21db137vcn2
+permission: mx,me
+date_conditions: 1
+days_of_week: all
+start_times: "05:45, 19:45"
+description: "RMAN backup for archive logs of bwproda database"
+job_terminator: 1
+std_out_file: "$BACKCYCLOG/medba_archive_backup_bwproda_`date +%m%d%y`.log"
+std_err_file: "$BACKCYCLOG/medba_archive_backup_bwproda_`date +%m%d%y`.log"
+max_run_alarm: 180
+alarm_if_fail: 1
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 1
+
+
+/* ----------------- medba_full_backup_bwproda ----------------- */ 
+
+insert_job: medba_full_backup_bwproda   job_type: CMD 
+command: $BACKCYCSHELL/full_backup_rman_data_domain bwproda
+machine: usfkl21db137vcn2
+owner: oracle@usfkl21db137vcn2
+permission: mx,me
+date_conditions: 1
+days_of_week: fr
+start_times: "17:00"
+description: "FULL backup of bwproda database"
+std_out_file: "$BACKCYCLOG/medba_full_backup_bwproda_`date +%m%d%y`.log"
+std_err_file: "$BACKCYCLOG/medba_full_backup_bwproda_`date +%m%d%y`.log"
+max_run_alarm: 240
+alarm_if_fail: 1
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 1
+
+
+/* ----------------- medba_archive_backup_bwprod44 ----------------- */ 
+
+insert_job: medba_archive_backup_bwprod44   job_type: CMD 
+command: $BACKCYCSHELL/archive_backup_rman_data_domain bwprod44
+machine: usfkl21db137vcn2
+owner: oracle@usfkl21db137vcn2
+permission: mx,me
+date_conditions: 1
+days_of_week: all
+start_times: "08:45, 22:45"
+description: "RMAN backup for archive logs of bwprod44 database"
+job_terminator: 1
+std_out_file: "$BACKCYCLOG/medba_archive_backup_bwprod44_`date +%m%d%y`.log"
+std_err_file: "$BACKCYCLOG/medba_archive_backup_bwprod44_`date +%m%d%y`.log"
+max_run_alarm: 180
+alarm_if_fail: 1
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 1
+
+
+/* ----------------- medba_full_backup_bwprod44 ----------------- */ 
+
+insert_job: medba_full_backup_bwprod44   job_type: CMD 
+command: $BACKCYCSHELL/full_backup_rman_data_domain bwprod44
+machine: usfkl21db137vcn2
+owner: oracle@usfkl21db137vcn2
+permission: mx,me
+date_conditions: 1
+days_of_week: fr
+start_times: "21:00"
+description: "FULL backup of bwprod44 database"
+std_out_file: "$BACKCYCLOG/medba_full_backup_bwprod44_`date +%m%d%y`.log"
+std_err_file: "$BACKCYCLOG/medba_full_backup_bwprod44_`date +%m%d%y`.log"
+max_run_alarm: 240
+alarm_if_fail: 1
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 1
+
+
+/* ----------------- medba_archive_backup_fullvol2 ----------------- */ 
+
+insert_job: medba_archive_backup_fullvol2   job_type: CMD 
+command: $BACKCYCSHELL/archive_backup_rman_data_domain fullvol2
+machine: usfkl21db137vcn2
+owner: oracle@usfkl21db137vcn2
+permission: mx,me
+date_conditions: 1
+days_of_week: all
+start_times: "09:45, 23:45"
+description: "RMAN backup for archive logs of fullvol2 database"
+job_terminator: 1
+std_out_file: "$BACKCYCLOG/medba_archive_backup_fullvol2_`date +%m%d%y`.log"
+std_err_file: "$BACKCYCLOG/medba_archive_backup_fullvol2_`date +%m%d%y`.log"
+max_run_alarm: 180
+alarm_if_fail: 1
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 1
+
+
+/* ----------------- medba_full_backup_fullvol2 ----------------- */ 
+
+insert_job: medba_full_backup_fullvol2   job_type: CMD 
+command: $BACKCYCSHELL/full_backup_rman_data_domain fullvol2
+machine: usfkl21db137vcn2
+owner: oracle@usfkl21db137vcn2
+permission: mx,me
+date_conditions: 1
+days_of_week: fr
+start_times: "19:00"
+description: "FULL backup of fullvol2 database"
+std_out_file: "$BACKCYCLOG/medba_full_backup_fullvol2_`date +%m%d%y`.log"
+std_err_file: "$BACKCYCLOG/medba_full_backup_fullvol2_`date +%m%d%y`.log"
+max_run_alarm: 240
+alarm_if_fail: 1
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 1
+
+
+/* ----------------- mebwd_mat_views_refresh_apxprd01 ----------------- */ 
+
+insert_job: mebwd_mat_views_refresh_apxprd01   job_type: CMD 
+command: $CYCSHELL/refresh_masspriv_mat_views.csh apxprd01
+machine: usfkl21db137vcn1
+owner: oracle@usfkl21db137vcn1
+permission: mx,me
+date_conditions: 0
+condition: s(mebwd_acct_maint_coreprod)
+description: "Refresh  materialized views in apxprd01"
+job_terminator: 1
+std_out_file: "$CYCLOG/mebwd_mat_views_refresh_apxprd01_`date +%m%d%y`.log"
+std_err_file: "$CYCLOG/mebwd_mat_views_refresh_apxprd01_`date +%m%d%y`.log"
+max_run_alarm: 60
+alarm_if_fail: 1
+profile: "/home/oracle/auto.profile"
+alarm_if_terminated: 1

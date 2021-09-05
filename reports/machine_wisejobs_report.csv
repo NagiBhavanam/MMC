@@ -1,0 +1,139 @@
+JOBNAME,DESCRIPTION,MACHINE NAME,COMMAND,JOB TYPE
+mmamsg_w_ev_apac_mel_index2_resetarchive,"Reset Archive Bit",aumel11xv03.mrshmc.com,C\:\windows\system32\attrib -A G\:* /S,CMD
+mmamsg_w_ev_apac_syd_index2_resetarchive,"Reset Archive Bit",ausyd11xv03.mrshmc.com,C\:\windows\system32\attrib -A G\:* /S,CMD
+mmamsg_w_ev_apac_mel_index3_resetarchive,"Reset Archive Bit",aumel11xv04.mrshmc.com,C\:\windows\system32\attrib -A G\:* /S,CMD
+mmamsg_w_ev_apac_syd_index3_resetarchive,"Reset Archive Bit",ausyd11xv04.mrshmc.com,C\:\windows\system32\attrib -A G\:* /S,CMD
+mmemsg_w_ev_emea_bed_index4_resetarchive,"Reset Archive Bit",gbbed11xv08.mrshmc.com,c\:\windows\system32\attrib -A G\:* /S,CMD
+mmemsg_w_ev_emea_bed_index5_resetarchive,"Reset Archive Bit",gbbed11xv09.mrshmc.com,c\:\windows\system32\attrib -A J\:* /S,CMD
+mmemsg_w_ev_emea_bed_index6_resetarchive,"Reset Archive Bit",gbbed11xv10.mrshmc.com,c\:\windows\system32\attrib -A M\:* /S,CMD
+mmemsg_w_ev_emea_exe_index5_resetarchive,"Reset Archive Bit",gbexe11xv07.mrshmc.com,c\:\windows\system32\attrib -A J\:* /S,CMD
+mmemsg_w_ev_emea_bed_index7_resetarchive,"Reset Archive Bit",gbbed11xv11.mrshmc.com,c\:\windows\system32\attrib -A M\:* /S,CMD
+mmuxbau_hoefer_d_prod_ablage_dump,"ablage_dump_daily",gbexe21db22.eu.mrshmc.com,/u/bin/change_backup/ablage_dump_daily,CMD
+pmmacc_r_tst_autosys_broadway.mrshmc.com,"test autosys (owner was storadm)",broadway.mrshmc.com,/bin/date,CMD
+pmmacc_r_tst_autosys_gbbed31bs01,"test autosys",gbbed31bs01,/bin/date,CMD
+pmmacc_r_tst_autosys_usfkl21db54cn1,"test autosys",usfkl21db54cn1,/bin/date,CMD
+pmmacc_r_tst_autosys_USDFW31DB08CN1,"test autosys",USDFW31DB08CN1,/bin/date,CMD
+pmmacc_r_tst_autosys_usfkl21bs01cl,"test autosys",usfkl21bs01cl,/bin/date,CMD
+pmmacc_r_tst_autosys_USFKL21AS283V,"test autosys",USFKL21AS283V,/bin/date,CMD
+pmmacc_r_tst_autosys_gbbed21as152v,"test autosys",gbbed21as152v,/bin/date,CMD
+pmmacc_r_tst_autosys_usurb31as13v,"test autosys",usurb31as13v,/bin/date,CMD
+pmmacc_r_tst_autosys_usurb31as14v,"test autosys",usurb31as14v,/bin/date,CMD
+pmmacc_r_tst_autosys_usurb31as17v,"test autosys",usurb31as17v,/bin/date,CMD
+pmmacc_r_tst_autosys_usfkl21as336vcn1,"test autosys",usfkl21as336vcn1,/bin/date,CMD
+pmmacc_r_tst_autosys_usfkl21as336vcn2,"test autosys",usfkl21as336vcn2,/bin/date,CMD
+pmmacc_r_tst_autosys_usdfw21as161,"test autosys",usdfw21as161,/bin/date,CMD
+pmmacc_r_tst_autosys_AUSYD21AS73,"test autosys",AUSYD21AS73,/bin/date,CMD
+pmmacc_r_tst_autosys_usdfw21db41vcn2,"test autosys",usdfw21db41vcn2,/bin/date,CMD
+pmmacc_r_tst_autosys_usdfw21as412v,"test autosys",usdfw21as412v,/bin/date,CMD
+pmmacc_r_tst_autosys_usdfw21ws29v,"test autosys",usdfw21ws29v,/bin/date,CMD
+pmmacc_r_tst_autosys_usdfw21ws31v,"test autosys",usdfw21ws31v,/bin/date,CMD
+pmmacc_r_tst_autosys_USURB31AS25V,"test autosys",USURB31AS25V,/bin/date,CMD
+pmmacc_r_tst_autosys_gbbed21db15vcn2,"test autosys",gbbed21db15vcn2,/bin/date,CMD
+pmmacc_r_tst_autosys_gbbed21db15vcn1-vip,"test autosys",gbbed21db15vcn1-vip,/bin/date,CMD
+pmmacc_r_tst_autosys_usdfw21db53vcn1,"test autosys",usdfw21db53vcn1,/bin/date,CMD
+pmmacc_r_tst_autosys_usdfw21db53vcn2,"test autosys",usdfw21db53vcn2,/bin/date,CMD
+pmmacc_r_tst_autosys_gbbed26db01vcn1,"test Autosys client DR server",gbbed26db01vcn1,/bin/date,CMD
+pmmacc_r_tst_autosys_gbbed26db01vcn2,"test Autosys client DR server",gbbed26db01vcn2,/bin/date,CMD
+pmmacc_r_tst_autosys_gbexe21db04vcn2,"test Autosys gbexe21db04vcn2 server",gbexe21db04vcn2,/bin/date,CMD
+pmmacc_r_tst_autosys_gbexe21db04vcn1,"test Autosys gbexe21db04vcn1 server",gbexe21db04vcn1,/bin/date,CMD
+pmmacc_r_tst_autosys_usurb21bs100,"test autosys",usurb21bs100,/bin/date,CMD
+pmmacc_r_tst_autosys_usurb31as03_sysa2av,"test autosys",sysa2av,/bin/date,CMD
+pmmacc_r_tst_autosys_usdf21v0481,"test autosys",usdf21v0481,/bin/date,CMD
+pmmacc_r_tst_autosys_usdfw21db73v,"test autosys",usdfw21db73v,/bin/date,CMD
+pmmacc_r_tst_autosys_aumel11bs11,"test autosys",aumel11bs11,C\:\windows\system32\ping 127.0.0.1,CMD
+pmmacc_r_tst_autosys_aumel11bs12,"test autosys",aumel11bs12,C\:\windows\system32\ping 127.0.0.1,CMD
+pmmacc_r_tst_autosys_ausyd11bs06,"test autosys",ausyd11bs06,C\:\windows\system32\ping 127.0.0.1,CMD
+pmmacc_r_tst_autosys_usfkl11bs11,"test autosys",usfkl11bs11,C\:\windows\system32\ping 127.0.0.1,CMD
+pmmacc_r_tst_autosys_usfkl11as743v,"test autosys window 2012",usfkl11as743v,C\:\windows\system32\ping 127.0.0.1,CMD
+pmmacc_r_tst_autosys_gbbed11bs08,"test autosys svc-ev@mercer (original owner svc-netapp@mercer)",gbbed11bs08,C\:\windows\system32\ping 127.0.0.1,CMD
+pmmacc_r_tst_autosys_gbbed11bs09,"test autosys svc-ev@mercer (original owner svc-netapp@mercer)",gbbed11bs09,C\:\windows\system32\ping 127.0.0.1,CMD
+pmmacc_r_tst_autosys_gbexe11bs11,"test autosys svc-ev@mercer (original owner svc-netapp@mercer)",gbexe11bs11,C\:\windows\system32\ping 127.0.0.1,CMD
+pmmacc_r_tst_autosys_USFKL11AS490V,"test autosys",USFKL11AS490V,C\:\windows\system32\ping 127.0.0.1,CMD
+pmmacc_r_tst_autosys_ausyd11xa03cn1.mercer.com,"test autosys",ausyd11xa03cn1.mercer.com,C\:\windows\system32\ping 127.0.0.1,CMD
+pmmacc_r_tst_autosys_ausyd11xa03cn2.mercer.com,"test autosys",ausyd11xa03cn2.mercer.com,C\:\windows\system32\ping 127.0.0.1,CMD
+mmwdeng_d_pswdAgeNotify_as450,"passwordAgeNotification script for Elliot Kirk MGTI Windows Engineering",usfkl11as450,d\:\prodacc\batch\passwordAgeNotification\passwordAgeNotification.bat,CMD
+mewb_r_AMS_Prod_quarterlyLeaveBalance_11ws145v,"Job to calculate quarterly leave balance",USDFW11WS145V,D\:\AMSJobs\AMSLeaveLogicJob.bat,CMD
+mmstor_d_dfw_oci_cmd_import,"NetApp OnCommand Insight CMDB Import",USDFW11AS643V,D\:\OCI_annotation_tool\CA_Auto_script_config2.cmd,CMD
+maaes_d_mkc_interim_report_prod,"MKC Interim Report batch job",USFKL11AS11CN1,D\:\MarketConnect_InterimBatch\PDCSBatch\PDCSBatch.exe,CMD
+megldba_d_backup_daily_test,"Initiate NetBackup (DB Tier) - Step 12 testing",GBEXE12DB38CL,"C:\Program Files\VERITAS\NetBackup\bin\bpbackup.exe" -i -w -p XDC_Mercer_FileNet_Policy3 -s Daily_Inc -h gbexe12db38ci1bu -S gbexe21bs01cl,CMD
+maiafs_w_Deactivate_bridger_users,"Deactivate bridger users",USFKL21AS365V,/var/opt/powermart/pc8_prod/infa_shared/SrcFiles/BRIDGER_WEEKLY_REPORT/BRIDGER_ETL.sh,CMD
+pmdocs_d_uni_start_MDocsPolicyReport_xPlorev1,"pmdocs_d_uni_start_MdocsPolicyReport",usfkl21as85,/opt/apps/DFC/customJobs/MDocsAutosysJobs/DCTM_JOBS/shell_scripts/MDocsPolicyReportJob_xplore.sh,CMD
+macwdb_d_pcibatch_load,"PCI BatchJob SYSA2A",usurb31as34v,/data/dataloads/pci/scripts/pciRecurringBatchJob.sh,CMD
+pmmacc_r_elk_tst_autosys_usurb31as04_sysa2bv,"test autosys",sysa2bv,ls -al /web/webftp/,CMD
+pmdba_d_full_backup_oltp81_usurb21db08vcn1,"RMAN Online Hot Backup for oltp81",usurb21db08vcn1,/opt/oracle/scripts/wrappers/backup_oltp81_full.sh,CMD
+mesegtd_d_win_start_process_seg,"execute tasks SEG",gbex11v0100,D\:\Dynamic.Soft\Procesos_SEG\Lanzador_Procesos_SEG.bat,CMD
+meidos_d_win_mpmcheck0258_job,"MPM Check 0258",gbbe11v0258,D\:\Applications\PRD\IRL\AutoSysJobs\MPM.Check.cmd,CMD
+meidos_d_win_mpmcheck0259_job,"MPM Check 0259",gbbe11v0259,D\:\Applications\PRD\IRL\AutoSysJobs\MPM.Check.cmd,CMD
+meidos_d_win_mpmcheck0260_job,"MPM Check 0260",gbbe11v0260,D\:\Applications\PRD\IRL\AutoSysJobs\MPM.Check.cmd,CMD
+mesegtd_d_win_start_process_seg_DR,"execute tasks SEG",dr-gbex11v0100,D\:\Dynamic.Soft\Procesos_SEG\Lanzador_Procesos_SEG.bat,CMD
+pmmacc_r_tst_autosys_usfkl21as337vcn2,"test autosys",usfkl21as337vcn2,/bin/date,CMD
+pmmacc_r_tst_dmzautosys_usfkl11db11cn1,"test autosys",usfkl11db11cn1,C\:\windows\system32\ping 127.0.0.1,CMD
+pmmacc_r_tst_dmzautosys_usfkl11db11cn2,"test autosys",usfkl11db11cn2,C\:\windows\system32\ping 127.0.0.1,CMD
+marsyn_d_WAS8_5_EXT_rsync-from-PRD-N1-PRF_N1,"Daily rsync from WAS855 Prod Internal Webserver (usfkl21ws84v) to DR Internal Webserver (USDFW22WS24V)",usfkl21ws84v,/opt/apps/scripts/DRScripts/WAS8.5_EXT_rsync-from-prd-N1-prf.sh,CMD
+marsyn_d_WAS8_5_EXT_rsync-from-PRD-N2-PRF_N2,"Daily rsync from WAS855 Prod Internal Webserver (usfkl21ws85v) to DR Internal Webserver (USDFW22WS25V)",usfkl21ws85v,/opt/apps/scripts/DRScripts/WAS8.5_EXT_rsync-from-prd-N2-prf.sh,CMD
+pacc_tst_autsys_gbbed21as52,"Test AUTOSYS is Set Up Correctly",gbbed21as52,/bin/date,CMD
+pmmacc_r_tst_autosys_gbbed21as52,"test autosys",gbbed21as52,/bin/date,CMD
+mmbkp_d_ev_emea_bed11bs09_unmount,"Unmount clone",gbbed11bs09.mrshmc.com,c\:\WINDOWS\SysWOW64\windowspowershell\v1.0\powershell.exe c\:\mgti\EVBU-support.ps1 offline,CMD
+mmbkp_w_ev_emea_bed11bs09_unmount,"Unmount clone",gbbed11bs09.mrshmc.com,c\:\WINDOWS\SysWOW64\windowspowershell\v1.0\powershell.exe c\:\mgti\EVBU-support.ps1 offline,CMD
+mmbkp_d_ev_emea_exe11bs11_unmount,"Unmount clone",gbexe11bs11.mrshmc.com,c\:\WINDOWS\SysWOW64\windowspowershell\v1.0\powershell.exe c\:\mgti\EVBU-support.ps1 offline,CMD
+mmbkp_w_ev_emea_exe11bs11_unmount,"Unmount clone",gbexe11bs11.mrshmc.com,c\:\WINDOWS\SysWOW64\windowspowershell\v1.0\powershell.exe c\:\mgti\EVBU-support.ps1 offline,CMD
+mmemsg_w_ev_emea_exe_index3_resetarchive,"Reset Archive Bit",gbexe11xv08.mrshmc.com,c\:\windows\system32\attrib -A G\:* /S,CMD
+pmmacc_r_tst_autosys_gbexe11xv08.mrshmc.com,"test autosys",gbexe11xv08.mrshmc.com,C\:\windows\system32\ping 127.0.0.1,CMD
+mmemsg_w_ev_emea_exe_index4_resetarchive,"Reset Archive Bit",gbexe11xv09.mrshmc.com,c\:\windows\system32\attrib -A J\:* /S,CMD
+pmmacc_r_tst_autosys_gbexe11xv09.mrshmc.com,"test autosys",gbexe11xv09.mrshmc.com,C\:\windows\system32\ping 127.0.0.1,CMD
+pmmacc_r_tst_autosys_USFKL21AS281V,"test autosys",USFKL21AS281V,/bin/date,CMD
+mamsearch_d_Prodsolr_d_sepr_init_node1,"sepr init",USFKL21AS281V,/opt/apps/batch/SolrImporterBatch/bin/solr_batch.sh sepr init 3000,CMD
+pmmacc_r_tst_autosys_usdfw21db41vcn1,"test autosys",usdfw21db41vcn1,/bin/date,CMD
+pmdba_coll_details_mv_refresh_usdfw21db41vcn1,"ODB Colleague Details Refresh",usdfw21db41vcn1,/var/oracle/admin/oltp132/dba/common/bin/colleague_details_mv_refresh.ksh,CMD
+pmmacc_r_tst_autosys_usdfw21db54vcn1,"test autosys",usdfw21db54vcn1,/bin/date,CMD
+pmmacc_r_tst_autosys_usdfw21db54vcn21,"test autosys",usdfw21db54vcn1,/bin/date,CMD
+pmmacc_r_tst_autosys_usdf21v0468,"test autosys",usdf21v0468,/bin/date,CMD
+pmmacc_r_tst_autosys_usdf21v0468_herb,"test autosys",usdf21v0468,ls -al /opt/CA/,CMD
+pmmacc_r_tst_autosys_usdfw11as129v,"test autosys window 2012",usdfw11as129v,C\:\windows\system32\ping 127.0.0.1,CMD
+mmesm_w_spectrum_mgr_report_MySQL_db,"Performs export of the Spectrum Report Manager MySQL Database",usdfw11as129v,D\:\win32app\Spectrum\NT-Tools\SRE\bin\bash.exe D\:\esmcustom\MySQLDBDump\MySQLDBDump.sh,CMD
+pmmacc_r_tst_autosys_gbbe11v0358,"test autosys",gbbe11v0358,C\:\windows\system32\ping 127.0.0.1,CMD
+pmadnet_d_win_run_EASdataload,"WorkDay to EAS Load",gbbe11v0358,D\:\WorkDayIntegrationWithEAS\Release\WorkdayEasInterface.exe,CMD
+mamm_d_export_basys_usprd1wasshe,"Daily extraction process - can be rerun",usprd1wasshe,/opt/batch/prd/ambest/bin/ExportToBasys.sh,CMD
+mamm_d_report_batch_usprd1wasshe,"Daily report caching process - can be rerun",usprd1wasshe,/opt/batch/prd/ojdk1.8/linux-x64/jre/bin/java -DenvName=prd -Dlog4j.configuration=log4j_prd.properties -jar /opt/batch/MMreport-batch/MMreport-batch.jar,CMD
+maaes_m_net_ezcert_distribution,"NET_EZCERT_DISTRIBUTION batch job",usfkl11as23v,"D:\Cert_Distrubution_Batch\Carrier_Report_Dist_Batch.exe",CMD
+maaes_m_prerenewal_cert_batch_clientrenewal_usfkl11as23v,"Prerenewal Cert Batch ClientRenewal",usfkl11as23v,D\:\PreRenewal_Certificates\PreRenewal_Cert_Batch\ClientRenewal.exe,CMD
+mewb_d_stop_SPP_PRD_OHS_21as348,"This will stop the Oracle HTTP Server on usfkl21as348",usfkl21as348,/home/siebel/scripts/stop_OHS_spp.sh,CMD
+mewb_d_start_SPP_PRD_OHS_21as348,"This will start the Oracle HTTP Server on usfkl21as348",usfkl21as348,/home/siebel/scripts/start_OHS_spp.sh,CMD
+mewb_d_start_MRMS_PRD_OHS_21as345,"This will start the Oracle HTTP Server usfkl21as345",usfkl21as345,/home/siebel/scripts/start_OHS_mrms.sh,CMD
+mewb_d_stop_MRMS_PRD_OHS_21as345,"This will stop the Oracle HTTP Server on usfkl21as345",usfkl21as345,/home/siebel/scripts/stop_OHS_mrms.sh,CMD
+marsyn_d_WAS8_5_INT_rsync-from-PRD-N1-PRF_N1,"Daily rsync from WAS855 Prod Internal Webserver (usfkl21ws86v) to DR Internal Webserver (USDFW22WS26V)",usfkl21ws86v,/opt/apps/scripts/DRScripts/WAS8.5_INT_rsync-from-prd-N1-prf.sh,CMD
+marsyn_d_WPS8_5_INT_rsync-from-PRD-N1-PRF_N1,"Daily rsync from Websphere Portal855 Prod Internal Webserver (usfkl21ws86v) to DR Internal Webserver (USDFW22WS26V)",usfkl21ws86v,/opt/apps/scripts/DRScripts/WPS8.5_INT_rsync-from-prd-N1-prf.sh,CMD
+marsyn_d_WAS8_5_INT_rsync-from-PRD-N2-PRF_N2,"Daily rsync from WAS855 Prod Internal Webserver (USFKL21WS87V) to DR Internal Webserver (USDFW22WS27V)",usfkl21ws87v,/opt/apps/scripts/DRScripts/WAS8.5_INT_rsync-from-prd-N2-prf.sh,CMD
+marsyn_d_WPS8_5_INT_rsync-from-PRD-N2-PRF_N2,"Daily rsync from Websphere Portal855 Prod Internal Webserver (USFKL21WS87V) to DR Internal Webserver (USDFW22WS27V)",usfkl21ws87v,/opt/apps/scripts/DRScripts/WPS8.5_INT_rsync-from-prd-N2-prf.sh,CMD
+magds_d_ToERPFinancials_Elite_USDFW11AS58V_PRD,"ToERPFinancials_push files to usdfw31as03",usdfw11as58v,"D:\iExpensesFeeds\ToERPFinancials\ToERPFinancials.bat",CMD
+maelt_d_iexpenses_project_lists_usdfw11as58v,"Generate iExpenses Current Project Lists",usdfw11as58v,"D:\elite\custom\iExpenses\MakeiExpensesPrjList.cmd",CMD
+medm_d_ta_to_bw_file_copy,"Transamerica Report | Receiving the OMNI to BW information manually to update BW - uses robocopy to move files from the DataMan workspace to the \"Q\" drive folder",usfkl11as20v,D\:\Autosys\batch\ta_to_bw_robocopy.bat,CMD
+medm_prd_mm365_test_file,"MM365+ Report | move files from the DataMan workspace to the \"Q\" drive folder",usfkl11as20v,D\:\Autosys\batch\mm365_slb_cam_robocopy.bat,CMD
+mabca_d_pcrsegmentupdate_as441v,"BCA segment updates from PCR-Production",usfkl21as441v,/web/tomcat_apps/prd/tcserver/3.2.4.SR1/USPD1BCA/x64/jvm/BCABATCH/segmentupdateWrapper.sh,CMD
+mabca_d_bulkupload_as441v,"BCA segment updates from PCR-Production",usfkl21as441v,/web/tomcat_apps/prd/tcserver/3.2.4.SR1/USPD1BCA/x64/jvm/BCABULKUPLOADBATCH/BCABulkUpload/config/BulkUpload_wrapper.sh,CMD
+pmdba_d_full_backup_oltp85_usurb21db08vcn2,"RMAN Online Hot Backup for oltp85",usurb21db08vcn2,/opt/oracle/scripts/wrappers/backup_oltp85_full.sh,CMD
+pmdba_d_full_backup_oltp82_usurb21db08vcn2,"RMAN Online Hot Backup for oltp82",usurb21db08vcn2,/opt/oracle/scripts/wrappers/backup_oltp82_full.sh,CMD
+mebpm_d_cordysvalidation_report_prod,"Cordys Validation Report",usfkl21as504v,/www/cordys/prod/ValidationReport/carrierfilereport.sh,CMD
+mebpm_d_trusteevalidation_report_prod,"Cordys Trustee Validation Report",usfkl21as504v,/www/cordys/prod/TrusteeValidationReport/trusteefilereport.sh,CMD
+mmstor_d_emea_dwh_ovm_snapshot,"Snapshot job-data and REDO LUNs",gbbed21as153,/usr/local/emc/scripts/create_snapshots_VMAX.sh 1114 GBBED21DB15VCL_Data_REP 2,CMD
+mmstor_d_emea_dwh_ovm_snapshot_archive,"Snapshot job-FRA LUNs only (archive storage group)",gbbed21as153,/usr/local/emc/scripts/create_snapshots_VMAX.sh 1114 GBBED21DB15VCL_FRA_REP 2,CMD
+mamsearch_d_Prodsolr_mcas_ar_init_node1,"new index mcas_ar init",usdfw21as384v,/opt/apps/batch/SolrImporterBatch2/bin/solr_batch.sh mcas_ar_12c init 5000,CMD
+mamsearch_d_Prodsolr_mcas_ap_init_node1,"new index mcas_ap init",usdfw21as384v,/opt/apps/batch/SolrImporterBatch2/bin/solr_batch.sh mcas_ap_12c init 5000,CMD
+gccat_d_win_sncoutputtfr_PRD,"Sanctions_Output_Distribution_GC_Prod_USFKL11WS389V",usfkl11ws389v,D\:\AutosysScript\GC.bat,CMD
+maaes_d_win_nodejs_PROD,"Nodejs_appexe_PROD_USFKL11WS389V",usfkl11ws389v,D\:\EMS_deployment_07122019\ems-file-watcher-master@a505b030211\prod_strt.bat,CMD
+mamway_d_marshwaybix_usprd1was01pga,"Runnning on marshwaybix job on autosys",usfkl21as78,/opt/sharedlib/usprd1waspga/applications/bixmway/onemarshbix.sh,CMD
+pmmacc_r_tst_dmzautosys_usfkl21as78,"test autosys",usfkl21as78,/bin/date,CMD
+mamway_d_marshwaybix_usprd1was02pga,"Runnning on marshwaybix job on autosys",usfkl21as95,/opt/sharedlib/usprd1waspga/applications/bixmway/onemarshbix.sh,CMD
+pmmacc_r_tst_dmzautosys_usfkl21as95,"test autosys",usfkl21as95,/bin/date,CMD
+pmmacc_r_tst_autosys_usfkl21as337vcn1,"test autosys",usfkl21as337vcn1,/bin/date,CMD
+pmmacc_r_tst_autosys_usfkl21as337vcn1_elk,"test autosys",usfkl21as337vcn1,ls -al,CMD
+pmmacc_r_tst_dmzautosys_usfkl11db11cn3,"test autosys",usfkl11db11cn3,C\:\windows\system32\ping 127.0.0.1,CMD
+pmmacc_r_tst_dmzautosys_usfkl11db11cn3_kms,"test autosys",usfkl11db11cn3,C\:\windows\system32\ping 127.0.0.,CMD
+meppa_d_Mkrt_UAT_CntrlFile_Setup,"Setup Control File on PPA UAT Server for Promote Process",usdfw12db29cn1,D\:\MSSQL\PPA_Mercer_Promote\BAT\PPA_Mkrt_UAT_CntrlFile_Setup.bat,CMD
+meppa_d_Mkrt_Uat_restore,"Restore DB on PPA UAT Server for Promote Process",usdfw12db29cn1,D\:\MSSQL\PPA_Mercer_Promote\BAT\PPA_Mkrt_UAT_Restore.bat,CMD
+pmaclev_d_win_start_PBE3Arch,"BE3 Archive Documents",gbbe11v0367,\\gbbed61ns9svm_ma_app_prod_vl414.mrshmc.com\ITN_Share\Cleva_Tomcat\Prod_Batches\Utility\pmaclev_d_win_start_BE3Arch.bat,CMD
+pmaclev_d_win_start_PBE3EdtDif,"BE3 edition differee",gbbe11v0367,\\gbbed61ns9svm_ma_app_prod_vl414.mrshmc.com\ITN_Share\Cleva_Tomcat\Prod_Batches\Utility\pmaclev_d_win_start_BE3EdtDif.bat,CMD
+mebwd_hotbk_dd_bwprod26,"RMAN Data Domain Hot backup for bwprod26 database",usdfw21db75vcn2,$BACKCYCSHELL/incr_backup_rman_data_domain bwprod26,CMD
+mebwd_archbk_dd_bwprod26,"RMAN Data Domain backup for archive logs of bwprod26 database",usdfw21db75vcn2,$BACKCYCSHELL/archive_backup_rman_data_domain bwprod26,CMD
+medba_gather_stats_bwprod25,"Job will gather stats for specific tables in bwprod25",usdfw21db75vcn3,$CYCSHELL/custom_gather_stats.csh,CMD
+medba_gather_stats_weekend_bwprod25,"Job will gather stats for specific tables in bwprod25 with last_analyzed date > 7 days old",usdfw21db75vcn3,$CYCSHELL/custom_gather_stats_weekend.csh,CMD

@@ -1,0 +1,4 @@
+Machine has 1 or 2 jobs
+
+JOb name, description, machine name, cmd, job type
+
