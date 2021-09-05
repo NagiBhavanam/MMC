@@ -1,7 +1,7 @@
 from jilprocess import readjobsdata, writejil
 
 def pullboxjobs(boxessourcefilename,mainsourcefilename,destinationfilename,logfilename):
-    #get all boxnames
+    #get all boxnames in nagi_branch change
     jobsdataforboxes = readjobsdata(boxessourcefilename)
     mainsourcejobsdata = readjobsdata(mainsourcefilename)
     lstboxes = []
