@@ -154,14 +154,47 @@ def getboxjobsalllevels(sourcefilename,mainsourcefilename,reportfilename):
     with open(reportfilename,"w") as reportfile:
         reportfile.writelines(reportlines)
 
-def getreportlines(reportlines,lstjobs,levelstr):
-    for jobdict in lstjobs:
-        reportlines.append(levelstr.format(jobdict["insert_job"]))
-    return reportlines
+def getboxjobs_hirarchy(jilfilename,reportfilename):
+    jobsdata = readjobsdata(jilfilename)
+    #fetch topboxes
+    lstleveloneboxes = []
+    for jobdict in jobsdata:
+        if "BOX" == jobdict["job_type"] and "box_name" not in jobdict.keys():
+            lstleveloneboxes.append(jobdict)
+    reportlines = []
+    for leveloneboxdict in lstleveloneboxes:
+        print("{}".format(leveloneboxdict["insert_job"]))
+        reportlines.append("{}\n".format(leveloneboxdict["insert_job"]))
+        lstleveltwoboxes = []
+        getboxes(jobsdata,lstleveltwoboxes,leveloneboxdict)
+        for leveltwoboxdict in lstleveltwoboxes:
+            print("\t{}".format(leveltwoboxdict["insert_job"]))
+            reportlines.append("\t{}\n".format(leveltwoboxdict["insert_job"]))
+            lstlevelthreeboxes = []
+            getboxes(jobsdata,lstlevelthreeboxes,leveltwoboxdict)
+            for levelthreeboxdict in lstlevelthreeboxes:
+                print("\t\t{}".format(levelthreeboxdict["insert_job"]))
+                reportlines.append("\t\t{}\n".format(levelthreeboxdict["insert_job"]))
+                lstlevelfourboxes = []
+                getboxes(jobsdata,lstlevelfourboxes,levelthreeboxdict)
+                for levelfourboxdict in lstlevelfourboxes:
+                    print("\t\t\t{}".format(levelfourboxdict["insert_job"]))
+                    reportlines.append("\t\t\t{}\n".format(levelfourboxdict["insert_job"]))
+                    lstlevelfiveboxes = []
+                    getboxes(jobsdata,lstlevelfiveboxes,levelfourboxdict)
 
+    with open(reportfilename,"w") as reportfile:
+        reportfile.writelines(reportlines)
+
+def getboxes(jobsdata,lstlevelboxes,boxdict):
+    for jobdict in jobsdata:
+        if "BOX" == jobdict["job_type"] and "box_name" in jobdict.keys() and jobdict["box_name"] == boxdict["insert_job"]:
+            lstlevelboxes.append(jobdict)
+            
 if __name__ == "__main__":
+    getboxjobs_hirarchy("input/02092021/New_MMC_Prod_JILs_08312021.txt","reports/boxes_hirarchy_report.txt")
     jobscountsarray = [1,2,3,4,5,6]
     #getmachinejobsreport("input/MMC_ALLJOBS.txt","reports")
     #getboxjobsalllevels("input/02092021/MMC_ALLJOBS_schedule_Wave1_new_remove_1.txt","input/02092021/New_MMC_Prod_JILs_08312021.txt","reports/allleveljobs_report.txt")
-    getjobsnotinwave("output/MMC_ALLJOBS_schedule_Wave1_new_remove_1_update.jil","reports/MMC_ALLJOBS_schedule_Wave1_new_remove_1_update_jobsnotin_wave_report.txt")
+    #getjobsnotinwave("output/MMC_ALLJOBS_schedule_Wave1_new_remove_1_update.jil","reports/MMC_ALLJOBS_schedule_Wave1_new_remove_1_update_jobsnotin_wave_report.txt")
     #jobs_inbox_report("input/MMC_ALLJOBS_schedule_Wave1.jil","output/MMC_ALLJOBS_schedule_Wave1.jil","reports/boxjobs_check_report.csv")
