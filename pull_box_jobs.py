@@ -17,6 +17,7 @@ def pullboxjobs(boxessourcefilename,mainsourcefilename,destinationfilename,logfi
     lstaddedjobnames = []
     lstjobsaddedtoreport = []
     lstuniqueboxes = [boxname for boxname in lstuniqueboxes if "emea" in boxname]
+    
     for leveloneboxname in lstuniqueboxes:
         if leveloneboxname not in lstjobsaddedtoreport:
             reportlines.append("{}\n".format(leveloneboxname))
