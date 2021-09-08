@@ -89,5 +89,6 @@ def preparefinallist(lstjobstoadd,lstfinaljobs,lstaddedjobnames):
     return lstfinaljobs,lstaddedjobnames
 
 if __name__ == '__main__':
-    pullboxjobs("input/02092021/MMC_ALLJOBS_schedule_Wave1_new_remove_1.txt","input/02092021/New_MMC_Prod_JILs_08312021.txt","output/MMC_Wave1_Split_NoSchedule.jil","logs/MMC_Wave1_Split_log.txt")
+    #pullboxjobs("input/02092021/MMC_ALLJOBS_schedule_Wave1_new_remove_1.txt","input/02092021/New_MMC_Prod_JILs_08312021.txt","output/MMC_Wave1_Split_NoSchedule.jil","logs/MMC_Wave1_Split_log.txt")
+    pullboxjobs("input/02092021/MMC_ALLJOBS_schedule_Wave1_new_remove_1.txt","input/02092021/New_MMC_Prod_JILs_08312021.txt","output/MMC_ALLJOBS_schedule_Wave1_new_remove_1_update.jil","logs/MMC_Wave1_Split_log.txt")
     
