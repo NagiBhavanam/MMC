@@ -12,10 +12,10 @@ timezone: London
 group: MGTI_EUR_MESSAGING
 application: MMEMSG
 
-/* ----------------- mmemsg_w_ev_emea_start_3 ----------------- */ 
+/* ----------------- mmemsg_w_ev_emea_start_2 ----------------- */ 
 
-insert_job: mmemsg_w_ev_emea_start_3 job_type: CMD 
-box_name: mmemsg_d_ev_emea_box
+insert_job: mmemsg_w_ev_emea_start_2 job_type: BOX 
+box_name: mmemsg_w_ev_emea_start_box
 owner: root
 permission: mx,me
 date_conditions: 0
@@ -25,24 +25,15 @@ timezone: London
 group: MGTI_EUR_MESSAGING
 application: MMEMSG
 
-/* ----------------- mmemsg_w_ev_emea_start_2 ----------------- */ 
-
-insert_job: mmemsg_w_ev_emea_start_2 job_type: CMD 
-owner: root
-permission: mx,me
-date_conditions: 0
-condition: s(mmemsg_w_ev_emea_start_3)
-max_run_alarm: 30
-timezone: London
-group: MGTI_EUR_MESSAGING
-application: MMEMSG
-
 /* ----------------- mmemsg_w_ev_emea_box ----------------- */ 
 
 insert_job: mmemsg_w_ev_emea_box  job_type: BOX 
+box_name: mmemsg_d_ev_emea_box
 owner: root
 permission: mx,me
 date_conditions: 0
+days_of_week: fr
+start_times: "17:45"
 condition: (s(mmemsg_d_ev_emea_box) & s(mmemsg_w_sun_ev_emea_box))
 max_run_alarm: 690
 timezone: London
@@ -65,7 +56,8 @@ application: MMEMSG
 
 /* ----------------- mmemsg_w_ev_emea_start_1 ----------------- */ 
 
-insert_job: mmemsg_w_ev_emea_start_1 job_type: CMD 
+insert_job: mmemsg_w_ev_emea_start_1 job_type: BOX
+box_name: mmemsg_w_ev_emea_start_box
 owner: root
 permission: mx,me
 date_conditions: 0
